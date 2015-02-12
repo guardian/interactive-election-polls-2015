@@ -1,0 +1,25 @@
+<div class="guInteractive">
+    <h1>Interactive project template</h1>
+
+    <button class="submit-input">Test</button>
+    <div class="container"></div>
+
+    <!-- Mustache template -->
+    <table class="videogames-table">
+        <thead>
+            <tr>
+                <th class="column-header" data-sort="title">Title</th>
+                <th class="column-header" data-sort="firstrelease">Year</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#rows}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{firstrelease}}</td>
+            </tr>
+        {{/rows}}
+        </tbody>
+    </table>
+    
+</div>
