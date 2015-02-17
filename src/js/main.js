@@ -1,21 +1,21 @@
 define([
-    'json!data/sampleData.json',
-    'iframe-messenger'
+    'chart/chart',
+    'text!templates/appTemplate.html'
 ], function(
-    sampleData,
-    iframeMessenger
+    chartView,
+    templateHTML
 ) {
    'use strict';
 
     function init(el, context, config, mediator) {
         // DEBUG: What we get given on boot
         console.log(el, context, config, mediator);
+        console.log(templateHTML);
+        el.innerHTML = templateHTML;
 
-        // Load local JSON data
-        console.log(sampleData);
 
-        // Enable iframe resizing on the GU site
-        iframeMessenger.enableAutoResize();
+
+        chartView.render(el.querySelector('#chart'));
     }
 
     return {

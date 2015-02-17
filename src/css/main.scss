@@ -10,6 +10,9 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 @import 'bower_components/guss-typography/_typography.scss';
 
 @import 'modules/sample';
+@import 'modules/chart';
+
+
 @include guss-webfonts();
 @include guss-typography-defaults;
 
