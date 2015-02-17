@@ -18,7 +18,8 @@ require.config({
     propertyParser: "../../bower_components/requirejs-plugins/src/propertyParser",
     "Markdown.Converter": "../../bower_components/requirejs-plugins/lib/Markdown.Converter",
     text: "../../bower_components/text/text",
-    d3: "../../bower_components/d3/d3"
+    d3: "../../bower_components/d3/d3",
+    underscore: "../../bower_components/underscore/underscore"
   },
   packages: [
 
