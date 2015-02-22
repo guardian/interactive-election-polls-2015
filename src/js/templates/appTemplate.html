@@ -1,9 +1,138 @@
-<div class="guInteractive">
-    <h1>Election stuff</h1>
+<div class="guInteractive bgc-grey-light">
 
-    <button>Hello</button>
+  <header class="l-header bgc-blue-light">
+    <nav id="l-nav" class="bgc-blue-dark">
+      <a href="http://theguardian.com" class="link-home">
+        <img class="l-logo__home" src="../assets/imgs/homeLogo.svg" alt="back to home">
+        home
+      </a>
+      <a href="http://theguardian.com">
+        <img class="l-logo__guardian" src="../assets/imgs/guardianLogo.png" alt="back to the guardian's homepage">
+      </a>
+    </nav>
+  </header>
 
-   <div id="chart"></div>
-   <div id="pollchart"></div>
+  <main id="l-main" class="bgc-white">
+    <header class="l__title">
+      <h1 class="t-h1-h">Election 2015: poll projector</h1>
+      <p class="t-bd-h">Our unique calculation uses constituency, regional and an adjusted average of national polls to project the result in each of the 650 Westminster constituencies. It is the highest-fidelity view of what the headline polls imply for the outcome of the election.</p>
+      <div class="row">
+        <p class="t-time col-left">Last update <time>Feb 16 2015 16:32 GMT</time></p>
+        <ul class="col-right ul__party t-ul__party">
+          <li><span class="rect bgc-con"></span>Conservatives</li>
+          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+          <li><span class="rect bgc-ukip"></span>UKIP</li>
+          <li><span class="rect bgc-others"></span>Others</li>
+          <li><span class="rect bgc-grn"></span>Green</li>
+          <li><span class="rect bgc-snp"></span>SNP</li>
+          <li><span class="rect bgc-lab"></span>Labour</li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- section 1 -->
+    <div class="row bdt-section">
+      <div class="col-left">
+        <h2 class="t-h2-s">What Commons would look like</h2>
+        <p class="t-bd-s">The numbre of seats which would be won by each party based on their support in a range of recent polls.</p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right">
+      </div>
+    </div>
     
+    <!-- section 2 -->
+    <div class="row bdt-section">
+      <div class="col-left">
+        <h2 class="t-h2-s">Which seats would change hands</h2>
+        <p class="t-bd-s">...</p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right" id="">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left bdt-subsection">
+        <h3 class="t-h3-s">Conservatives</h3>
+        <p class="t-bd-s">...</p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right" id="">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left bdt-subsection">
+        <h3 class="t-h3-s">Labour</h3>
+        <p class="t-bd-s">...</p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right" id="">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left bdt-subsection">
+        <h3 class="t-h3-s">SNP</h3>
+        <p class="t-bd-s">...</p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right" id="">
+      </div>
+    </div>
+
+    <!-- section 3 -->
+    <div class="row bdt-section">
+      <div class="col-left">
+        <h2 class="t-h2-s">How the national polls are evolving</h2>
+        <p class="t-bd-s">...</p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right">
+        <div id="pollchart"></div>
+        <div id="chart"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bgc-grey-dark">
+    <div id="l-footer" class="t-ft">
+      <ul class="links-footer t-ft-misc">
+        <li><a href="https://membership.theguardian.com/?INTCMP=NGW_FOOTER_UK_GU_MEMBERSHIP">membership</a></li>
+        <li><a href="http://jobs.theguardian.com/?INTCMP=NGW_FOOTER_UK_GU_JOBS">jobs</a></li>
+        <li><a href="https://soulmates.theguardian.com/?INTCMP=NGW_FOOTER_UK_GU_SOULMATES">dating</a></li>
+        <li><a href="/guardian-masterclasses?INTCMP=NGW_FOOTER_UK_GU_MASTERCLASSES">masterclasses</a></li>
+        <li><a href="http://subscribe.theguardian.com/?INTCMP=NGW_FOOTER_UK_GU_SUBSCRIBE" target="_blank">subscribe</a></li>
+        <li><a href="/index/subjects/a">all topics</a></li>
+        <li><a href="/index/contributors">all contributors</a></li>
+        <li><a href="/info" target="_blank">about us</a></li>
+        <li><a href="/help/contact-us" target="_blank">contact us</a></li>
+        <li><a href="/info/complaints-and-corrections">complaints &amp; corrections</a></li>
+        <li><a href="/help/terms-of-service">terms &amp; conditions</a></li>
+        <li><a href="/help/privacy-policy">privacy policy</a></li>
+        <li><a href="/info/cookies">cookie policy</a></li>
+        <li><a href="https://securedrop.theguardian.com/">securedrop</a></li>
+      </ul>
+      <div class="really-serious-copyright t-ft-copyright bdt-copyright">© 2015 Guardian News and Media Limited or its affiliated companies. All&nbsp;rights&nbsp;reserved.</div>
+      </div>
+  </footer>
 </div>
