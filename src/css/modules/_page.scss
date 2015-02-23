@@ -33,6 +33,10 @@
   .t-h3-s { 
     color: #808080; 
   }
+  .t-h4-s { 
+    color: #808080; 
+    font-size:18px;
+  }
 
   .t-bd-s,
   .t-time,
@@ -238,6 +242,7 @@
     .t-bd-h {
       padding: 10px 0 0;
     }
+    
 }}
 @media (max-width: 400px) {
   .guInteractive { 

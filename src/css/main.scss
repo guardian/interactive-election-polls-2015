@@ -8,6 +8,7 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 
 $ff-s:  "Guardian Egyptian Web", Georgia, serif;
 $ff-ss: "Guardian Text Sans Web","Agate Sans", sans-serif; 
+$ff-agate: "Guardian Agate Sans 1 Web","Agate Sans", sans-serif; 
 
 $con:    #005789;
 $grn:    #33A22B;
@@ -27,6 +28,8 @@ $ukip:   #7D0069;
 
 @import 'modules/page';
 @import 'modules/chart';
+@import 'modules/seats';
+@import 'modules/sparklines';
 @import 'modules/pollchart';
 
 
@@ -73,3 +76,7 @@ h1, h2, h3, p {
 // position relative + absolute: (pos-)
 .pos-r { position: relative; }
 .pos-a { position: absolute; }
+
+.margin-bottom-3em {
+      margin-bottom:3em
+    }

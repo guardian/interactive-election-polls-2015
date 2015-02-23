@@ -1,0 +1,412 @@
+#commonsChart {
+    margin-top: 53px;
+}
+.poll-chart {
+
+    overflow: hidden;
+    font-family:$ff-agate;
+
+    svg {
+        font-family:$ff-agate;
+        font-size:12px;
+    }
+
+    .majority path {
+        shape-rendering:crispEdges;
+        stroke-width:1;
+        stroke:#333;
+        /*fill:#333;*/
+    }
+    .majority text {
+        text-anchor:middle;
+    }
+    .majority text tspan {
+        font-weight: bold;
+    }
+    .con,
+    .con line {
+        fill:#005789;
+        stop-color:#005789;
+        stroke:#005789;
+        color:#005789;
+    }
+    .lab,
+    .lab line {
+        fill:#E31F26;
+        stop-color:#E31F26;
+        stroke:#E31F26;
+        color:#E31F26;
+    }
+    .snp,
+    .snp line {
+        fill:#FCDD03;
+        stop-color:#FCDD03;
+        stroke:#FCDD03;
+        color:#fcb705;
+    }
+    .snp text {
+        fill:#fdca48;
+    }
+    .libdem,
+    .libdem line {
+        fill:#FFB900;
+        stop-color:#FFB900;
+        stroke:#FFB900;
+        color:#FFB900;
+    }
+    .libdem text {
+        fill:#eead00;
+    }
+    .ukip,
+    .ukip line {
+        fill:#7D0069;
+        stop-color:#7D0069;
+        stroke:#7D0069;
+        color:#7D0069;
+    }
+    .green,
+    .green line {
+        fill:#33A22B;
+        stop-color:#33A22B;
+        stroke:#33A22B;
+        color:#33A22B;
+    }
+    .others,
+    .others line {
+        fill:#B3B3B4;
+        stop-color:#B3B3B4;
+        stroke:#B3B3B4;
+        color:#B3B3B4;
+    }
+    .pc,
+    .pc line {
+        color:#868686;
+        fill:#868686;
+        stop-color:#868686;
+        stroke:#868686;
+    }
+    .gray {
+        stop-color:#999;
+    }
+    .bar rect {
+        stroke:none;
+    }
+    .bar rect.ix {
+        fill:transparent;
+        fill-opacity:0 !important;
+    }
+    .bar text {
+        stroke:none;
+        font-size:14px;
+        display: none;
+    }
+    .bar.hover text,
+    .bar.show-text text {
+        display: block;
+    }
+    .bar text {
+        text-anchor:middle;
+    }
+    .filtered .bar.hover text {
+        display: none;
+    }
+    .filtered .bar.dehover rect,
+    .filtered .bar.same-party.dehover rect {
+        fill-opacity:0;
+    }
+    /*
+    .bar.right text {
+        text-anchor:end;
+    }
+    .bar.left text {
+        text-anchor:start;
+    }
+    */
+    .bar.same rect {
+        fill-opacity:0;
+    }
+    .filtered .bar.same-party rect {
+        fill-opacity:0.3;
+    }
+    .filtered .bar.main-party.snp rect {
+        fill-opacity:0.6;
+    }
+
+    .filtered .bar:not(.main-party) rect {
+        fill-opacity:1;
+        fill:#eee;
+    }
+
+    line {
+        stroke:rgba(0,0,0,0.1);
+        shape-rendering:crispEdges;
+    }
+    line.detail {
+        stroke-width:5;
+    }
+    line.start,
+    line.end {
+        stroke:#eee;
+    }
+    line.majority {
+        stroke:#666;
+        stroke-width:1;
+        stroke-dasharray: 2 2;
+    }
+    rect.changed {
+        fill-opacity:0.1;
+        stroke:none;
+    }
+    .hidden {
+        display:none;
+    }
+
+    .bg rect {
+        fill:#eee;
+    }
+    .bg text {
+        fill:#333;
+    }
+    .bg text tspan {
+        font-weight: bold;
+    }
+    .flow path {
+        fill-opacity:0.3;
+        stroke:none;
+    }
+    .flow path.highlight {
+        fill-opacity:0.9;
+    }
+    .flow path.dehighlight {
+        fill-opacity:0.1;
+    }
+    .flow text {
+        stroke:none;
+        text-anchor:middle;
+    }
+    .filtered .flow.same-party path {
+        fill-opacity:0.1;
+    }
+    .filtered .flow.main-party path {
+        fill-opacity:0.8;
+    }
+    .filtered .flow.same-party path {
+        fill-opacity:0.1;
+    }
+    .filtered .flow.same-party.snp.main-party path {
+        fill-opacity:0.5;
+    }
+    .filtered .flow:not(.main-party) path {
+        fill-opacity:0;
+        fill:#000;
+    }
+    .poll-chart {
+        overflow: hidden;
+        width:100%;
+        clear:both;
+    }
+    .poll-chart svg {
+        
+    }
+    .balance-sheet {
+        width:100%;
+        height:60px;
+        margin:0px;
+        position: relative;
+        margin-top: -25px;
+    }
+    .balance-sheet .balance-value {
+        position: absolute;
+        text-align: left;
+        width:40px;
+    }
+    .balance-sheet .balance-result {
+        width:40px;
+    }
+    .balance-sheet .balance-value span {
+        display: block;
+    }
+    .balance-sheet .balance-value span.qty {
+        padding: 0em;
+        font-size: 14px;
+
+    }
+    .balance-sheet span.label {
+        margin:2px;
+        padding:4px 0 0;
+        
+
+        font-size:11px;
+        
+        white-space: nowrap;
+        
+        padding-bottom: 0.1em;
+
+        line-height: 1.1em;
+
+    }
+
+    .balance-sheet .con span.label {
+        color:#005789;
+    }
+    .balance-sheet .lab span.label {
+        color:#E31F26;
+    }
+    .balance-sheet .snp span.label {
+        color:#fcb705;
+    }
+    .balance-sheet .libdem span.label {
+        color:#FFB900;
+    }
+    .balance-sheet .ukip span.label {
+        color:#7D0069;
+    }
+    .balance-sheet .green span.label {
+        color:#33A22B;
+    }
+    .balance-sheet .others span.label {
+        color:#B3B3B4;
+    }
+    .balance-sheet .pc span.label {
+        color:#868686;
+    }
+    .balance-sheet h3 {
+        margin-bottom:10px;
+    }
+    .balance-sheet table {
+        width:100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show;
+        color:#333;
+    }
+    .balance-sheet tr {
+    }
+    .balance-sheet tr td {
+        text-align:right;
+        padding: 0em;
+        font-size: 24px;
+        vertical-align: bottom;
+    }
+    .balance-sheet tr.bal td {
+        border-top:2px solid #333;
+        font-weight: bold;
+    }
+    .balance-sheet tr td.qty {
+        width:100%;
+    }
+    .balance-sheet tr td:first-child{
+        text-align: center;
+    }
+    .balance-sheet tr td:last-child{
+        text-align:left;
+        font-size:0.7em;
+        
+        white-space: nowrap;
+        padding-left:0.5em;
+        padding-bottom: 0.1em;
+
+        
+    }
+    .balance-sheet tr td:last-child span {
+        display: block;
+        margin:2px;
+        padding:4px 5px;
+        height: 100%;
+        border-radius: 2px;
+    }
+    .balance-sheet tr.bal td:last-child{
+        border-top: 2px solid transparent;
+    }
+
+    .balance-sheet .con td:last-child span{
+        background-color:#005789;
+        color:#fff;
+    }
+    .balance-sheet .lab td:last-child span{
+        color:#fff;
+        background-color:#E31F26;
+    }
+    .balance-sheet .snp td:last-child span {
+        
+        background-color:#FCDD03;
+    }
+    .balance-sheet .libdem td:last-child span{
+        
+        background-color:#FFB900;
+    }
+    .balance-sheet .ukip td:last-child span{
+        color:#fff;
+        background-color:#7D0069;
+    }
+    .balance-sheet .green td:last-child span{
+        
+        background-color:#33A22B;
+    }
+    .balance-sheet .others td:last-child span{
+        
+        background-color:#B3B3B4;
+    }
+    .balance-sheet .pc td:last-child span{
+        background-color:#868686;
+    }
+    .bg-con {
+        background-color:#005789;
+    }
+    .bg-lab {
+        background-color:#E31F26;
+    }
+    .bg-snp {
+        background-color:#FCDD03;
+    }
+    .bg-libdem {
+        background-color:#FFB900;
+    }
+    .bg-ukip {
+        background-color:#7D0069;
+    }
+    .bg-green {
+        background-color:#33A22B;
+    }
+    .bg-others {
+        background-color:#B3B3B4;
+    }
+    .bg-pc {
+        background-color:#868686;
+    }
+    #coalitions {
+        overflow: hidden;
+        margin-top:-1px;
+    }
+    .coalition {
+        float: left;
+        box-sizing: border-box;
+        padding: 10px 20px 0;
+        width:100%;
+    }
+    .coalition.n2 {
+        border-left: 1px solid #ddd;
+    }
+    .coalition:first-child {
+        border-left:none;
+    }
+    .coalition-balance {
+        overflow: hidden;
+    }
+    .coalition-balance span {
+        float: left;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        display: block;
+        line-height: 20px;
+        text-align: center;
+        color:#333;
+        font-weight: bold;
+    }
+    @media (min-width: 480px) {
+        .coalition {
+            width:33%;
+        }
+    }
+}

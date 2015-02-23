@@ -14,10 +14,10 @@
 
   <main class="l-main bgc-white">
     <header class="l-title">
-      <h1 class="t-h1-h">Election 2015: poll projector</h1>
-      <p class="t-bd-h">Our unique calculation uses constituency, regional and an adjusted average of national polls to project the result in each of the 650 Westminster constituencies. It is the highest-fidelity view of what the headline polls imply for the outcome of the election.</p>
+      <h1 class="t-h1-h">Election 2015: The Guardian's polling projection</h1>
+      <p class="t-bd-h">Our model takes in all published constituency-level polls, UK-wide polls and polling conducted in the nations, and projects the result in each of the 650 Westminster constituencies using an adjusted average.</p>
       <div class="row bgc-white" id="stickyRow">
-        <p class="col-left t-time">Last update <time>Feb 16 2015 16:32 GMT</time></p>
+        <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
         <ul class="col-right ul__party t-ul__party">
           <li><span class="rect bgc-con"></span>Conservatives</li>
           <li><span class="rect bgc-ldem"></span>Lib Dem</li>
@@ -33,8 +33,72 @@
     <!-- section 1 -->
     <div class="row bdt-section">
       <div class="col-left">
-        <h2 class="t-h2-s">What Commons would look like</h2>
-        <p class="t-bd-s">The numbre of seats which would be won by each party based on their support in a range of recent polls.</p>
+        <h2 class="t-h2-s" id="title_mainprojection"></h2>
+        <p class="t-bd-s" id="par_mainprojection"></p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right">
+        <div id="commonsChart" class="poll-chart"></div>
+      </div>
+    </div>
+    <div class="row margin-bottom-3em">
+      <div class="col-left">
+        <h2 class="t-h4-s" id="title_coalitions"></h2>
+        <p class="t-bd-s" id="par_coalitions"></p>
+      </div>
+      <div class="col-right">
+        <div id="coalitionsChart" class="poll-chart"></div>
+      </div>
+    </div>
+    
+    <!-- section 2 -->
+    <!--<div class="row bdt-section ">
+      <div class="col-left">
+        <h2 class="t-h2-s" id="title_weeklychange"></h2>
+        <p class="t-bd-s" id="par_weeklychange"></p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right">
+      </div>
+    </div>-->
+
+    <div class="row">
+      <div class="col-left bdt-section">
+        <h3 class="t-h2-s" id="title_flowofseats"></h3>
+        <p class="t-bd-s" id="par_flowofseats"></p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right">
+        <div id="flowsChart" class="poll-chart"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left bdt-subsection">
+        <h3 class="t-h3-s" id="title_con-transfers"></h3>
+        <p class="t-bd-s" id="par_con-transfers"></p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-left bdt-subsection">
+        <h3 class="t-h3-s" id="title_lab-transfers"></h3>
+        <p class="t-bd-s" id="par_lab-transfers"></p>
         <div class="btns-share">
           <button class="btn-tt" data-source="twitter" data-couple=""></button>
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
@@ -44,11 +108,10 @@
       </div>
     </div>
     
-    <!-- section 2 -->
-    <div class="row bdt-section">
-      <div class="col-left">
-        <h2 class="t-h2-s">Which seats would change hands</h2>
-        <p class="t-bd-s">...</p>
+    <div class="row">
+      <div class="col-left bdt-subsection">
+        <h3 class="t-h3-s" id="title_snp-transfers"></h3>
+        <p class="t-bd-s" id="par_snp-transfers"></p>
         <div class="btns-share">
           <button class="btn-tt" data-source="twitter" data-couple=""></button>
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
@@ -60,8 +123,8 @@
 
     <div class="row">
       <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s">Conservatives</h3>
-        <p class="t-bd-s">...</p>
+        <h3 class="t-h3-s" id="title_ld-transfers"></h3>
+        <p class="t-bd-s" id="par_ld-transfers"></p>
         <div class="btns-share">
           <button class="btn-tt" data-source="twitter" data-couple=""></button>
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
@@ -73,8 +136,8 @@
 
     <div class="row">
       <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s">Labour</h3>
-        <p class="t-bd-s">...</p>
+        <h3 class="t-h3-s" id="title_ukip-transfers"></h3>
+        <p class="t-bd-s" id="par_ukip-transfers"></p>
         <div class="btns-share">
           <button class="btn-tt" data-source="twitter" data-couple=""></button>
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
@@ -84,24 +147,12 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s">SNP</h3>
-        <p class="t-bd-s">...</p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-couple=""></button>
-          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
-        </div>
-      </div>
-      <div class="col-right">
-      </div>
-    </div>
 
     <!-- section 3 -->
     <div class="row bdt-section">
       <div class="col-left">
-        <h2 class="t-h2-s">How the national polls are evolving</h2>
-        <p class="t-bd-s">...</p>
+        <h2 class="t-h2-s" id="title_vi-time-series"></h2>
+        <p class="t-bd-s" id="par_vi-time-series"></p>
         <div class="btns-share">
           <button class="btn-tt" data-source="twitter" data-couple=""></button>
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>

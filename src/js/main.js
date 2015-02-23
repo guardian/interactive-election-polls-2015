@@ -2,12 +2,16 @@ define([
   'd3',
   'underscore',
   'chart/chart',
+  'page/page',
+  'seatscharts/commons',
   'pollchart/pollchart',
   'text!templates/appTemplate.html'
 ], function(
   d3,
   underscore,
   chartView,
+  page,
+  commonsChart,
   pollChart,
   templateHTML
 ) {
@@ -22,6 +26,10 @@ define([
     
     loadData(function(data){
       //chartView.render(el.querySelector('#chart'), data);
+      console.log(data)
+      page.render(data["sheets"]["glosses"],data.updated);
+      commonsChart.render('#commonsChart' ,data);
+      commonsChart.renderMainFlow('#flowsChart' ,data);
       pollChart.render(el.querySelector('#pollchart') ,data);
     })
   }
@@ -46,6 +54,16 @@ define([
   function loadData(callback) {
     var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
     d3.json(jsonSrc, function(err, data) {
+
+      data.sheets["RESULT"].forEach(function(d){
+          if(d.projection=="PC") {
+              d.projection="others";
+          }
+          if(d.winner2010=="PC") {
+              d.winner2010="others";
+          }
+      })
+
       callback(data);
     });
   }

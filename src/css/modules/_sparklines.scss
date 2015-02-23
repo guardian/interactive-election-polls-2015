@@ -1,0 +1,279 @@
+.polls-trends {
+	.con,
+	.cRight {
+	    fill:#005789;
+	    stop-color:#005789;
+	    stroke:#005789;
+	    color:#005789;
+	}
+	.lab,
+	.cLeft {
+	    fill:#E31F26;
+	    stop-color:#E31F26;
+	    stroke:#E31F26;
+	    color:#E31F26;
+	}
+	.snp {
+	    fill:#FCDD03;
+	    stop-color:#FCDD03;
+	    stroke:#FCDD03;
+	    color:#fcb705;
+	}
+	.libdem {
+	    fill:#FFB900;
+	    stop-color:#FFB900;
+	    stroke:#FFB900;
+	    color:#FFB900;
+	}
+	.ukip {
+	    fill:#7D0069;
+	    stop-color:#7D0069;
+	    stroke:#7D0069;
+	    color:#7D0069;
+	}
+	.green {
+	    fill:#33A22B;
+	    stop-color:#33A22B;
+	    stroke:#33A22B;
+	    color:#33A22B;
+	}
+	.others {
+	    fill:#B3B3B4;
+	    stop-color:#B3B3B4;
+	    stroke:#B3B3B4;
+	    color:#B3B3B4;
+	}
+	.pc {
+	    color:#868686;
+	    fill:#868686;
+	    stop-color:#868686;
+	    stroke:#868686;
+	}
+	#seatsCharts {
+		width:100%;
+		overflow: hidden;
+		font-family:$ff-agate;
+	}
+	.seats-chart {
+		width:20%;
+		
+		min-height: 70px;
+		padding:10px 20px;
+		position: relative;
+		float:left;
+		box-sizing: border-box;
+	}
+	.seats-chart.border-left{
+		border-left: 1px solid #ddd;
+	}
+	.seats-chart svg {
+		font-family:$ff-agate;
+	    font-size:12px;
+		display: block;
+		margin: 0 auto;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.seats-chart svg .linechart>g {
+		
+	}
+	.seats-chart svg .linechart circle {
+		stroke:none;
+		fill-opacity:0;
+	}
+	.seats-chart svg .linechart .selected circle {
+		fill-opacity:1;
+		
+	}
+	.seats-chart svg .linechart g.day:hover circle,
+	.seats-chart svg .linechart g.day.hover circle { 
+		fill-opacity:1;
+	}
+	.seats-chart svg .linechart g:last-child circle {
+		fill-opacity:1;
+	}
+	.seats-chart svg .linechart g text {
+		text-anchor:middle;
+		fill-opacity:0;
+		font-weight: normal;
+		text-anchor:start;
+	}
+	.seats-chart svg .linechart g:hover text,
+	.seats-chart svg .linechart g.hover text {
+		fill-opacity:1 !important;
+	}
+	.seats-chart:first-child svg .linechart g.day.first text,
+	.seats-chart:first-child svg .linechart g.day.last text {
+		fill-opacity:1;
+	}
+	.seats-chart:first-child:hover svg .linechart g.day.first text,
+	.seats-chart:first-child:hover svg .linechart g.day.last text,
+	.seats-chart:first-child.hover svg .linechart g.day.first text,
+	.seats-chart:first-child.hover svg .linechart g.day.last text { 
+		fill-opacity:0;
+	}
+	.seats-chart svg .linechart g.day.right-aligned text {
+		text-anchor: end;
+	}
+	.seats-chart svg .linechart g text tspan.click {
+		font-weight: 300;
+		fill:#666;
+	}
+	.seats-chart svg .linechart line.dropline {
+		fill:none;
+		stroke-opacity:0.5;
+		stroke-dasharray:1,1;
+		/*shape-rendering: crispEdges;*/
+	}
+	.seats-chart svg .linechart g.selected text tspan.click {
+		fill-opacity:0;
+	}
+	.seats-chart svg .linechart g line.dropline {
+		fill:none;
+		stroke:#aaa;
+		stroke-opacity:0;
+		/*stroke-dasharray:2,2;*/
+		/*shape-rendering: crispEdges;*/
+	}
+	.seats-chart svg .linechart g text.dropline {
+		fill:#333;
+	}
+	.seats-chart svg .linechart g:hover line.dropline,
+	.seats-chart svg .linechart g.hover line.dropline {
+		stroke-opacity:0.8 !important;
+	}
+	.seats-chart:first-child svg .linechart g.day.first line.dropline,
+	.seats-chart:first-child svg .linechart g.day.last line.dropline {
+		stroke-opacity:0.8;
+	}
+	.seats-chart:first-child:hover svg .linechart g.day.first line.dropline,
+	.seats-chart:first-child:hover svg .linechart g.day.last line.dropline,
+	.seats-chart:first-child.hover svg .linechart g.day.first line.dropline,
+	.seats-chart:first-child.hover svg .linechart g.day.last line.dropline {
+		stroke-opacity:0;
+	}
+	.seats-chart svg .linechart g.selected line.dropline {
+		stroke-opacity:0.8;
+		stroke:#666;
+		font-size:12px;
+	}
+
+	.seats-chart svg .linechart rect.ix {
+		fill:#000;
+		fill-opacity:0;
+		stroke:none;
+		
+	}
+	.seats-chart svg .linechart path {
+		fill:none;
+		stroke-width:2;
+		shape-rendering:auto;/*crispEdges;*/
+	}
+
+	.seats-chart svg .linechart path.area {
+		stroke:none;
+		fill:#A06535;
+		fill-opacity:0.5;
+	}
+	.seats-chart svg .linechart .label text {
+		font-size:14px;
+		stroke:none;
+		fill-opacity:1;
+	}
+	.seats-chart svg .linechart .label circle {
+		fill-opacity:1;
+	}
+	.seats-chart svg .linechart .label text.cLeft {
+		text-anchor:end;
+	}
+	.seats-chart svg .linechart rect {
+		stroke:none;
+		fill-opacity:0.2;
+		shape-rendering:crispEdges;
+	}
+	.seats-chart #axes path,
+	.seats-chart #axes line {
+		shape-rendering: crispEdges;
+	}
+	.seats-chart #axes {
+		display: none;
+	}
+	.seats-chart #axes .axis path {
+		stroke:#999;
+		stroke-width:1;
+		fill:none;
+		shape-rendering: crispEdges;
+		display: none;
+	}
+	.seats-chart #axes .axis .tick line {
+		stroke:#aaa;
+		stroke-width:1;
+		fill:none;
+		shape-rendering: crispEdges;
+		display: none;
+	}
+	.seats-chart #axes .axis .tick text{
+		font-size: 12px;
+		fill:#333;
+	}
+	.seats-chart #axes .axis .tick .dropline{
+		stroke:#ddd;
+		stroke-dasharray: 2,2;
+		display: block;
+	}
+	.seats-chart #axes .x .tick.highlight text,
+	.seats-chart #axes .x .tick.selected text{
+		font-weight: bold;
+		fill:#000;
+	}
+	.seats-chart #axes .x .tick text{
+		text-anchor:middle !important;
+	}
+
+	.seats-chart #axes line.ygrid {
+		fill:none;
+		stroke:#ccc;
+		stroke-width:1;
+		stroke-dasharray: 2,2;
+	}
+	.seats-chart .chart.first .seats-chart #axes line.ygrid,
+	.seats-chart .chart:hover .seats-chart #axes line.ygrid {
+		display: block;
+	}
+	.seats-chart #axes .y .tick text {
+		text-anchor:start !important;
+	}
+	.seats-chart #axes .y .tick line,
+	.seats-chart #axes .y path {
+		display: none;
+	}
+
+	.seats-chart .day circle {
+		
+	}
+	.seats-chart .seats-change {
+		position: absolute;
+		top:-10px;
+		width:130px;
+	}
+	.seats-chart .seats-change span {
+		visibility: hidden;
+		display: block;
+		font-size:12px;
+	}
+	.seats-chart .seats-change span.seats-diff-n {
+		font-weight: bold;
+		font-size: 14px;
+		visibility: visible;
+	}
+	.seats-chart:first-child .seats-change span {
+		visibility: visible;
+	}
+	.seats-chart .seats-change span.seats-diff-n i {
+		display: none;
+		font-style: normal;
+	}
+	.seats-chart:first-child .seats-change span i {
+		display: inline;
+	}
+}
