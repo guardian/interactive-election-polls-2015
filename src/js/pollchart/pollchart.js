@@ -9,11 +9,9 @@ define([
 ) {
    'use strict';
 
-    function render(el) {
-        console.log(test);
-
+    function render(el, data) {
+        //console.log(data);
         el.innerHTML = 'POLLCHART';
-
     }
 
     return {

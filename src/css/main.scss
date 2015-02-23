@@ -3,7 +3,20 @@
  * File:    Main SCSS
  */
 
+/** Variables */
 $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
+
+$ff-s:  "Guardian Egyptian Web", Georgia, serif;
+$ff-ss: "Guardian Text Sans Web","Agate Sans", sans-serif; 
+
+$con:    #005789;
+$grn:    #33A22B;
+$lab:    #E31F26;
+$ldem:   #FFB900;
+$others: #B3B3B4;
+$snp:    #FCDD03;
+$ukip:   #7D0069;
+
 
 @import 'bower_components/pasteup-palette/src/_palette';
 @import 'bower_components/guss-webfonts/src/_webfonts.scss';
@@ -12,7 +25,51 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 @include guss-webfonts();
 @include guss-typography-defaults;
 
-
 @import 'modules/page';
 @import 'modules/chart';
 @import 'modules/pollchart';
+
+
+/** Style: reset */
+body {
+  width: 100%;
+}
+
+body,
+figure.element-interactive {
+  margin: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+
+/** Atomic CSS, kind of */
+// fonts: (f*-)
+.ff-s  { font-family: $ff-s; }
+.ff-ss { font-family: $ff-ss; }
+
+// backgound colors: (bgc-)
+.bgc-con    { background-color: $con; }
+.bgc-grn    { background-color: $grn; }
+.bgc-lab    { background-color: $lab; }
+.bgc-snp    { background-color: $snp; }
+.bgc-ldem   { background-color: $ldem; }
+.bgc-ukip   { background-color: $ukip; }
+.bgc-others { background-color: $others; }
+
+.bgc-white      { background-color: #FFF;}
+.bgc-grey-light { background-color: #EEE; }
+.bgc-grey-dark  { background-color: #424242; }
+.bgc-blue-light { background-color: #296d96; }
+.bgc-blue-dark  { background-color: #005689; }
+
+// borders: (bd*-)
+.bdt-section    { border-top: 1px solid #DCDCDC; }
+.bdt-subsection { border-top: 1px dotted #DFDFDF; }
+.bdt-copyright  { border-top: 1px solid #656565; }
+
+// position relative + absolute: (pos-)
+.pos-r { position: relative; }
+.pos-a { position: absolute; }
