@@ -155,8 +155,28 @@ define([
         flowChart.addFlows();
 
     }
-    function renderFlows(el,data) {
-
+    function renderFlows(data) {
+        var parties=["con","lab","libdem","snp"];
+        parties.forEach(function(party){
+            var cons=new PollsOfPolls(data.sheets["RESULT"],{
+                container:"#"+party+"Chart",
+                order:["con","libdem","ukip","others","pc","green","snp","lab"],
+                height:265,
+                top:150,
+                additionalTriangle:{
+                    verticalPosition:150+80,
+                    orientation:1
+                },
+                filter:[party],
+                ix:false,
+                names:names,
+                notitle:true
+            })
+            cons.addLastElections();
+            cons.addFlows();
+            cons.addBalanceSheet(party);
+        })
+        
     }
 
 

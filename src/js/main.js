@@ -30,6 +30,7 @@ define([
       page.render(data["sheets"]["glosses"],data.updated);
       commonsChart.render('#commonsChart' ,data);
       commonsChart.renderMainFlow('#flowsChart' ,data);
+      commonsChart.renderFlows(data);
       pollChart.render(el.querySelector('#pollchart') ,data);
     })
   }
