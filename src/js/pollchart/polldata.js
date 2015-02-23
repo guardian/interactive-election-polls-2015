@@ -2,5 +2,5 @@ define([
 ], function(
 ) {
    'use strict';
-    return "hi from test";
+    return "hi from data";
 });

@@ -19,7 +19,8 @@ require.config({
     "Markdown.Converter": "../../bower_components/requirejs-plugins/lib/Markdown.Converter",
     text: "../../bower_components/text/text",
     d3: "../../bower_components/d3/d3",
-    underscore: "../../bower_components/underscore/underscore"
+    underscore: "../../bower_components/underscore/underscore",
+    "hammer-touchemulator": "../../bower_components/hammer-touchemulator/touch-emulator"
   },
   packages: [
 

@@ -1,3 +1,136 @@
-#pollchart {
-	background: blue;
+//#pollchart {
+
+/* Atomic CSS */
+//.ff-ss { font-family: "GuardianAgateSans1Web"; }
+//.ff-s  { font-family: "GuardianEgyptianWeb"; }
+.fw-b  { font-weight: bold; }
+.fz-14 { font-size: 14px; }
+.fz-12 { font-size: 12px; }
+
+//.pos-r { position: relative; }
+//.pos-a { position: absolute; }
+
+.d-n { display: none; }
+.d-b { display: block; }
+
+.pt-70 { padding-top: 70px; }
+.pt-10 { padding-top: 10px; }
+.pb-7  { padding-bottom: 7px; }
+.pl-5  { padding-left: 5px; }
+
+.bb-5sb {
+  border-bottom: 5px solid black;
 }
+
+/* Atomic specific for svg */
+.op-0 {
+  opacity: 0;
+}
+.op-1-path path { 
+  opacity: 1;
+}
+.op-1-polls .pollster { 
+  opacity: 1;
+}
+.op-1-pathpolls .path-polls {
+  opacity: 1;
+}
+
+.sc-ddd.tick line {
+  stroke: #ddd;
+}
+
+/* Buttons
+[class*="btn-"] {
+padding-left: 25px;
+}
+[class*="btn-"] span {
+color: white;
+background-color: black;
+padding: 8px 10px 5px 10px;
+}*/
+
+/* Tooltip */
+.tp-line {
+  stroke: dimgrey;
+  stroke-width: 1;
+}
+.tp-circle {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+
+.tp-text {
+  line-height: 1.25em;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0px 10px;
+}
+
+/* SVG */
+/* SVG size */
+.chart-size {
+  min-width: 300px;
+  max-height: 660px;
+}
+svg#pollchart {
+  width: 100%;
+  height: 480px;
+}
+svg#pollchart g {
+  height: calc(100% - 60px); /* TODO: remove fix number */
+}
+
+/* SVG: color of the parties */
+.con    { color: #005789; fill: #005789; stroke: #005789; } 
+.lab    { color: #E31F26; fill: #E31F26; stroke: #E31F26; } 
+.ldem   { color: #FFB900; fill: #FFB900; stroke: #FFB900; }
+.ukip   { color: #7D0069; fill: #7D0069; stroke: #7D0069; } 
+.grn    { color: #33A22B; fill: #33A22B; stroke: #33A22B; } 
+.snp    { color: #FCDD03; fill: #FCDD03; stroke: #FCDD03; } 
+.others { color: #B3B3B4; fill: #B3B3B4; stroke: #B3B3B4; }
+
+path {
+  fill: none;
+}
+
+.pollster {
+  stroke-width: 1;
+  opacity: 0.15;
+}
+
+.pollster:hover {
+  opacity: 1; 
+}
+.pollster path {
+  stroke: black;
+  opacity: 0;
+}
+
+.circle-poll {
+  stroke: transparent;
+  stroke-width: 9;
+}
+
+.path-avg {
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.polygon-range {
+  cursor: pointer;
+  fill: transparent;
+  stroke: transparent;
+}
+
+/* SVG: axis */
+.tick line {
+  stroke: black;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.domain {
+  display: none;
+}
+
+//}
