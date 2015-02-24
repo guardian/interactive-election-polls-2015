@@ -30,6 +30,7 @@ $ukip:   #7D0069;
 @import 'modules/seats';
 @import 'modules/sparklines';
 @import 'modules/pollchart';
+@import 'modules/daybyday';
 
 
 /** Style: reset */
@@ -42,7 +43,7 @@ figure.element-interactive {
   margin: 0;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
   margin: 0;
 }
 
@@ -76,7 +77,14 @@ h1, h2, h3, p {
 .pos-r { position: relative; }
 .pos-a { position: absolute; }
 
+// padding:
+.pb-0 {
+  padding-bottom: 0;
+}
 // margin:
-.margin-bottom-3em {
-      margin-bottom:3em
-    }
+.mb-60 {
+  margin-bottom: 60px;
+}
+.mt-section {
+  margin-top: 52px;
+}

@@ -18,7 +18,7 @@
       <p class="t-bd-h">Our model takes in all published constituency-level polls, UK-wide polls and polling conducted in the nations, and projects the result in each of the 650 Westminster constituencies using an adjusted average.</p>
       <div class="row bgc-white" id="stickyRow">
         <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
-        <ul class="col-right ul__party t-ul__party">
+        <ul class="col-right mb-60 ul__party t-ul__party">
           <li><span class="rect bgc-con"></span>Conservatives</li>
           <li><span class="rect bgc-ldem"></span>Lib Dem</li>
           <li><span class="rect bgc-ukip"></span>UKIP</li>
@@ -45,32 +45,18 @@
       </div>
     </div>
     
-    <div class="row margin-bottom-3em">
+    <div class="row">
       <div class="col-left">
-        <h2 class="t-h4-s" id="title_coalitions"></h2>
+        <h4 class="t-h4-s" id="title_coalitions"></h4>
         <p class="t-bd-s" id="par_coalitions"></p>
       </div>
-      <div class="col-right">
+      <div class="col-right mb-60 t-bd-s">
         <div id="coalitionsChart" class="poll-chart"></div>
       </div>
     </div>
 
-    <!-- section 2 -->
-    <!--<div class="row bdt-section ">
+    <div class="row bdt-section">
       <div class="col-left">
-        <h2 class="t-h2-s" id="title_weeklychange"></h2>
-        <p class="t-bd-s" id="par_weeklychange"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-couple=""></button>
-          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
-        </div>
-      </div>
-      <div class="col-right">
-      </div>
-    </div>-->
-
-    <div class="row">
-      <div class="col-left bdt-section">
         <h3 class="t-h2-s" id="title_flowofseats"></h3>
         <p class="t-bd-s" id="par_flowofseats"></p>
         <div class="btns-share">
@@ -78,7 +64,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right">
+      <div class="col-right mt-section mb-60">
         <div id="flowsChart" class="poll-chart"></div>
       </div>
     </div>
@@ -92,7 +78,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right">
+      <div class="col-right mb-60">
         <div id="conChart" class="poll-chart"></div>
       </div>
     </div>
@@ -106,7 +92,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right">
+      <div class="col-right mb-60">
         <div id="labChart" class="poll-chart"></div>
       </div>
     </div>
@@ -120,7 +106,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right">
+      <div class="col-right mb-60">
         <div id="snpChart" class="poll-chart"></div>
       </div>
     </div>
@@ -134,7 +120,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right">
+      <div class="col-right mb-60">
         <div id="libdemChart" class="poll-chart"></div>
       </div>
     </div>
@@ -148,7 +134,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right">
+      <div class="col-right mb-60">
         <div id="ukipChart" class="poll-chart"></div>
       </div>
     </div>-->
@@ -164,9 +150,9 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right pt-70">
+      <div class="col-right mt-section mb-60">
         <!-- pollchart --> 
-        <div class="pos-r chart-size">
+        <div class="pos-r chart-size pollchart">
           <svg id="pollchart"></svg>
           <div id="tpTextBox" class="tp-text pos-a d-n ff-ss fz-14">
             <div class="fw-b pt-10"></div>
@@ -175,7 +161,14 @@
           </div>  
         </div>
 
-        <div id="chart"></div>
+        <div id="daybyday">
+          <ul id="pollstersFilter">
+            <li><b>Filter by pollster:</b></li>
+          </ul>
+          <div id="pollsTable" ></div>
+          <br/>
+          <a href="#" id="showMorePolls" class="more">Show more</a>
+        </div>
       </div>
     </div>
   </main>

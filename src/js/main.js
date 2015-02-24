@@ -30,6 +30,7 @@ define([
       commonsChart.renderMainFlow('#flowsChart' ,data);
       commonsChart.renderFlows(data);
       pollChart.render(el.querySelector('#pollchart') ,data);
+      commonsChart.renderDayByDay("#daybyday",data);
     })
   }
 

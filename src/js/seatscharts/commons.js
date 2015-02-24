@@ -1,11 +1,13 @@
 define([
     'd3',
     'seatscharts/PollsOfPolls',
-    'sparklines/sparklines'
+    'sparklines/sparklines',
+    'pollchart/daybyday'
 ], function(
     d3,
     PollsOfPolls,
-    Sparkline
+    Sparkline,
+    DayByDay
 ) {
    'use strict';
 
@@ -48,7 +50,7 @@ define([
         })
 
         projections.addHistoricTrends("seatsCharts");
-        projections.addCoalitions("#coalitionsChart");
+        projections.addCoalitions("#coalitionsChart",data.sheets["glosses"]);
 
         // SPARKLINES
         var format=d3.time.format("%d/%m/%Y")
@@ -179,10 +181,24 @@ define([
         
     }
 
+    function renderDayByDay(el,data) {
+        new DayByDay(data.sheets["vi-continuous-series"],{
+            container:el,
+            parties:["con","grn","lab","ldem","ukip"],
+            termDic: { 
+              con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green", 
+              YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium", 
+              ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" 
+            },
+            show:5
+        })
+    }
+
 
     return {
         render: render,
         renderMainFlow: renderMainFlow,
-        renderFlows: renderFlows
+        renderFlows: renderFlows,
+        renderDayByDay: renderDayByDay
     };
 });
