@@ -87,7 +87,10 @@
     margin: 0 auto;
     padding: 0 20px;
   }
-
+  .l-stick {
+    z-index: 999999;
+  }
+  
   .l-footer ul {
     column-count: 3;
     margin-top: 0;   //override ul default
@@ -232,6 +235,10 @@
     .row [class*="col-"] {
       width: 100%;
       float: none;
+    }
+    .col-left{
+      margin-right: 0;
+      padding-right: 0;
     } 
 }}
 // breakpoints: 740(tablet), 660, 480(mobile-l)
