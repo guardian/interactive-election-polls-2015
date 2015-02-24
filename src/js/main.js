@@ -1,7 +1,6 @@
 define([
   'd3',
   'underscore',
-  'chart/chart',
   'page/page',
   'seatscharts/commons',
   'pollchart/pollchart',
@@ -9,8 +8,7 @@ define([
 ], function(
   d3,
   underscore,
-  chartView,
-  page,
+  pageView,
   commonsChart,
   pollChart,
   templateHTML
@@ -27,7 +25,7 @@ define([
     loadData(function(data){
       //chartView.render(el.querySelector('#chart'), data);
       console.log(data)
-      page.render(data["sheets"]["glosses"],data.updated);
+      pageView.render(data["sheets"]["glosses"],data.updated);
       commonsChart.render('#commonsChart' ,data);
       commonsChart.renderMainFlow('#flowsChart' ,data);
       commonsChart.renderFlows(data);
