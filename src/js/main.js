@@ -15,6 +15,11 @@ define([
 ) {
   'use strict';
 
+  d3.selectAll(".js-loggable")
+      .remove();
+  d3.selectAll('[data-reload=global]')
+      .remove();
+
   function init(el, context, config, mediator) {
     // DEBUG: What we get given on boot
     //console.log(el, context, config, mediator);

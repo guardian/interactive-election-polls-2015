@@ -55,7 +55,7 @@
 		font-family:$ff-agate;
 	}
 	.seats-chart {
-		width:20%;
+		width:50%;
 		
 		min-height: 70px;
 		padding:10px 0px;
@@ -276,4 +276,10 @@
 	.seats-chart:first-child .seats-change span i {
 		display: inline;
 	}
+
+	@media (min-width: 768px) {
+       	.seats-chart {
+			width:20%;
+		}
+    }
 }

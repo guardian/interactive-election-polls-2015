@@ -6,18 +6,18 @@ define([
    'use strict';
 
     function PollsOfPolls(data,options) {
-        console.log("PollsOfPolls")
+        //console.log("PollsOfPolls")
         var termDic = { 
                 con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", libdem: "LD", grn: "Green", green: "Green", others:"Others",snp:"SNP",
                 YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium", 
                 ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" 
             };
 
-        //////console.log(data);
+        ////////console.log(data);
 
         function generateData(data) {
 
-            console.log(data)
+            //console.log(data)
 
             var churning={};
             data.forEach(function(d){
@@ -49,7 +49,7 @@ define([
                 churning[d.projection].from[d.winner2010]++;
                 churning[d.winner2010].to[d.projection]++;
                 churning[d.projection].total+=(d.projection!=d.winner2010)?1:0;
-                //console.log(churning)
+                ////console.log(churning)
                 //churning[d.projection].total.from+=(d.projection!=d.winner2010)?1:0;
                 //churning[d.winner2010].total.from+=(d.projection!=d.winner2010)?1:0;
                 churning[d.projection].all+=1;
@@ -170,7 +170,7 @@ define([
             
             
 
-            //console.log(xscale(325),xscale(277),xscale(26),xscale(3),xscale(21),xscale(1))
+            ////console.log(xscale(325),xscale(277),xscale(26),xscale(3),xscale(21),xscale(1))
 
             majority.append("path")
                             .attr("d",triangle(triangle_h))
@@ -257,7 +257,7 @@ define([
         function getBars3(data,field) {
             var values=[];
             d3.entries(data).forEach(function(d){
-                //////console.log(d)
+                ////////console.log(d)
                 d3.entries(d.value[field]).forEach(function(s){
                     values.push({
                         from:d.key,
@@ -284,7 +284,7 @@ define([
                     d.x=xscale(d.x_real)
                     
                 })
-            console.log("========>",values)
+            //console.log("========>",values)
             return values;
         }
 
@@ -295,7 +295,7 @@ define([
         function getBars(data,field) {
             var values=[];
             d3.entries(data).forEach(function(d){
-                //////console.log(d)
+                ////////console.log(d)
                 d3.entries(d.value[field]).forEach(function(s){
                     values.push({
                         from:d.key,
@@ -362,11 +362,27 @@ define([
                             .attr("id",id)
                                 .attr("class","polls-trends")
         }
-        this.addCoalitions=function(id,glosses) {
+        this.addCoalitions=function(id,coalitions_glosses) {
                     
-                    //console.log("CIAOOOOOOOO")
-                    //console.log(data)
+                    ////console.log("CIAOOOOOOOO")
+                    ////console.log(data)
 
+                    
+
+                    var glosses=coalitions_glosses.sort(function(a,b){
+                        return a.order - b.order;
+                    }).map(function(d){
+                        var parties=d.parties.split(",");
+                        return {
+                            parties:parties,
+                            text:d.description,
+                            total:d3.sum(parties,function(p){
+                                return data[p]["all"]
+                            }),
+                            w:100/3
+                        }
+                    })
+                    /*
                     var glosses=[
                         {
                             parties:["lab","snp"],
@@ -388,7 +404,7 @@ define([
                         }
                         
                     ]
-
+                    */
                     var coalitions=d3.select(id || options.container)
                             .append("div")
                                 .attr("id","coalitions");
@@ -400,9 +416,9 @@ define([
                                 .attr("class",function(d,i){
                                     return "coalition n"+i;
                                 })
-                                .style("width",function(d){
-                                    return d.w+"%"
-                                })
+                                //.style("width",function(d){
+                                //    return d.w+"%"
+                                //})
 
                     var party=coalition.append("div")
                                 .attr("class","coalition-balance")
@@ -425,7 +441,7 @@ define([
                     party
                         .append("span")
                             .attr("class",function(d,i){
-                                ////console.log("!!!!!!!!!!!!!!!!!!!!",d.party,i)
+                                //////console.log("!!!!!!!!!!!!!!!!!!!!",d.party,i)
                                 return "party plus";
                             })
                             .text(function(d,i){
@@ -526,7 +542,7 @@ define([
                 to.forEach(function(d){
                     d.plus=1;
                 })
-                //console.log("to",to)
+                ////console.log("to",to)
 
                 from=values.filter(function(d){
                     return d.to==party && d.from!=d.to;
@@ -571,7 +587,7 @@ define([
                             var delta=((l1.x_label+label_width/2)-(l2.x_label-label_width/2));
                             
                             if(delta>=0) {
-                                ////console.log(delta)
+                                //////console.log(delta)
                                 overlap=true;
                                 if(Math.abs(l1.x_label-l1.ox_label)<15)
                                     l1.x_label-=0.5;
@@ -595,7 +611,7 @@ define([
                     .append("span")
                                 .attr("class","qty")
                                 .text(function(d){
-                                    //console.log(party,d);
+                                    ////console.log(party,d);
                                     return (d.plus?"+":"-")+d.qty;
                                 })
                 newBalanceValues.append("span")
@@ -668,7 +684,7 @@ define([
             if(options.ix) {
                 polls.addMouseEvents({
                     mouseOverCallback:function(d){
-                        //////console.log(d)
+                        ////////console.log(d)
                         change.highlightFlows(d.from,"to")
                         polls.highlight(d.from)
                         current.highlight(d.from)
@@ -766,11 +782,11 @@ define([
 
                 flows.select("path")
                             .attr("d",function(d){
-                                //////console.log(d)
+                                ////////console.log(d)
                                 var to=data_to.filter(function(t){
                                     return d.from==t.to && d.to==t.from;
                                 })[0]
-                                //////console.log(to)
+                                ////////console.log(to)
                                 var x1=d.x,
                                     x2=to.x,
                                     w=Math.ceil(xscale(d.qty)),
@@ -794,7 +810,7 @@ define([
             update();
             this.highlightFlows=function(party,direction,party2) {
                 
-                //////console.log(party,direction)
+                ////////console.log(party,direction)
                 
                 all_flows.selectAll("g.flow")
                         .selectAll("path")
@@ -822,7 +838,7 @@ define([
 
 
         function SeatsChart(data,options) {
-            //////console.log(data)
+            ////////console.log(data)
             
             var nested_data = d3.nest()
                     .key(function(d) { return d["from"]; })
@@ -833,9 +849,9 @@ define([
                         })
                     }; })
                     .entries(data);
-            //////console.log("@@@@@@@@@@@@@@@@@@@@")
-            //////console.log(nested_data)
-            //////console.log("@@@@@@@@@@@@@@@@@@@@")
+            ////////console.log("@@@@@@@@@@@@@@@@@@@@")
+            ////////console.log(nested_data)
+            ////////console.log("@@@@@@@@@@@@@@@@@@@@")
 
             var bar=options.bar;
             
@@ -874,7 +890,7 @@ define([
                             var max=d3.max(data.filter(function(b){
                                 return b.from==d.from;
                             }));
-                            //////console.log("|||||||||||||||||||||||",d,max)
+                            ////////console.log("|||||||||||||||||||||||",d,max)
                             return d.x==max.x && party==d.from;
                         })
                         .classed("dehover",function(d){
@@ -895,7 +911,7 @@ define([
             this.resize=function(newData) {
                 data=newData;
                 
-                ////console.log("NEW DATA",newData);
+                //////console.log("NEW DATA",newData);
 
                 nested_data = d3.nest()
                     .key(function(d) { return d["from"]; })
@@ -910,7 +926,7 @@ define([
             }
             function update() {
 
-                console.log(data)
+                //console.log(data)
 
                 var bars=seats.selectAll("g.bar")
                             .data(data.sort(function(a,b){
@@ -941,24 +957,24 @@ define([
                                     })
                                     
                 if(options.mouseOverCallback) {
-                    new_bars.on("mouseover",options.mouseOverCallback)
+                    new_bars.on("mouseover",options.mouseOverCallback);
                 }
                 if(options.mouseOutCallback) {
-                    new_bars.on("mouseout",options.mouseOutCallback)
+                    new_bars.on("mouseout",options.mouseOutCallback);
                 }
                                     
                 new_bars.append("rect")
                                 .attr("x",0)
                                 .attr("y",0)
                                 .attr("width",0)
-                                .attr("height",bar.height)
+                                .attr("height",bar.height);
 
                 new_bars.append("rect")
                                 .attr("class","ix")
                                 .attr("x",0)
                                 .attr("y",-options.flowHeight/2)
                                 .attr("width",0)
-                                .attr("height",bar.height+options.flowHeight)
+                                .attr("height",bar.height+options.flowHeight);
                 
                 new_bars.append("text")
                         .attr("y",function(d){
@@ -983,7 +999,7 @@ define([
                             return nested_data.filter(function(nd){
                                 return nd.key==d.from;
                             })[0].values.sum
-                        })
+                        });
                 
                 bars
                     .attr("transform",function(d,i){
@@ -992,7 +1008,7 @@ define([
                     .selectAll("rect")
                         .attr("width",function(d){
                             return Math.ceil(xscale(d.qty))+0.5;
-                        })
+                        });
 
                 bars.select("text")
                     .attr("x",function(d){
@@ -1035,12 +1051,12 @@ define([
                 
                 if(evt.mouseOverCallback) {
                     seats.selectAll("g.bar")
-                        .on("mouseover",evt.mouseOverCallback)
+                        .on("mouseover",evt.mouseOverCallback);
                 }
                 
                 if(evt.mouseOutCallback) {
                     seats.selectAll("g.bar")
-                        .on("mouseout",evt.mouseOutCallback)
+                        .on("mouseout",evt.mouseOutCallback);
                 }
                 
             }

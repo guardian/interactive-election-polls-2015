@@ -50,7 +50,7 @@ define([
         })
 
         projections.addHistoricTrends("seatsCharts");
-        projections.addCoalitions("#coalitionsChart",data.sheets["glosses"]);
+        projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"]);
 
         // SPARKLINES
         var format=d3.time.format("%d/%m/%Y")

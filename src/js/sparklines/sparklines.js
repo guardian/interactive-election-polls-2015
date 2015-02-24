@@ -11,9 +11,9 @@ define([
 								.append("div")
 									.attr("class","seats-chart")
 									.attr("rel",options.index)
-									.classed("border-left",function(d,i){
-				                        return options.index==2;
-				                    })
+									//.classed("border-left",function(d,i){
+				                    //    return options.index==2;
+				                    //})
 
 		var WIDTH=chartContainer.node().clientWidth || chartContainer.node().offsetWidth;
 		//WIDTH=WIDTH/options.n;
@@ -23,7 +23,7 @@ define([
 			top:10,
 			bottom:20,
 			left:5,
-			right:30+(options.seatsText?20:0)
+			right:40+(options.seatsText?20:0)
 		}
 
 		var padding={
@@ -85,7 +85,6 @@ define([
 			extents.y[0]-=delta;
 			extents.y[1]+=delta;
 
-			//console.log(extents);
 		}
 
 		updateData();
@@ -179,7 +178,7 @@ define([
 								return +d.date == (+xscale.domain()[1])
 							})
 							.classed("right-aligned",function(d){
-								return +d.date > +(d3.mean(xscale.domain()))
+								return +d.date == (+xscale.domain()[1])
 							})
 							.on("mouseover",function(d){
 								if(options.mouseOverCallback) {
@@ -242,8 +241,7 @@ define([
 		seatsDiff
 				.append("span")
 				.html(function(d){
-					var last=data[data.length-1].date,
-						before_last=data[data.length-7].date;
+					var before_last=data[data.length-7].date;
 					
 					return "since "+d3.time.format("%A")(before_last)+"<br/>last week"
 				});
@@ -255,7 +253,7 @@ define([
 					})
 					.attr("cx",0)
 					.attr("cy",function(d){
-						return 0;//yscale(d.values[d.values.length-1].value)
+						return 0;
 					})
 					.attr("r",3)
 
@@ -317,42 +315,6 @@ define([
 				.attr("width",bar_width)
 				.attr("height",HEIGHT)
 		
-
-		/*linechart
-				.append("line")
-					.attr("class",function(d){
-						return "dropline last "+d.party;
-					})
-					.attr("x1",function(d){
-						return xscale(extents.date[1]);
-					})
-					.attr("y1",function(d){
-						return yscale(d.values[d.values.length-1].value)
-					})
-					.attr("x2",function(d){
-						return xscale(extents.date[1]);
-					})
-					.attr("y2",function(d){
-						return yscale(extents.y[0]);//yscale(d.values[d.values.length-1].value)
-					})*/
-
-		/*linechart
-				.append("line")
-					.attr("class",function(d){
-						return "dropline first "+d.party;
-					})
-					.attr("x1",function(d){
-						return xscale(extents.date[0]);
-					})
-					.attr("y1",function(d){
-						return yscale(d.values[0].value)
-					})
-					.attr("x2",function(d){
-						return xscale(extents.date[0]);
-					})
-					.attr("y2",function(d){
-						return yscale(extents.y[0]);//yscale(d.values[d.values.length-1].value)
-					})*/
 		this.highlight=function(d) {
 			if(!d) {
 				chartContainer.classed("hover",false)
@@ -368,7 +330,8 @@ define([
 
 		function update() {
 			xscale.range([0,(WIDTH-(margins.left+margins.right+padding.left+padding.right))]);
-
+			bar_width=xscale.range()[1]/(data.length-1);
+			
 			linechart
 				.select("path")
 				.attr("d",function(d){
@@ -398,24 +361,6 @@ define([
 					.attr("x",-bar_width/2)
 					.attr("width",bar_width)
 
-			/*linechart
-				.select("line.dropline.last")
-					.attr("x1",function(d){
-						return xscale(extents.date[1]);
-					})
-					.attr("x2",function(d){
-						return xscale(extents.date[1]);
-					})*/
-
-			/*linechart
-				.append("line.dropline.first")
-					.attr("x1",function(d){
-						return xscale(extents.date[0]);
-					})
-					.attr("x2",function(d){
-						return xscale(extents.date[0]);
-					})*/
-
 			axes.select(".x.axis").call(xAxis)
 
 		}
@@ -436,8 +381,6 @@ define([
 						}));
 
 		var xtickFormat=function(value){
-
-			////console.log("!!!!!!!!!!!",value)
 			
 			return d3.time.format("%d/%b")(value)
 
@@ -486,7 +429,6 @@ define([
 
 			timeSelector.select(time);
 		}
-		//selectTick(xscale.ticks()[xscale.ticks().length-1]);
 	}
 
 	return Sparkline;

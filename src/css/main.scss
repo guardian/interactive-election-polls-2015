@@ -35,6 +35,24 @@ $pc:	 #868686;
 @import 'modules/daybyday';
 
 
+/** GNM Hack **/
+figure.element-interactive{
+    margin:0
+}
+#article-body.interactivePadding{
+    padding-left:0;
+    padding-right:0; 
+}
+
+body {
+   margin: 0 !important; // Override NGW
+}
+
+.site-message, .skip {
+	display: none;
+}
+
+
 /** Style: reset */
 body {
   width: 100%;
