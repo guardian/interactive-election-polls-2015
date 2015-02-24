@@ -1,5 +1,8 @@
 #commonsChart {
-    margin-top: 53px;
+    /*margin-top: 53px;*/
+}
+.mt-coalitions {
+    margin-top:16px;
 }
 .poll-chart {
 
@@ -25,23 +28,23 @@
     }
     .con,
     .con line {
-        fill:#005789;
-        stop-color:#005789;
-        stroke:#005789;
-        color:#005789;
+        fill:$con;
+        stop-color:$con;
+        stroke:$con;
+        color:$con;
     }
     .lab,
     .lab line {
-        fill:#E31F26;
-        stop-color:#E31F26;
-        stroke:#E31F26;
-        color:#E31F26;
+        fill:$lab;
+        stop-color:$lab;
+        stroke:$lab;
+        color:$lab;
     }
     .snp,
     .snp line {
-        fill:#FCDD03;
-        stop-color:#FCDD03;
-        stroke:#FCDD03;
+        fill:$snp;
+        stop-color:$snp;
+        stroke:$snp;
         color:#fcb705;
     }
     .snp text {
@@ -49,41 +52,48 @@
     }
     .libdem,
     .libdem line {
-        fill:#FFB900;
-        stop-color:#FFB900;
-        stroke:#FFB900;
-        color:#FFB900;
+        fill:$ldem;
+        stop-color:$ldem;
+        stroke:$ldem;
+        color:$ldem;
     }
     .libdem text {
         fill:#eead00;
     }
     .ukip,
     .ukip line {
-        fill:#7D0069;
-        stop-color:#7D0069;
-        stroke:#7D0069;
-        color:#7D0069;
+        fill:$ukip;
+        stop-color:$ukip;
+        stroke:$ukip;
+        color:$ukip;
+    }
+    .dup,
+    .dup line {
+        fill:$dup;
+        stop-color:$dup;
+        stroke:$dup;
+        color:$dup;
     }
     .green,
     .green line {
-        fill:#33A22B;
-        stop-color:#33A22B;
-        stroke:#33A22B;
-        color:#33A22B;
+        fill:$grn;
+        stop-color:$grn;
+        stroke:$grn;
+        color:$grn;
     }
     .others,
     .others line {
-        fill:#B3B3B4;
-        stop-color:#B3B3B4;
-        stroke:#B3B3B4;
-        color:#B3B3B4;
+        fill:$others;
+        stop-color:$others;
+        stroke:$others;
+        color:$others;
     }
     .pc,
     .pc line {
-        color:#868686;
-        fill:#868686;
-        stop-color:#868686;
-        stroke:#868686;
+        color:$pc;
+        fill:$pc;
+        stop-color:$pc;
+        stroke:$pc;
     }
     .gray {
         stop-color:#999;
@@ -236,7 +246,7 @@
         padding:4px 0 0;
         
 
-        font-size:11px;
+        font-size:13px;
         
         white-space: nowrap;
         
@@ -247,28 +257,31 @@
     }
 
     .balance-sheet .con span.label {
-        color:#005789;
+        color:$con;
     }
     .balance-sheet .lab span.label {
-        color:#E31F26;
+        color:$lab;
     }
     .balance-sheet .snp span.label {
         color:#fcb705;
     }
     .balance-sheet .libdem span.label {
-        color:#FFB900;
+        color:$ldem;
     }
     .balance-sheet .ukip span.label {
-        color:#7D0069;
+        color:$ukip;
+    }
+    .balance-sheet .dup span.label {
+        color:$dup;
     }
     .balance-sheet .green span.label {
-        color:#33A22B;
+        color:$grn;
     }
     .balance-sheet .others span.label {
-        color:#B3B3B4;
+        color:$others;
     }
     .balance-sheet .pc span.label {
-        color:#868686;
+        color:$pc;
     }
     .balance-sheet h3 {
         margin-bottom:10px;
@@ -320,63 +333,70 @@
     }
 
     .balance-sheet .con td:last-child span{
-        background-color:#005789;
+        background-color:$con;
         color:#fff;
     }
     .balance-sheet .lab td:last-child span{
         color:#fff;
-        background-color:#E31F26;
+        background-color:$lab;
     }
     .balance-sheet .snp td:last-child span {
         
-        background-color:#FCDD03;
+        background-color:$snp;
     }
     .balance-sheet .libdem td:last-child span{
         
-        background-color:#FFB900;
+        background-color:$ldem;
     }
     .balance-sheet .ukip td:last-child span{
         color:#fff;
-        background-color:#7D0069;
+        background-color:$ukip;
+    }
+    .balance-sheet .dup td:last-child span{
+        color:#fff;
+        background-color:$dup;
     }
     .balance-sheet .green td:last-child span{
         
-        background-color:#33A22B;
+        background-color:$grn;
     }
     .balance-sheet .others td:last-child span{
         
-        background-color:#B3B3B4;
+        background-color:$others;
     }
     .balance-sheet .pc td:last-child span{
-        background-color:#868686;
+        background-color:$pc;
     }
     .bg-con {
-        background-color:#005789;
+        background-color:$con;
     }
     .bg-lab {
-        background-color:#E31F26;
+        background-color:$lab;
     }
     .bg-snp {
-        background-color:#FCDD03;
+        background-color:$snp;
     }
     .bg-libdem {
-        background-color:#FFB900;
+        background-color:$ldem;
     }
     .bg-ukip {
-        background-color:#7D0069;
+        background-color:$ukip;
+    }
+    .bg-dup {
+        background-color:$dup;
     }
     .bg-green {
-        background-color:#33A22B;
+        background-color:$grn;
     }
     .bg-others {
-        background-color:#B3B3B4;
+        background-color:$others;
     }
     .bg-pc {
-        background-color:#868686;
+        background-color:$pc;
     }
+
     #coalitions {
         overflow: hidden;
-        margin-top:-1px;
     }
     .coalition {
         float: left;
@@ -384,25 +404,30 @@
         padding: 10px 20px 0;
         width:100%;
     }
-    .coalition.n2 {
+    .coalition.n1 {
         border-left: 1px solid #ddd;
     }
     .coalition:first-child {
         border-left:none;
+        padding-left:5px;
+    }
+    .coalition:last-child {
+        padding-right:5px;
     }
     .coalition-balance {
         overflow: hidden;
     }
     .coalition-balance span {
         float: left;
-        width: 20px;
+        width: 10px;
         height: 20px;
-        border-radius: 10px;
+        border-radius: 2px;
         display: block;
         line-height: 20px;
         text-align: center;
         color:#333;
         font-weight: bold;
+        margin-right: 10px;
     }
     @media (min-width: 480px) {
         .coalition {

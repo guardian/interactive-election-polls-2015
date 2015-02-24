@@ -366,8 +366,14 @@ define([
                     
                     //console.log("CIAOOOOOOOO")
                     //console.log(data)
-                    
+
                     var glosses=[
+                        {
+                            parties:["lab","snp"],
+                            text:"<span class=\"lab\">Labour</span> and the <span class=\"snp\">SNP</span> would need the support of a third party to form a coalition",
+                            total:data["lab"].all+data["snp"].all,
+                            w:(100/5*2)
+                        },
                         {
                             parties:["con","libdem"],
                             text:"The current governing <span class=\"con\">Con</span>/<span class=\"libdem\">LD</span> coalition could not form a government",
@@ -379,13 +385,8 @@ define([
                             text:"Even by coopting <span class=\"ukip\">UKIP</span> the current coalition can't secure a majority",
                             total:data["con"].all+data["libdem"].all+data["ukip"].all,
                             w:(100/5*3)/2
-                        },
-                        {
-                            parties:["lab","snp"],
-                            text:"<span class=\"lab\">Labour</span> and the <span class=\"snp\">SNP</span> would need the support of a third party to form a coalition",
-                            total:data["lab"].all+data["snp"].all,
-                            w:(100/5*2)
                         }
+                        
                     ]
 
                     var coalitions=d3.select(id || options.container)

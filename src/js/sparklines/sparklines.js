@@ -12,7 +12,7 @@ define([
 									.attr("class","seats-chart")
 									.attr("rel",options.index)
 									.classed("border-left",function(d,i){
-				                        return options.index==3;
+				                        return options.index==2;
 				                    })
 
 		var WIDTH=chartContainer.node().clientWidth || chartContainer.node().offsetWidth;
@@ -22,8 +22,8 @@ define([
 		var margins={
 			top:10,
 			bottom:20,
-			left:20,
-			right:50+(options.seatsText?20:0)
+			left:5,
+			right:30+(options.seatsText?20:0)
 		}
 
 		var padding={
@@ -228,9 +228,7 @@ define([
 					.attr("cy",0)
 					.attr("r",4)
 
-		seatsDiff
-				.append("span")
-				.text("Change since last week");
+		
 		seatsDiff
 				.append("span")
 					.attr("class",function(){
@@ -241,6 +239,14 @@ define([
 							before_last=data[data.length-7][options.fields[0]];
 						return d3.format("+")(last-before_last)+" <i>seats</i>";
 					})
+		seatsDiff
+				.append("span")
+				.html(function(d){
+					var last=data[data.length-1].date,
+						before_last=data[data.length-7].date;
+					
+					return "since "+d3.time.format("%A")(before_last)+"<br/>last week"
+				});
 
 		day
 				.append("circle")
@@ -377,7 +383,7 @@ define([
 					})
 			seatsDiff
 				.style("left",function(){
-					return (xscale.range()[1]+margins.left+padding.left+5)+"px"
+					return (xscale.range()[1]+margins.left+padding.left+8)+"px"
 				})
 
 			day.attr("transform",function(d){

@@ -3,29 +3,33 @@
   <header class="l-header bgc-blue-light">
     <nav class="l-nav bgc-blue-dark">
       <a href="http://theguardian.com" class="link-home">
-        <img class="l-logo__home" src="../assets/imgs/homeLogo.svg" alt="back to home">
+        <img class="l-logo__home" src="@@assetPath@@/imgs/homeLogo.svg" alt="back to home">
         home
       </a>
       <a href="http://theguardian.com">
-        <img class="l-logo__guardian" src="../assets/imgs/guardianLogo.png" alt="back to the guardian's homepage">
+        <img class="l-logo__guardian" src="@@assetPath@@/imgs/guardianLogo.png" alt="back to the guardian's homepage">
       </a>
     </nav>
   </header>
 
   <main class="l-main bgc-white">
     <header class="l-title">
-      <h1 class="t-h1-h">Election 2015: The Guardian's polling projection</h1>
+      <h1 class="t-h1-h">The Guardian polls projection</h1>
       <p class="t-bd-h">Our model takes in all published constituency-level polls, UK-wide polls and polling conducted in the nations, and projects the result in each of the 650 Westminster constituencies using an adjusted average.</p>
       <div class="row bgc-white" id="stickyRow">
         <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
         <ul class="col-right mb-60 ul__party t-ul__party">
-          <li><span class="rect bgc-con"></span>Conservatives</li>
-          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
-          <li><span class="rect bgc-ukip"></span>UKIP</li>
-          <li><span class="rect bgc-others"></span>Others</li>
-          <li><span class="rect bgc-grn"></span>Green</li>
-          <li><span class="rect bgc-snp"></span>SNP</li>
           <li><span class="rect bgc-lab"></span>Labour</li>
+          <li><span class="rect bgc-snp"></span>SNP</li>
+          <li><span class="rect bgc-grn"></span>Green</li>
+          
+          <li><span class="rect bgc-others"></span>Others</li>
+          
+          
+          <li><span class="rect bgc-ukip"></span>UKIP</li>
+          <li><span class="rect bgc-dup"></span>DUP</li>
+          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+          <li><span class="rect bgc-con"></span>Conservatives</li>
         </ul>
       </div>
     </header>
@@ -51,8 +55,30 @@
         <p class="t-bd-s" id="par_coalitions"></p>
       </div>
       <div class="col-right mb-60 t-bd-s">
-        <div id="coalitionsChart" class="poll-chart"></div>
+        <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
       </div>
+    </div>
+
+    <!-- section 3 -->
+    <div class="row bdt-section">
+      <div class="col-left">
+        <h2 class="t-h2-s" id="title_vi-time-series"></h2>
+        <p class="t-bd-s" id="par_vi-time-series"></p>
+        <div class="btns-share">
+          <button class="btn-tt" data-source="twitter" data-couple=""></button>
+          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+        </div>
+      </div>
+      <div class="col-right mt-section mb-60">
+        <!-- pollchart --> 
+        <div class="pos-r chart-size pollchart">
+          <svg id="pollchart"></svg>
+          <div id="tpTextBox" class="tp-text pos-a d-n ff-ss fz-14">
+            <div class="fw-b pt-10"></div>
+            <div></div>
+            <div class="fw-b pb-7"></div> 
+          </div>  
+        </div>
     </div>
 
     <div class="row bdt-section">
@@ -143,24 +169,14 @@
     <!-- section 3 -->
     <div class="row bdt-section">
       <div class="col-left">
-        <h2 class="t-h2-s" id="title_vi-time-series"></h2>
-        <p class="t-bd-s" id="par_vi-time-series"></p>
+        <h2 class="t-h2-s" id="title_all-polls">All polls title, on two lines</h2>
+        <p class="t-bd-s" id="par_all-polls">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam unde dolores ad, omnis laudantium recusandae corporis hic, quia quae qui, quidem vero expedita reiciendis voluptatibus, eligendi dignissimos itaque vitae? A?</p>
         <div class="btns-share">
           <button class="btn-tt" data-source="twitter" data-couple=""></button>
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
       <div class="col-right mt-section mb-60">
-        <!-- pollchart --> 
-        <div class="pos-r chart-size pollchart">
-          <svg id="pollchart"></svg>
-          <div id="tpTextBox" class="tp-text pos-a d-n ff-ss fz-14">
-            <div class="fw-b pt-10"></div>
-            <div></div>
-            <div class="fw-b pb-7"></div> 
-          </div>  
-        </div>
-
         <div id="daybyday">
           <ul id="pollstersFilter">
             <li><b>Filter by pollster:</b></li>

@@ -21,7 +21,7 @@ define([
             "snp":"Scottish National",
             "lab":"Labour Party"
         };
-    
+    var ORDER=(["con","libdem","dup","ukip","others","pc","green","snp","lab"]).reverse();
     
 
     function render(el,data) {
@@ -31,7 +31,7 @@ define([
 
         var projections=new PollsOfPolls(data.sheets["RESULT"],{
             container:el,
-            order:["con","libdem","ukip","others","pc","green","snp","lab"],
+            order:ORDER,
             height:140,
             top:0,
             margins:{
@@ -58,7 +58,7 @@ define([
             return typeof d.logdate == "string"
         })
         
-        var parties=["con","libdem","ukip","snp","lab"]
+        var parties=["lab","snp","ukip","libdem","con"]
         
         
         
@@ -134,7 +134,7 @@ define([
 
         var flowChart=new PollsOfPolls(data.sheets["RESULT"],{
             container:el,
-            order:["con","libdem","ukip","others","pc","green","snp","lab"],
+            order:ORDER,
             height:280,
             top:150,
             margins:{
@@ -162,7 +162,7 @@ define([
         parties.forEach(function(party){
             var cons=new PollsOfPolls(data.sheets["RESULT"],{
                 container:"#"+party+"Chart",
-                order:["con","libdem","ukip","others","pc","green","snp","lab"],
+                order:ORDER,
                 height:265,
                 top:150,
                 additionalTriangle:{

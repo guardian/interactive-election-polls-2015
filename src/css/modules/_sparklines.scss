@@ -58,7 +58,7 @@
 		width:20%;
 		
 		min-height: 70px;
-		padding:10px 20px;
+		padding:10px 0px;
 		position: relative;
 		float:left;
 		box-sizing: border-box;
@@ -253,7 +253,7 @@
 	}
 	.seats-chart .seats-change {
 		position: absolute;
-		top:-10px;
+		top:5px;
 		width:130px;
 	}
 	.seats-chart .seats-change span {

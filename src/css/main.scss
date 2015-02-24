@@ -17,6 +17,8 @@ $ldem:   #FFB900;
 $others: #B3B3B4;
 $snp:    #FCDD03;
 $ukip:   #7D0069;
+$dup: 	 #651112;
+$pc:	 #868686;
 
 
 @import 'bower_components/pasteup-palette/src/_palette';
@@ -60,6 +62,7 @@ h1, h2, h3, h4, p {
 .bgc-snp    { background-color: $snp; }
 .bgc-ldem   { background-color: $ldem; }
 .bgc-ukip   { background-color: $ukip; }
+.bgc-dup   { background-color: $dup; }
 .bgc-others { background-color: $others; }
 
 .bgc-white      { background-color: #FFF;}

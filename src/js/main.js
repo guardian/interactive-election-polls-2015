@@ -19,9 +19,14 @@ define([
     // DEBUG: What we get given on boot
     //console.log(el, context, config, mediator);
     
+    
+
     el.innerHTML = templateHTML;
     stickElementOnScroll();
     
+    var title = document.querySelector('title');
+    title.innerHTML = d3.select(".l-title h1").text();
+
     loadData(function(data){
       //chartView.render(el.querySelector('#chart'), data);
       console.log(data)
