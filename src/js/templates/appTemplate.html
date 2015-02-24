@@ -53,23 +53,9 @@
         <div id="coalitionsChart" class="poll-chart"></div>
       </div>
     </div>
-    
-    <!-- section 2 -->
-    <!--<div class="row bdt-section ">
-      <div class="col-left">
-        <h2 class="t-h2-s" id="title_weeklychange"></h2>
-        <p class="t-bd-s" id="par_weeklychange"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-couple=""></button>
-          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
-        </div>
-      </div>
-      <div class="col-right">
-      </div>
-    </div>-->
 
-    <div class="row">
-      <div class="col-left bdt-section">
+    <div class="row bdt-section">
+      <div class="col-left ">
         <h3 class="t-h2-s" id="title_flowofseats"></h3>
         <p class="t-bd-s" id="par_flowofseats"></p>
         <div class="btns-share">
@@ -165,7 +151,7 @@
       </div>
       <div class="col-right pt-70">
         <!-- pollchart --> 
-        <div class="pos-r chart-size">
+        <div class="pos-r chart-size pollchart">
           <svg id="pollchart"></svg>
           <div id="tpTextBox" class="tp-text pos-a d-n ff-ss fz-14">
             <div class="fw-b pt-10"></div>
@@ -174,7 +160,14 @@
           </div>  
         </div>
 
-        <div id="chart"></div>
+        <div id="daybyday">
+          <ul id="pollstersFilter">
+            <li><b>Filter by pollster:</b></li>
+          </ul>
+          <div id="pollsTable" ></div>
+          <br/>
+          <a href="#" id="showMorePolls" class="more">Show more</a>
+        </div>
       </div>
     </div>
   </main>

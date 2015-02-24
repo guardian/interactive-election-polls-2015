@@ -1,0 +1,293 @@
+#daybyday {
+
+	font-family:$ff-ss;
+	font-size:12px;
+
+	ul#pollstersFilter {
+		height: 26px;
+		font-size:12px;
+		list-style: none;
+		margin:15px 0 20px;
+		padding:0;
+		overflow: hidden;
+		line-height: 24px;
+	}
+	ul li {
+		float: left;
+		margin:2px 5px;
+
+	}
+	ul li a {
+		color:#999;
+		text-decoration: none;
+		padding:5px 10px;
+		border-radius: 10px;
+		font-style: italic;
+	}
+	ul li a.selected {
+		color:#000;
+		background-color: #ddd;
+		font-style: normal;
+	}
+	ul li a.selected:hover {
+		background-color: #bbb;
+	}
+	ul li a:hover {
+		color: #333;
+	}
+	a.more {
+		color:#fff;
+		background-color:#33a3c6;
+		padding:3px 10px;
+		text-decoration: none;
+		line-height: 20px;
+		border-radius: 10px;
+	}
+	#pollsTable {
+		position: relative;
+		width:100%;
+		margin:10px 0;
+	}
+	.hidden {
+		opacity: 0;
+		height:0;
+	}
+	.none {
+		display: none;
+	}
+	.poll {
+		padding:15px 0;
+		line-height: 15px;
+		border-bottom:1px dotted #999;
+		overflow: hidden;
+		position: relative;
+
+		-webkit-transition: opacity 500ms ease-out, height 500ms ease-out,padding 500ms ease-out;
+		-moz-transition: opacity 500ms ease-out, height 500ms ease-out,padding 500ms ease-out;
+		-ms-transition: opacity 500ms ease-out, height 500ms ease-out,padding 500ms ease-out;
+		-o-transition: opacity 500ms ease-out, height 500ms ease-out,padding 500ms ease-out;
+		transition: opacity 500ms ease-out,height 500ms ease-out,padding 500ms ease-out;
+
+		
+	}
+	.poll.hidden {
+		padding: 0;
+		border: none;
+	}
+	.poll div.title {
+		font-weight: bold;
+		margin:0;
+		margin-left:10px;
+		padding: 0;
+		min-width: 90px;
+		float: left;
+		white-space:nowrap;
+	}
+	.poll div.title span.date {
+		font-weight: normal;
+	}
+	.projection {
+		left:100px;
+		right:0px;
+		float: left;
+		height: 14px;
+		position: absolute;
+	}
+	.projection div.party {
+		position: absolute;
+		overflow: visible;
+	}
+	.projection div.party span.marker{
+		display: block;
+		position: absolute;
+		width:4px;
+		height:14px;
+		margin-left:-2px;
+		border-radius: 1px;
+	}
+	.projection div.party span.marker.overlap22{
+		height: 7px;
+	}
+	.projection div.party span.marker.overlap23{
+		height: 4px;
+	}
+	.projection div.party span.marker.overlap33{
+		top:4px;
+		height: 4px;
+	}
+	.projection div.party span.marker.overlap24{
+		top:3px;
+		height: 4px;
+	}
+	.projection div.party span.marker.overlap34{
+		top:7px;
+		height: 3px;
+	}
+	.projection div.party span.marker.overlap44{
+		top:10px;
+		height: 4px;
+	}
+	.diffs {
+		display: none;
+	}
+	.con {
+		color:#005789;
+	    background-color:#005789;
+	}
+	.lab {
+		color:#E31F26;
+	    background-color:#E31F26;
+	}
+	.snp {
+	    background-color:#FCDD03;
+	}
+	.ldem {
+	    background-color:#FFB900;
+	}
+	.ukip {
+	    background-color:#7D0069;
+	}
+	.grn {
+	    background-color:#33A22B;
+	}
+	.others {
+	    background-color:#B3B3B4;
+	}
+	.pc {
+	    background-color:#868686;
+	}
+	.xaxis {
+		width:100%;
+		overflow: hidden;
+		height:20px;
+		border-bottom: 1px solid #ddd;
+	}
+	.xaxis div#xaxis {
+		left:100px;
+		right:0px;
+		position: absolute;
+		overflow: hidden;
+		height:20px;
+		line-height: 20px;
+	}
+	.xaxis .label {
+		position: absolute;
+		overflow: visible;
+		
+	}
+	.xaxis .min {
+		left:0%;
+	}
+	.xaxis .max {
+		left:100%;
+		border-right:1px solid #000;
+	}
+	.xaxis .max span {
+		width: 100px;
+		left:-100px;
+		text-align: right;
+		position: absolute;
+	}
+	.xaxis .mid {
+		left:50%;
+	}
+	.xaxis .change {
+		width: 140px;
+		right: 10px;
+		float: left;
+		height: 20px;
+		line-height: 20px;
+		position: absolute;
+		text-align: center;
+		color:#767676;
+		display: none;
+	}
+	#dbdTooltips {
+		position: absolute;
+		top:0;
+		left:100px;
+		right:0px;
+		display: none;
+	}
+
+	#dbdTooltips .tooltip {
+		position: absolute;
+		top:0;
+		width: 0;
+		overflow: visible;
+	}
+	#pollsTable:hover #dbdTooltips {
+		display: block;
+	}
+	#dbdTooltips .tooltip div {
+		width:20px;
+		height:14px;
+		margin-left:-10px;
+		margin-bottom:10px;
+		margin-top:17px;
+		background-color: rgba(0,0,0,0);
+	}
+	#dbdTooltips .tooltip div.hidden {
+		display: none;
+	}
+	#dbdTooltips .tooltip span {
+		display: block;
+		line-height: 14px;
+		text-align: center;
+		font-size:11px;
+		font-weight: normal;
+	}
+	#dbdTooltips .tooltip span.party {
+		display: none;
+	}
+	@media (min-width: 480px) {
+		ul#pollstersFilter li:first-child {
+			width:100px;
+		}
+		.projection {
+			left:150px;
+			right:180px;
+		}
+		.poll div.title {
+			min-width: 140px;
+		}
+		.poll div.title span.date {
+			min-width: 65px;
+			display: inline-block;
+		}
+		.projection div.party span.marker{
+			width:6px;
+			margin-left:-3px;
+		}
+		.diffs {
+			display: block;
+			width:140px;
+			right:10px;
+			float: left;
+			height: 20px;
+			position: absolute;
+			
+		}
+		.diffs .diff {
+			float:left;
+			width:45%;
+			text-align:center;
+			
+			line-height: 16px;
+			margin:-1px 2px 0;
+			padding-top: 1px;
+			background-color: transparent;
+		}
+		#dbdTooltips {
+			left:150px;
+			right:180px;
+		}
+		.xaxis>div#xaxis {
+			left:150px;
+			right:180px;
+		}
+		.xaxis .change {
+			display: block;
+		}
+	}
+}

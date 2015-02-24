@@ -186,7 +186,7 @@ define([
                 majority.append("text")
                             .attr("x",0)
                             .attr("y",-(triangle_h+4))
-                            .html("<tspan>325 seats</tspan> to form a majority")    
+                            .html("<tspan>326 seats</tspan> to form a majority")    
             }
             
         }
@@ -362,11 +362,11 @@ define([
                             .attr("id",id)
                                 .attr("class","polls-trends")
         }
-        this.addCoalitions=function(id) {
+        this.addCoalitions=function(id,glosses) {
                     
                     //console.log("CIAOOOOOOOO")
                     //console.log(data)
-
+                    
                     var glosses=[
                         {
                             parties:["con","libdem"],
