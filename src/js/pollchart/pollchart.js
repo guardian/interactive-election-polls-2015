@@ -10,51 +10,49 @@ define([
     polldata
 ) {
    'use strict';
+    // Data:
+    var dayAvg = 14,
+        dayConst = 86400000,
+        dayUnit,
+        partyList = ["con", "lab", "ldem", "ukip", "grn"/*, "others"*/],  
+        pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
+        pGroup2 = ["ComRes", "ComResO", "ICM", "Ipsos", "TNS", "Survation"],
+        termDic = { con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green",
+                    YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium",
+                    ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
+
+    // Window size and chart's coordinate system:
+    var width, height,
+        margin = {top: 30, right:0, bottom: 30, left: 0},
+        xAxis, yAxis, x, y,
+        coord = {x: 0, y: 40};
+
+    // Date format:
+    var dateStr, dateEnd, //TODO: fix left padding; 7/5 election date
+        dateFormat = "%d/%m/%Y",
+        xAxisTextFormat,
+        formatMon = d3.time.format("%b"),
+        formatMonth = d3.time.format("%B"),
+        formatPercent = d3.format(".0%");
+    // Parse the date / time
+    var parseDate = d3.time.format(dateFormat).parse;
+
+    // SVG:
+    // Add the svg
+    var svg = d3.select("#pollchart")
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Define the line
+    var line = d3.svg.line()
+                 //.interpolate("basis")
+                 .x(function(d) { return x(d.date); })
+                 .y(function(d) { return y(d.vi); });
+
 
     function render(el, rawData) {
     console.log(rawData); 
 
-
-// Data:
-var dayAvg = 14,
-    dayConst = 86400000,
-    dayUnit,
-    jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json",
-    partyList = ["con", "lab", "ldem", "ukip", "grn"/*, "others"*/],  
-    pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
-    pGroup2 = ["ComRes", "ComResO", "ICM", "Ipsos", "TNS", "Survation"],
-    termDic = { con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green",
-                YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium",
-                ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
-
-// Window size and chart's coordinate system:
-var width, height,
-    margin = {top: 30, right:0, bottom: 30, left: 0},
-    xAxis, yAxis, x, y,
-    coord = {x: 0, y: 40};
-
-  // Date format:
-var dateStr, dateEnd, //TODO: fix left padding; 7/5 election date
-    dateFormat = "%d/%m/%Y",
-    xAxisTextFormat,
-    formatMon = d3.time.format("%b"),
-    formatMonth = d3.time.format("%B"),
-    formatPercent = d3.format(".0%");
-// Parse the date / time
-var parseDate = d3.time.format(dateFormat).parse;
-
-// SVG:
-// Add the svg
-var svg = d3.select("#pollchart")
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// Define the line
-var line = d3.svg.line()
-             //.interpolate("basis")
-             .x(function(d) { return x(d.date); })
-             .y(function(d) { return y(d.vi); });
-/* ************/
 
 
 /* Window size update and redraw 
@@ -199,7 +197,6 @@ function drawPolygons() {
           
     // area for avg line and all vi dots
     ptMax = d.values.map(function(d) {
-      //console.log(d);
       yMax = (d.viMax > d.vi) ? y(d.viMax) : y(d.vi) - 10;
       return [x(d.date), yMax].join(","); 
     }).join(" ");
@@ -207,8 +204,6 @@ function drawPolygons() {
       yMin = (d.viMin < d.vi) ? y(d.viMin) : y(d.vi) + 10;
       return [x(d.date), yMin].join(","); 
     }).reverse().join(" ");
-    //TODO: area for detection
-    // ...
       
     points = [ptMax, ptMin];
     return points;
@@ -382,15 +377,16 @@ function drawText() {
 
 /* D3: Data and Drawing
 /* ******/
-d3.json(jsonSrc, function(error, abc) {
+//d3.json(jsonSrc, function(error, abc) {
+
   
   var data, dataset,
       svgParty, svgPolls, svgDates, svgRects,
       dateList; 
 
   // Make sure data is loaded correctly
-  if (error) { console.error("Try refreshing your browser."); return; } 
-  else { console.info("Data is good to go!"); }
+  //if (error) { console.error("Try refreshing your browser."); return; } 
+  //else { console.info("Data is good to go!"); }
 
 
   /* Data */ 
@@ -466,7 +462,7 @@ d3.json(jsonSrc, function(error, abc) {
   drawCircles(gcPoll, 3);
   onCirclePoll(gcPoll);
 
-});
+//});
 /* ************/
 
 
