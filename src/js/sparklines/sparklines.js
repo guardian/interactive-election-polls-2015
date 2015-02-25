@@ -10,10 +10,14 @@ define([
 		var chartContainer=d3.select(options.container)
 								.append("div")
 									.attr("class","seats-chart")
-									.attr("rel",options.index);
-									//.classed("border-left",function(d,i){
-				                    //    return options.index==2;
-				                    //})
+									.attr("rel",options.index)
+									.on("mouseout",function(d){
+										if(options.mouseOutCallback) {
+											options.mouseOutCallback();
+										} else {
+											self.highlight();
+										}	
+									})
 
 		var WIDTH=chartContainer.node().clientWidth || chartContainer.node().offsetWidth;
 		//WIDTH=WIDTH/options.n;
@@ -193,23 +197,32 @@ define([
 								return +d.date === (+xscale.domain()[1]);
 							})
 							.on("mouseover",function(d){
-								if(options.mouseOverCallback) {
-									options.mouseOverCallback(d);
+								if(!touchstart) {
+									if(options.mouseOverCallback) {
+										options.mouseOverCallback(d);
+									}	
 								}
+								
 							})
 							.on("mouseout",function(d){
-								if(options.mouseOutCallback) {
-									options.mouseOutCallback(d);
-
-								} else {
-									self.highlight();
-								}	
+								if(!touchstart) {
+									if(options.mouseOutCallback) {
+										//options.mouseOutCallback(d);
+									} else {
+										self.highlight();
+									}
+								}
 							})
 							.on("touchstart", function(){
 								d3.event.preventDefault();
 								touchstart=true;
 							})
 							.on("touchend",function(){
+								if(options.mouseOutCallback) {
+									options.mouseOutCallback();
+								} else {
+									self.highlight();
+								}
 								touchstart=false;
 							})
 							.on("touchmove",function(d){

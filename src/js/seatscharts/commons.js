@@ -123,7 +123,7 @@ define([
                             c.highlight(d);
                         })
                     },
-                    mouseOutCallback:function(d){
+                    mouseOutCallback:function(){
                         sparklines.forEach(function(c){
                             c.highlight();
                         })

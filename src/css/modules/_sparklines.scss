@@ -89,7 +89,7 @@
 		fill-opacity:1;
 		
 	}
-	.seats-chart svg .linechart g.day:hover circle,
+	
 	.seats-chart svg .linechart g.day.hover circle { 
 		fill-opacity:1;
 	}
@@ -102,7 +102,7 @@
 		font-weight: normal;
 		text-anchor:start;
 	}
-	.seats-chart svg .linechart g:hover text,
+	
 	.seats-chart svg .linechart g.hover text {
 		fill-opacity:1 !important;
 	}
@@ -110,8 +110,7 @@
 	.seats-chart:first-child svg .linechart g.day.last text {
 		fill-opacity:1;
 	}
-	.seats-chart:first-child:hover svg .linechart g.day.first text,
-	.seats-chart:first-child:hover svg .linechart g.day.last text,
+	
 	.seats-chart:first-child.hover svg .linechart g.day.first text,
 	.seats-chart:first-child.hover svg .linechart g.day.last text { 
 		fill-opacity:0;
@@ -142,7 +141,7 @@
 	.seats-chart svg .linechart g text.dropline {
 		fill:#333;
 	}
-	.seats-chart svg .linechart g:hover line.dropline,
+	
 	.seats-chart svg .linechart g.hover line.dropline {
 		stroke-opacity:0.8 !important;
 	}
@@ -150,8 +149,7 @@
 	.seats-chart:first-child svg .linechart g.day.last line.dropline {
 		stroke-opacity:0.8;
 	}
-	.seats-chart:first-child:hover svg .linechart g.day.first line.dropline,
-	.seats-chart:first-child:hover svg .linechart g.day.last line.dropline,
+	
 	.seats-chart:first-child.hover svg .linechart g.day.first line.dropline,
 	.seats-chart:first-child.hover svg .linechart g.day.last line.dropline {
 		stroke-opacity:0;

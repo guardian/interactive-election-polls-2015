@@ -686,6 +686,7 @@ define([
                 filter:options.filter
             })
             if(options.ix) {
+
                 polls.addMouseEvents({
                     mouseOverCallback:function(d){
                         ////////console.log(d)
@@ -973,11 +974,9 @@ define([
                                     
                 if(options.mouseOverCallback) {
                     new_bars.on("mouseover",options.mouseOverCallback);
-                    new_bars.on("mousedown",options.mouseOverCallback);
                 }
                 if(options.mouseOutCallback) {
                     new_bars.on("mouseout",options.mouseOutCallback);
-                    new_bars.on("mouseup",options.mouseOutCallback);
                 }
                                     
                 new_bars.append("rect")
@@ -1068,7 +1067,11 @@ define([
                 
                 if(evt.mouseOverCallback) {
                     seats.selectAll("g.bar")
-                        .on("mouseover",evt.mouseOverCallback);
+                        .on("mouseover",evt.mouseOverCallback)
+                        .on("touchstart",function(d){
+                            d3.event.preventDefault();
+                            evt.mouseOverCallback(d)   
+                        });
                 }
                 
                 if(evt.mouseOutCallback) {
