@@ -20,6 +20,15 @@ define([
   d3.selectAll('[data-reload=global]')
       .remove();
 
+  
+  function jumpTo(h) {
+    
+    var url = location.href;               //Save down the URL without hash.
+    location.href+="#"+h;                 //Go to the target element.
+    history.replaceState(null,null,url);   //Don't like hashes. Changing it back.
+  }
+
+
   function init(el, context, config, mediator) {
     // DEBUG: What we get given on boot
     //console.log(el, context, config, mediator);
@@ -41,6 +50,11 @@ define([
       commonsChart.renderFlows(data);
       pollChart.render(el.querySelector('#pollchart') ,data);
       commonsChart.renderDayByDay("#daybyday",data);
+
+      
+      
+      jumpTo("voting-intention-over-time")
+
     })
   }
 

@@ -10,7 +10,7 @@ define([
 		var chartContainer=d3.select(options.container)
 								.append("div")
 									.attr("class","seats-chart")
-									.attr("rel",options.index)
+									.attr("rel",options.index);
 									//.classed("border-left",function(d,i){
 				                    //    return options.index==2;
 				                    //})
@@ -19,63 +19,80 @@ define([
 		//WIDTH=WIDTH/options.n;
 		var HEIGHT=Math.max(WIDTH*(9/16),140);
 
+		
+
 		var margins={
 			top:10,
 			bottom:20,
 			left:5,
-			right:40+(options.seatsText?20:0)
-		}
+			right:50+(options.seatsText?20:0)
+		};
 
 		var padding={
-			top:20,
-			bottom:0,
-			left:0,
-			right:0
-		}
-		var timeSelector;
-		var extents;
-		var to; //timeout
+				top:20,
+				bottom:0,
+				left:0,
+				right:0
+			},
+			timeSelector,
+			extents,
+			to; //timeout
 
 		var delta=options.delta || 2;
+		updateData();
 
-		window.addEventListener('resize', function(event){
+		window.addEventListener('resize', function(e){
 	        if(to) {
 	            clearTimeout(to);
 	            to=null;
 	        }
 	        to=setTimeout(function(){
 	            resize();   
-	        },100)
+	        },100);
 	        
 	    });
 
 	    function resize() {
-	        //WIDTH=d3.select(options.container).node().clientWidth || d3.select(options.container).node().offsetWidth,//window.innerWidth,
 	        WIDTH=chartContainer.node().clientWidth || chartContainer.node().offsetWidth;
-			//WIDTH=WIDTH/options.n;
-	        svg.attr("width",WIDTH)
+	        svg.attr("width",WIDTH);
 	        update();
 	    }
 
 		function updateData() {
+			
+			extents={
+				maxDate:d3.max(data,function(d){
+					return d.date;
+				})
+			};
+
+			var last=extents.maxDate,
+				past_weeks = new Date(last.getTime());
+			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1));
+			console.log("------->",data.length)
+			data=data.filter(function(d){
+				return +d.date >= +past_weeks;
+			})
+			console.log("------->",data.length)
+
 			extents={
 				date:d3.extent(data,function(d){
 					return d.date;
-				}),
-				y:[
+				})
+			};
+			extents.y=[
 					d3.min(data.map(function(d){
 						return d3.min(options.fields.map(function(f){
-							return d[f]
+							return d[f];
 						}));
 					})),
 					Math.max(325,d3.max(data.map(function(d){
 						return d3.max(options.fields.map(function(f){
-							return d[f]
+							return d[f];
 						}));
 					}))
 					)
-				]
-			}
+			];
 
 			if(options.extents) {
 				extents.y=options.extents;
@@ -87,7 +104,7 @@ define([
 
 		}
 
-		updateData();
+		
 
 		var seatsDiff=chartContainer
 					.append("div")
@@ -98,7 +115,7 @@ define([
 						.attr("width",WIDTH)
 						.attr("height",HEIGHT);
 		
-		var electionDay=new Date(2015,4,7);
+		//var electionDay=new Date(2015,4,7);
 		var xscale=d3.time.scale().domain(extents.date).range([0,(WIDTH-(margins.left+margins.right+padding.left+padding.right))]);
 
 		var yscale=d3.scale.linear()
@@ -123,45 +140,40 @@ define([
 											party:d,
 											date:p.date,
 											value:p[d]
-										}
+										};
 									})
-								}
+								};
 							}))
 							.enter()
 							.append("g")
-								.attr("class",function(d){
-									return "linechart";
-								})
+								.attr("class","linechart")
 								.attr("rel",function(d){
 									return d.party;
 								})
 								.attr("transform",function(d){
-									if(d.party=="cLeft") {
+									if(d.party==="cLeft") {
 										return "translate("+(xscale.range()[1]*2)+",0)";
 									}
 									return "translate(0,0)";
-								})
+								});
 		
 		
 		
 		var line = d3.svg.line()
 					    .x(function(d) { return xscale(d.date); })
-					    .y(function(d) { return yscale(d.value); })
+					    .y(function(d) { return yscale(d.value); });
 		
 		if(options.interpolate) {
-			line.interpolate(options.interpolate)
+			line.interpolate(options.interpolate);
 		}
 
-		var area = d3.svg.area()
-						.x(function(d) { return xscale(d.date); })
-						.y0(HEIGHT-(margins.bottom+margins.top))
-					    .y1(function(d) { return yscale(d.value); })
+		
 
 		linechart
 				.append("path")
 				.attr("class",function(d){
 					return "line "+d.party;
-				})
+				});
 		
 		
 		var day=linechart.selectAll("g.day")
@@ -171,14 +183,14 @@ define([
 					.enter()
 						.append("g")
 							.attr("class","day")
-							.classed("first",function(d,i){
-								return +d.date == (+xscale.domain()[0])
+							.classed("first",function(d){
+								return +d.date === (+xscale.domain()[0]);
 							})
-							.classed("last",function(d,i){
-								return +d.date == (+xscale.domain()[1])
+							.classed("last",function(d){
+								return +d.date === (+xscale.domain()[1]);
 							})
 							.classed("right-aligned",function(d){
-								return +d.date == (+xscale.domain()[1])
+								return +d.date === (+xscale.domain()[1]);
 							})
 							.on("mouseover",function(d){
 								if(options.mouseOverCallback) {
@@ -193,7 +205,7 @@ define([
 								} else {
 									self.highlight();
 								}	
-							})
+							});
 
 		var label=linechart
 					.append("g")
@@ -205,7 +217,7 @@ define([
 							var x=xscale(extents.date[1]),
 								y=yscale(d.values[d.values.length-1].value)
 							return "translate("+x+","+y+")"
-						})
+						});
 
 
 		label
@@ -217,7 +229,7 @@ define([
 					.attr("y",4)
 					.text(function(d){
 						return (d.values[d.values.length-1].value)+(options.seatsText?" seats":"");
-					})
+					});
 		label
 				.append("circle")
 					.attr("class",function(d){
@@ -225,7 +237,7 @@ define([
 					})
 					.attr("cx",0)
 					.attr("cy",0)
-					.attr("r",4)
+					.attr("r",4);
 
 		
 		seatsDiff
@@ -237,10 +249,10 @@ define([
 						var last=data[data.length-1][options.fields[0]],
 							before_last=data[data.length-7][options.fields[0]];
 						return d3.format("+")(last-before_last)+" <i>seats</i>";
-					})
+					});
 		seatsDiff
 				.append("span")
-				.html(function(d){
+				.html(function(){
 					var before_last=data[data.length-7].date;
 					
 					return "since "+d3.time.format("%A")(before_last)+"<br/>last week"
@@ -252,10 +264,8 @@ define([
 						return d.party;
 					})
 					.attr("cx",0)
-					.attr("cy",function(d){
-						return 0;
-					})
-					.attr("r",3)
+					.attr("cy",0)
+					.attr("r",3);
 
 		day.append("line")
 					.attr("class",function(d){
@@ -266,12 +276,10 @@ define([
 					.attr("x2",0)
 					.attr("y2",function(d){
 						return yscale.range()[0]-yscale(d.value)-5
-					})
+					});
 
 		day.append("text")
-					.attr("class",function(d){
-						return "dropline";
-					})
+					.attr("class","dropline")
 					.attr("x",function(d){
 						if (+d.date > +(d3.mean(xscale.domain()))) {
 							return 2;
@@ -283,11 +291,10 @@ define([
 					})
 					.text(function(d){
 						return d.value+" seats";
-					})
+					});
+
 		day.append("text")
-					.attr("class",function(d){
-						return "dropline";
-					})
+					.attr("class","dropline")
 					.attr("x",function(d){
 						if (+d.date > +(d3.mean(xscale.domain()))) {
 							return 2;
@@ -298,8 +305,8 @@ define([
 						return yscale.range()[0]-yscale(d.value)+25
 					})
 					.text(function(d){
-						return d3.time.format("%d/%b")(d.date);
-					})
+						return d3.time.format("%b %d")(d.date);
+					});
 
 
 		var bar_width=xscale.range()[1]/(data.length-1);
@@ -313,7 +320,7 @@ define([
 					return -yscale(d.value)
 				})
 				.attr("width",bar_width)
-				.attr("height",HEIGHT)
+				.attr("height",HEIGHT);
 		
 		this.highlight=function(d) {
 			if(!d) {
@@ -323,45 +330,45 @@ define([
 			}
 			chartContainer.classed("hover",true)
 			day.classed("hover",function(p){
-				return +d.date == +p.date;
-			})
+				return +d.date === +p.date;
+			});
 
 		}
 
 		function update() {
 			xscale.range([0,(WIDTH-(margins.left+margins.right+padding.left+padding.right))]);
 			bar_width=xscale.range()[1]/(data.length-1);
-			
+
 			linechart
 				.select("path")
 				.attr("d",function(d){
 					return line(d.values)
-				})
+				});
 			linechart
 				.select("g.label")
 					.attr("transform",function(d){
 						var x=xscale(extents.date[1]),
 							y=yscale(d.values[d.values.length-1].value)
 						return "translate("+x+","+y+")"
-					})
+					});
 			seatsDiff
 				.style("left",function(){
 					return (xscale.range()[1]+margins.left+padding.left+8)+"px"
-				})
+				});
 
 			day.attr("transform",function(d){
 				var x=xscale(d.date),
 					y=yscale(d.value);
 				return "translate("+x+","+y+")"
-			})
+			});
 			bar_width=xscale.range()[1]/(data.length-1);
 			day
 				.append("rect")
 					.attr("class","ix")
 					.attr("x",-bar_width/2)
-					.attr("width",bar_width)
+					.attr("width",bar_width);
 
-			axes.select(".x.axis").call(xAxis)
+			axes.select(".x.axis").call(xAxis);
 
 		}
 		
@@ -372,7 +379,7 @@ define([
 			last_week.setDate(last_week.getDate() - 7);
 			return [
 				last,extents.date[1],extents.date[0]
-			]
+			];
 		});
 
 		var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues(yscale.ticks()
@@ -384,15 +391,14 @@ define([
 			
 			return d3.time.format("%d/%b")(value)
 
-			var d=d3.time.format("%d")(value),
-				m=d3.time.format("%b")(value);
+			var d=d3.time.format("%d")(value);
 
 			if(+d===1) {
 				return d3.time.format("%b")(value);
 			}
-			return d3.time.format("%d")(value)
+			return d3.time.format("%d")(value);
 		}
-		var ytickFormat=function(d,i){
+		var ytickFormat=function(d){
 			var title="";
 			return d3.format("s")(d)+title;
 		}
@@ -400,12 +406,12 @@ define([
 		xAxis.tickFormat(xtickFormat);
 		yAxis.tickFormat(ytickFormat);
 
-		var xaxis=axes.append("g")
+		/*var xaxis=axes.append("g")
 	      .attr("class", "x axis")
 	      .attr("transform", "translate("+padding.left+",0)")
-	      .call(xAxis)
+	      .call(xAxis);*/
 	    
-	    update()
+	    update();
 
 
 	    linechart.selectAll("g.circle")				
@@ -418,13 +424,13 @@ define([
 			linechart
 				.selectAll("g.circle")
 				.classed("selected",function(t){
-					return time.getTime()==t.date.getTime();
+					return time.getTime()===t.date.getTime();
 				});
 
 			svg.select(".x.axis")
 				.selectAll(".tick")
 					.classed("selected",function(t){
-						return time.getTime()==t.getTime();
+						return time.getTime()===t.getTime();
 					});
 
 			timeSelector.select(time);

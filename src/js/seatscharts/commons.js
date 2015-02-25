@@ -36,7 +36,7 @@ define([
             top:0,
             margins:{
                 left:0,
-                top:30,
+                top:40,
                 right:0,
                 bottom:0
             },
@@ -62,7 +62,7 @@ define([
         
         
         
-        function setExtents() {
+        /*function setExtents() {
             var all_extents=[];
 
             parties.forEach(function(party){
@@ -92,15 +92,13 @@ define([
             })
         }
         
-        setExtents();
-
+        setExtents();*/
+        
         var sparklines=[],
             i=0;
         parties.forEach(function(party){
             sparklines.push(
                 new Sparkline(data.sheets["Log Seats"].map(function(d){
-                    //console.log(d.logdate)
-                    //console.log(d3.time.format("%d/%m/%Y").parse(d.logdate))
                     d.date=format.parse(d.logdate);
                     return d;
                 }),{
@@ -112,14 +110,13 @@ define([
                     extents:d3.extent(data.sheets["Log Seats"],function(d){
                         return d[party]
                     }),
+                    weeks:3,
                     mouseOverCallback:function(d){
-                        //console.log(d);
                         sparklines.forEach(function(c){
                             c.highlight(d);
                         })
                     },
                     mouseOutCallback:function(d){
-                        //console.log(d);
                         sparklines.forEach(function(c){
                             c.highlight();
                         })

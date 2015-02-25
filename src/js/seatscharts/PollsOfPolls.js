@@ -163,7 +163,7 @@ define([
             return "M0,0l"+(h/2)+","+(-h)+"l"+(-h)+",0z";
         }
         if(typeof options.triangle!='undefined' && options.triangle) {
-            var triangle_h=15,
+            var triangle_h=20,
             majority=svg.append("g")
                         .attr("class","majority")
                         .attr("transform","translate("+(xscale(325)+(margins.left+padding.left))+","+(margins.top+padding.top)+")")
@@ -186,7 +186,7 @@ define([
                 majority.append("text")
                             .attr("x",0)
                             .attr("y",-(triangle_h+4))
-                            .html("<tspan>326 seats</tspan> to form a majority")    
+                            .html("<tspan>326 seats</tspan> for a majority")    
             }
             
         }

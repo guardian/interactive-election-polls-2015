@@ -1,5 +1,8 @@
 .mt-coalitions {
-    margin-top:16px;
+    margin-top:6px;
+}
+.mt-section.mt-seats-chart {
+    margin-top:45px
 }
 .poll-chart {
 
@@ -97,13 +100,17 @@
     }
     .bar rect {
         stroke:none;
+        stroke-width:0;
     }
     .bar rect.ix {
         fill:transparent;
         fill-opacity:0 !important;
+        stroke: none;
+        stroke-width:0;
     }
     .bar text {
         stroke:none;
+        stroke-width:none;
         font-size:14px;
         display: none;
     }
@@ -163,6 +170,7 @@
     rect.changed {
         fill-opacity:0.1;
         stroke:none;
+        stroke-width:0;
     }
     .hidden {
         display:none;
@@ -180,6 +188,7 @@
     .flow path {
         fill-opacity:0.3;
         stroke:none;
+        stroke-width:0;
     }
     .flow path.highlight {
         fill-opacity:0.9;
@@ -189,6 +198,7 @@
     }
     .flow text {
         stroke:none;
+        stroke-width:0;
         text-anchor:middle;
     }
     .filtered .flow.same-party path {
@@ -396,22 +406,17 @@
         overflow: hidden;
     }
     .coalition {
-        float: left;
+        /*float: left;*/
         box-sizing: border-box;
         padding: 10px 5px 0;
         width:100%;
         margin-bottom: 30px;
-        
+        display: inline-block;
+        vertical-align: top;
     }
-    /*.coalition:first-child {
-        border-left:none;
-        padding-left:5px;
-    }
-    .coalition:last-child {
-        padding-right:5px;
-    }*/
     .coalition-balance {
         overflow: hidden;
+        margin-bottom: 10px;
     }
     .coalition-balance span {
         float: left;
@@ -429,7 +434,7 @@
     @media (min-width: 480px) {
         .coalition {
             width:50%;
-            min-height: 110px;
+            /*min-height: 130px;*/
         }
         .coalition:nth-child(2n+2) {
             padding-right:5px;
@@ -441,10 +446,10 @@
             padding-right:20px;
         }
     }
-    @media (min-width: 768px) {
+    @media (min-width: 740px) {
         .coalition {
             width:33%;
-            min-height: 110px;
+           /*min-height: 150px;*/
         }
         .coalition:nth-child(3n+3) {
             padding-right:5px;
