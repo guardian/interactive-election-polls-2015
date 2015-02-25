@@ -72,8 +72,12 @@
 		display: block;
 		margin: 0 auto;
 		-webkit-font-smoothing: antialiased;
+		position: relative;
+    	z-index: 10;
 	}
-
+	.seats-chart {
+		position: relative;
+	}
 	.seats-chart svg .linechart>g {
 		
 	}
@@ -254,7 +258,9 @@
 	.seats-chart .seats-change {
 		position: absolute;
 		top:5px;
-		width:130px;
+		width:110px;
+		text-align: right;
+		z-index: 1;
 	}
 	.seats-chart .seats-change span {
 		visibility: hidden;

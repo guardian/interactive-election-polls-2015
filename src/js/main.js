@@ -52,8 +52,8 @@ define([
       commonsChart.renderDayByDay("#daybyday",data);
 
       
-      
-      jumpTo("voting-intention-over-time")
+
+      //jumpTo("voting-intention-over-time")
 
     })
   }

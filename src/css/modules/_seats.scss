@@ -24,6 +24,9 @@
         text-anchor:middle;
     }
     .majority text tspan {
+        
+    }
+    .majority text tspan.bold {
         font-weight: bold;
     }
     .con,
@@ -182,7 +185,7 @@
     .bg text {
         fill:#333;
     }
-    .bg text tspan {
+    .bg text tspan.bold {
         font-weight: bold;
     }
     .flow path {

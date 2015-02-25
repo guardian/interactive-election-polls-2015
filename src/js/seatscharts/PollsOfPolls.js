@@ -183,10 +183,14 @@ define([
             }
             
             if(options.majorityText) {
-                majority.append("text")
+                var txt=majority.append("text")
                             .attr("x",0)
-                            .attr("y",-(triangle_h+4))
-                            .html("<tspan>326 seats</tspan> for a majority")    
+                            .attr("y",-(triangle_h+4));
+                txt.append("tspan")
+                            .attr("class","bold")
+                            .text("326 seats")
+                txt.append("tspan")
+                            .text(" for a majority")    
             }
             
         }
@@ -204,7 +208,7 @@ define([
         //projection
         var polls=new SeatsChart(values,{
             party_field:"from",
-            title:options.notitle?null:"...could change hands in the <tspan>2015 Guardian projection</tspan>",
+            title:options.notitle?null:["...could change hands in the ","2015 Guardian projection"],
             top:options.top,
             flowHeight:options.top,
             bar:{
@@ -471,7 +475,7 @@ define([
             
             current=new SeatsChart(values,{
                 party_field:"to",
-                title:options.notitle?null:"Which seats in the <tspan>current parliament</tspan>...",
+                title:options.notitle?null:["Which seats in the ","current parliament..."],
                 top:0,
                 flowHeight:options.top,
                 bar:{
@@ -868,10 +872,21 @@ define([
             }
             
             if(options.title) {
-                bg.append("text")
+                var txt=bg.append("text")
                     .attr("x",0)
-                    .attr("y",-2)//(options.titleAlign=="top"?-2:bar.height+12))
-                    .html(options.title)    
+                    .attr("y",-2);
+                txt
+                    .selectAll("tspan")
+                    .data(options.title)
+                    .enter()
+                    .append("tspan")
+                        .classed("bold",function(d,i){
+                            return i>0;
+                        })
+                        .text(function(d){
+                            return d;
+                        })
+                    //.html(options.title)    
             }        
             
             
@@ -1014,13 +1029,13 @@ define([
                     .attr("x",function(d){
                         var x=xscale(nested_data.filter(function(nd){
                             return nd.key==d.from;
-                        })[0].values.sum)/2;
+                        })[0].values.sum);
 
-                        if(d.from=="con") {
-                            return x+20;
+                        if(d.from=="lab" && options.title && options.labelAlign=="top") {
+                            return x-50;
                         }
 
-                        return x;
+                        return x/2;
                     })
 
                 

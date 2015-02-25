@@ -69,11 +69,11 @@ define([
 			var last=extents.maxDate,
 				past_weeks = new Date(last.getTime());
 			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1));
-			console.log("------->",data.length)
+			//console.log("------->",data.length)
 			data=data.filter(function(d){
 				return +d.date >= +past_weeks;
 			})
-			console.log("------->",data.length)
+			//console.log("------->",data.length)
 
 			extents={
 				date:d3.extent(data,function(d){
@@ -95,6 +95,8 @@ define([
 			];
 
 			if(options.extents) {
+				console.log("!!!!!!!!",options.extents)
+
 				extents.y=options.extents;
 
 			}
@@ -353,7 +355,7 @@ define([
 					});
 			seatsDiff
 				.style("left",function(){
-					return (xscale.range()[1]+margins.left+padding.left+8)+"px"
+					return (xscale.range()[1]-100)+"px"
 				});
 
 			day.attr("transform",function(d){

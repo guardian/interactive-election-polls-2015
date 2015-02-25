@@ -62,7 +62,7 @@ define([
         
         
         
-        /*function setExtents() {
+        function getExtents() {
             var all_extents=[];
 
             parties.forEach(function(party){
@@ -90,10 +90,12 @@ define([
                     d.new_extent[0]-=(max_delta-d.delta)
                 }
             })
+
+            return all_extents
         }
         
-        setExtents();*/
         
+
         var sparklines=[],
             i=0;
         parties.forEach(function(party){
@@ -107,9 +109,14 @@ define([
                     index:i,
                     fields:[party],
                     interpolate:"step-after",
-                    extents:d3.extent(data.sheets["Log Seats"],function(d){
+                    extents2:d3.extent(data.sheets["Log Seats"],function(d){
                         return d[party]
                     }),
+                    extents:getExtents().filter(function(d){
+                        return d.party==party;
+                    }).map(function(d){
+                        return d.new_extent;
+                    })[0],
                     weeks:3,
                     mouseOverCallback:function(d){
                         sparklines.forEach(function(c){
