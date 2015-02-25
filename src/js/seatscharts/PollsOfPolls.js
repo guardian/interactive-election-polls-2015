@@ -973,9 +973,11 @@ define([
                                     
                 if(options.mouseOverCallback) {
                     new_bars.on("mouseover",options.mouseOverCallback);
+                    new_bars.on("mousedown",options.mouseOverCallback);
                 }
                 if(options.mouseOutCallback) {
                     new_bars.on("mouseout",options.mouseOutCallback);
+                    new_bars.on("mouseup",options.mouseOutCallback);
                 }
                                     
                 new_bars.append("rect")
@@ -1032,7 +1034,7 @@ define([
                         })[0].values.sum);
 
                         if(d.from=="lab" && options.title && options.labelAlign=="top") {
-                            return x-50;
+                            return x-40;
                         }
 
                         return x/2;

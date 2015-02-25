@@ -55,7 +55,7 @@
 		font-family:$ff-agate;
 	}
 	.seats-chart {
-		width:50%;
+		width:33%;
 		
 		min-height: 70px;
 		padding:10px 0px;
@@ -106,7 +106,7 @@
 	.seats-chart svg .linechart g.hover text {
 		fill-opacity:1 !important;
 	}
-	.seats-chart:first-child svg .linechart g.day.first text,
+	
 	.seats-chart:first-child svg .linechart g.day.last text {
 		fill-opacity:1;
 	}
@@ -146,7 +146,7 @@
 	.seats-chart svg .linechart g.hover line.dropline {
 		stroke-opacity:0.8 !important;
 	}
-	.seats-chart:first-child svg .linechart g.day.first line.dropline,
+	
 	.seats-chart:first-child svg .linechart g.day.last line.dropline {
 		stroke-opacity:0.8;
 	}
@@ -160,6 +160,16 @@
 		stroke-opacity:0.8;
 		stroke:#666;
 		font-size:12px;
+	}
+	
+	.seats-chart:first-child .seats-change span {
+		visibility: visible;
+	}
+	.seats-chart.show-first:first-child svg .linechart g.day.first text {
+		fill-opacity:1;
+	}
+	.seats-chart.show-first:first-child svg .linechart g.day.first line.dropline {
+		stroke-opacity:0.8;
 	}
 
 	.seats-chart svg .linechart rect.ix {
@@ -272,9 +282,7 @@
 		font-size: 14px;
 		visibility: visible;
 	}
-	.seats-chart:first-child .seats-change span {
-		visibility: visible;
-	}
+	
 	.seats-chart .seats-change span.seats-diff-n i {
 		display: none;
 		font-style: normal;
@@ -283,9 +291,12 @@
 		display: inline;
 	}
 
-	@media (min-width: 768px) {
-       	.seats-chart {
+	@media (min-width: 480px) {
+		
+    }
+    @media (min-width: 740px) {
+    	.seats-chart {
 			width:20%;
 		}
-    }
+	}
 }

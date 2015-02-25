@@ -39,6 +39,8 @@ define([
 			to; //timeout
 
 		var delta=options.delta || 2;
+		var linedata;
+
 		updateData();
 
 		window.addEventListener('resize', function(e){
@@ -95,17 +97,25 @@ define([
 			];
 
 			if(options.extents) {
-				console.log("!!!!!!!!",options.extents)
-
 				extents.y=options.extents;
-
 			}
 
 			extents.y[0]-=delta;
 			extents.y[1]+=delta;
 
+			linedata=options.fields.map(function(d){
+								return {
+									party:d,
+									values:data.map(function(p){
+										return {
+											party:d,
+											date:p.date,
+											value:p[d]
+										};
+									})
+								};
+							});
 		}
-
 		
 
 		var seatsDiff=chartContainer
@@ -116,8 +126,7 @@ define([
 					.append("svg")
 						.attr("width",WIDTH)
 						.attr("height",HEIGHT);
-		
-		//var electionDay=new Date(2015,4,7);
+
 		var xscale=d3.time.scale().domain(extents.date).range([0,(WIDTH-(margins.left+margins.right+padding.left+padding.right))]);
 
 		var yscale=d3.scale.linear()
@@ -134,18 +143,7 @@ define([
 						.attr("transform","translate("+margins.left+","+margins.top+")");
 
 		var linechart=linecharts.selectAll("g.linechart")
-							.data(options.fields.map(function(d){
-								return {
-									party:d,
-									values:data.map(function(p){
-										return {
-											party:d,
-											date:p.date,
-											value:p[d]
-										};
-									})
-								};
-							}))
+							.data(linedata)
 							.enter()
 							.append("g")
 								.attr("class","linechart")
@@ -177,7 +175,7 @@ define([
 					return "line "+d.party;
 				});
 		
-		
+		var touchstart=false;
 		var day=linechart.selectAll("g.day")
 					.data(function(d){
 						return d.values;
@@ -197,7 +195,6 @@ define([
 							.on("mouseover",function(d){
 								if(options.mouseOverCallback) {
 									options.mouseOverCallback(d);
-
 								}
 							})
 							.on("mouseout",function(d){
@@ -207,7 +204,31 @@ define([
 								} else {
 									self.highlight();
 								}	
-							});
+							})
+							.on("touchstart", function(){
+								d3.event.preventDefault();
+								touchstart=true;
+							})
+							.on("touchend",function(){
+								touchstart=false;
+							})
+							.on("touchmove",function(d){
+								d3.event.preventDefault();
+								if(touchstart) {
+									var coord=d3.touches(linechart.node());
+									console.log(Math.round(coord[0][0]))
+									var d=xscale.invert(Math.round(coord[0][0])).setHours(0,0,0,0);
+								    var poll=linedata[0].values.filter(function(p){
+								    		return +d === (+p.date);
+								    	})[0];
+							    	if(typeof poll != 'undefined') {
+							    		console.log(poll)
+							    		if(options.mouseOverCallback) {
+											options.mouseOverCallback(poll);
+										}
+							    	}
+								}
+							})
 
 		var label=linechart
 					.append("g")
@@ -254,9 +275,14 @@ define([
 					});
 		seatsDiff
 				.append("span")
+				.attr("class",function(){
+					return "seats-diff-day"
+				})
 				.html(function(){
 					var before_last=data[data.length-7].date;
-					
+					if(WIDTH<160) {
+						return "since "+d3.time.format("%a")(before_last)+"<br/>last week"	
+					}
 					return "since "+d3.time.format("%A")(before_last)+"<br/>last week"
 				});
 
@@ -338,8 +364,12 @@ define([
 		}
 
 		function update() {
-			xscale.range([0,(WIDTH-(margins.left+margins.right+padding.left+padding.right))]);
+			var w=(WIDTH-(margins.left+margins.right+padding.left+padding.right));
+			xscale.range([0,w]);
 			bar_width=xscale.range()[1]/(data.length-1);
+
+			console.log("!!!!!!!!!!!",w)
+			chartContainer.classed("show-first",(w>120))
 
 			linechart
 				.select("path")
@@ -356,7 +386,15 @@ define([
 			seatsDiff
 				.style("left",function(){
 					return (xscale.range()[1]-100)+"px"
-				});
+				})
+				.select("span.seats-diff-day")
+					.html(function(){
+						var before_last=data[data.length-7].date;
+						if(WIDTH<160) {
+							return "since "+d3.time.format("%a")(before_last)+"<br/>last week"	
+						}
+						return "since "+d3.time.format("%A")(before_last)+"<br/>last week"
+					});
 
 			day.attr("transform",function(d){
 				var x=xscale(d.date),
