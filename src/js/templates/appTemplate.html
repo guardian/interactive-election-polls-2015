@@ -29,7 +29,7 @@
           <li><span class="rect bgc-ukip"></span>UKIP</li>
           <li><span class="rect bgc-dup"></span>DUP</li>
           <li><span class="rect bgc-ldem"></span>Lib Dem</li>
-          <li><span class="rect bgc-con"></span>Conservatives</li>
+          <li><span class="rect bgc-con"></span></li>
         </ul>
       </div>
     </header>
@@ -44,7 +44,7 @@
           <button class="btn-fb" data-source="facebook" data-couple=""> </button>
         </div>
       </div>
-      <div class="col-right mt-section mt-seats-chart">
+      <div class="col-right mt-section">
         <div id="commonsChart" class="poll-chart"></div>
       </div>
     </div>
@@ -58,29 +58,30 @@
         <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
       </div>
     </div>
-    <a name="voting-intention-over-time"></a>
-    <!-- section 3 -->
+
+    <!-- section 2 -->
     <div class="row bdt-section">
       <div class="col-left">
         <h2 class="t-h2-s" id="title_vi-time-series"></h2>
         <p class="t-bd-s" id="par_vi-time-series"></p>
         <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-couple=""></button>
-          <button class="btn-fb" data-source="facebook" data-couple=""> </button>
+          <button class="btn-tt"></button>
+          <button class="btn-fb"></button>
         </div>
       </div>
-      <div class="col-right mt-section mb-60">
+      <div class="col-right mt-section mb-60 pos-r">
         <!-- pollchart --> 
-        <div class="pos-r chart-size pollchart">
-          <svg id="pollchart"></svg>
-          <div id="tpTextBox" class="tp-text pos-a d-n ff-ss fz-14">
-            <div class="fw-b pt-10"></div>
-            <div></div>
-            <div class="fw-b pb-7"></div> 
-          </div>  
-        </div>
+        <div id="pollchart"></div>
+        <div id="pollchartTooltip" class="tp-text pos-a d-n ff-ss fz-14">
+          <div class="fw-b pt-10"></div>
+          <div></div>
+          <div class="fw-b pb-7"></div>           
+        </div>  
+        <!-- end of pollchart -->
+      </div>
     </div>
 
+    <!-- section 3 -->
     <div class="row bdt-section">
       <div class="col-left">
         <h3 class="t-h2-s" id="title_flowofseats"></h3>

@@ -6,8 +6,8 @@ define([
   var dayAvg = 14,
       dayConst = 86400000,
       partyList = ["con", "lab", "ldem", "ukip", "grn"/*, "others"*/],  
-      pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
-      pGroup2 = ["ComRes", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
+      pGroup1 = ["Ashcroft", "Opinium", "Populus", "YouGov"],
+      pGroup2 = ["ComResP", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
    
   function averageArray(array) {
     var sum = array.reduce(function(preVal, curVal) {
@@ -34,7 +34,7 @@ define([
           dataByPartyPollster,
           dataByPartyDate,
           dataByDate;
-      
+     console.log(pollsterList); 
       // data grouped by party  
       dataByParty = partyList.map(function(party) {
         return {

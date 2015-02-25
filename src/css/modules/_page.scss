@@ -239,6 +239,9 @@
     .col-left{
       margin-right: 0;
       padding-right: 0;
+    }
+    .mt-section {
+      margin-top: 0;
     } 
 }}
 // breakpoints: 740(tablet), 660, 480(mobile-l)
@@ -257,12 +260,6 @@
       padding: 10px 0 0;
     }
     
-}}
-@media (max-width: 400px) {
-  .guInteractive { 
-    li:last-child {
-      margin-left: -1px; // hotfix for looking nicer!
-    } 
 }}
 // breakpoints: 320(mobile-p)
 @media (max-width: 320px) {
