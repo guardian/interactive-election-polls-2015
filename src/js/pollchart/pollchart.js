@@ -1,7 +1,7 @@
 //TODO:
 // 1. load avg data from sheets
-// 2. add text of avg on over time hover
-// 3. put hammer.js in the folder
+//(o) add text of avg on over time hover
+//(o) put hammer.js in the folder
 // 4. fix tooltip on resize
 // 5. add voronoi for circle picking
 define([
@@ -66,8 +66,8 @@ define([
     /* D3: Drawing
     /* ******/
     // x, y axes; circle, path, area (polygon as range), text
-    var gx, gy ,gp, ga, gt, gr,
-        gcPoll, gcDate;
+    var gx, gy ,gp, ga, gr,
+        gtAvg, gtVi, gcPoll, gcDate;
     
     // Add the svg
     var svg = d3.select("#pollchart")
@@ -170,7 +170,7 @@ define([
         for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); }
       });
 
-      // test with hammerjs
+      // pan evnt using hammerjs
         var el = document.querySelector(".dates"),
         op = { preventDefault: true },
         hr = new Hammer(el, op),
@@ -285,14 +285,14 @@ define([
       });
     }
 
-    function addText(svgObj, className, key) {
-      gt = svgObj.append("text")
+    function addTextAvg(svgObj, className, key) {
+      gtAvg = svgObj.append("text")
       //TODO: make sure data order
       .datum(function(d) { return {key: d[key], value: d.values[d.values.length - 1], party: d.party}; })
       .attr("class", className);
     } 
-    function drawText() {
-      gt.attr("text-anchor", "left")
+    function drawTextAvg() {
+      gtAvg.attr("text-anchor", "left")
       .attr("x", function(d){ return x(d.value.date) + 8; })
       .attr("y", function(d){ return y(d.value.vi) + 6; })
       .text(function(d) { 
@@ -301,6 +301,22 @@ define([
       });
     }
     
+    function addTextVi(svgObj, className) {
+      gtVi = svgObj.selectAll("text")
+        .data(function(d) { return d.values; })
+        .enter().append("text")
+        .attr("class", function(d) { 
+          console.log(d);
+          return "t" + d.date + " ff-ss fz-14 " + className; });
+    }
+ 
+    function drawTextVi() {
+      var pos = {con:20, grn:20, lab:-10, ukip:-10, ldem:-10};
+      gtVi.attr("x", function(d){ return x(d.date) - 5; })
+          .attr("y", function(d){ return y(d.vi) + pos[d.party]; })
+          .text(function(d) { return d.vi; });
+    }
+
     function drawSVGInit(){
       // 1. Draw coordinate
       addCoordinate();
@@ -334,13 +350,15 @@ define([
       // 2. Draw over time view
       gcDate = addCircles(svgDates, "op-0", "date"); 
       drawCircles(gcDate, 3.5);
+      addTextVi(svgDates, "op-0");
+      drawTextVi();
       addRects(svgRects);
       drawRects();
       onRects();
 
       // 3. Draw area, path (with lines) - avarage, text
-      addText(svgParty, "ff-ss fz-14", "party");
-      drawText();
+      addTextAvg(svgParty, "ff-ss fz-14", "party");
+      drawTextAvg();
 
       addPathWithLines(svgParty, "path-avg");
       drawPathWithLines();
