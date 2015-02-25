@@ -1,9 +1,8 @@
 //TODO:
 // 1. load avg data from sheets
-//(o) add text of avg on over time hover
-//(o) put hammer.js in the folder
-// 4. fix tooltip on resize
-// 5. add voronoi for circle picking
+//(o) fix size of svg container
+// 3. fix tooltip on resize
+// 4. add voronoi for circle picking
 define([
   'd3',
   'pollchart/hammer.js',
@@ -19,8 +18,8 @@ define([
   var dayUnit,
       dayConst = 86400000,
       termDic = { con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green", 
-                  YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium", 
-                  ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
+                  YouGov: "YouGov", Populus: "Populus", Ashcroft: "Ashcroft", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium", 
+                  ComResP: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
   
   var data, dataset,
       svgParty, svgPolls, svgDates, svgRects,
@@ -44,9 +43,27 @@ define([
 
 
   function render(el, rawData) {
+    /* SVG */
+    // x, y axes; circle, path, area (polygon as range), text
+    var gx, gy ,gp, ga, gr,
+        gtAvg, gtVi, gcPoll, gcDate;
     
+    // Add the svg
+    var svg = d3.select("#pollchart")
+        .append("svg")
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Define the line
+    var line = d3.svg.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.vi); });
+
+    
+    /* Window */
     setChartSize();
     
+
     /* Data */
     data = rawData.sheets["vi-continuous-series"];
     // Parse date
@@ -55,31 +72,15 @@ define([
       d.timestamp = +parseDate(d.date); 
       return d;  
     }).filter(function(d) {
-      //return d.date >= (+parseDate(dateStr)); 
       return d.timestamp >= (+parseDate(dateStr)); 
     });
-    
+    // Compose data 
     dateList = polldata.extractDataByKey(data, "timestamp");
     dataset = polldata.composeDataByParty(data, dateList);
     
 
     /* D3: Drawing
     /* ******/
-    // x, y axes; circle, path, area (polygon as range), text
-    var gx, gy ,gp, ga, gr,
-        gtAvg, gtVi, gcPoll, gcDate;
-    
-    // Add the svg
-    var svg = d3.select("#pollchart")
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    // Define the line
-    var line = d3.svg.line()
-                 .x(function(d) { return x(d.date); })
-                 .y(function(d) { return y(d.vi); });
-
-
     function addCoordinate () {
       gx = svg.append("g").attr("class", "x axis ff-ss fz-12");
       gy = svg.append("g").attr("class", "y axis ff-ss fz-12");
@@ -172,12 +173,12 @@ define([
 
       // pan evnt using hammerjs
         var el = document.querySelector(".dates"),
-        op = { preventDefault: true },
-        hr = new Hammer(el, op),
-        preCN = null, // CN, classname
-        curCN,
-        strCN,
-        numCN;
+            op = { preventDefault: true },
+            hr = new Hammer(el, op),
+            preCN = null, // CN, classname
+            curCN,
+            strCN,
+            numCN;
 
         hr.get("pan").set({ direction: Hammer.DIRECTION_HORIZONTAL });
         hr.on("panstart", function(e) {
@@ -243,13 +244,13 @@ define([
         dateText = date.getDate() + " " + formatMonth(date);
 
         //drawLine(svg, xPos, yPos - 8, xPos, yPos - 120, "tp-line");
-        drawCircle(svg, xPos, yPos, 5, "tp-circle");
+        //drawCircle(svg, xPos, yPos, 5, "tp-circle");
 
-        ele = document.querySelector("#tpTextBox");
+        ele = document.querySelector("#pollchartTooltip");
         ele.classList.remove('d-n');
 
         // top or bottom  
-        ele.style.top = ((yPos - yShift) < (-10)) ? ((yPos + yShift) + "px") : ((yPos - yShift) + "px");
+        ele.style.top = ((yPos - yShift) < (-15)) ? ((yPos + yShift) + "px") : ((yPos - yShift) + "px");
         if (xPos < (xPosEnd - 100)) {
           // align right
           ele.style.left = (xPos - 5) + "px";
@@ -274,7 +275,7 @@ define([
       .on("mouseout", function(d) {
         // 1. Remove tooltip
         //svg.select(".tp-line").remove();
-        svg.select(".tp-circle").remove();
+        //svg.select(".tp-circle").remove();
 
         ele.classList.add('d-n');
         eleList[2].classList.remove(d.party);
@@ -285,6 +286,7 @@ define([
       });
     }
 
+    var posYShiftText = {con:20, grn:20, lab:-10, ukip:-10, ldem:-10};
     function addTextAvg(svgObj, className, key) {
       gtAvg = svgObj.append("text")
       //TODO: make sure data order
@@ -294,7 +296,7 @@ define([
     function drawTextAvg() {
       gtAvg.attr("text-anchor", "left")
       .attr("x", function(d){ return x(d.value.date) + 8; })
-      .attr("y", function(d){ return y(d.value.vi) + 6; })
+      .attr("y", function(d){ return y(d.value.vi) + 6 + posYShiftText[d.party] / 4; })
       .text(function(d) { 
         var num = (d.value.vi).toFixed(1); 
         return d.party === "lab" ? num + "%" : num; 
@@ -303,18 +305,14 @@ define([
     
     function addTextVi(svgObj, className) {
       gtVi = svgObj.selectAll("text")
-        .data(function(d) { return d.values; })
-        .enter().append("text")
-        .attr("class", function(d) { 
-          console.log(d);
-          return "t" + d.date + " ff-ss fz-14 " + className; });
+      .data(function(d) { return d.values; })
+      .enter().append("text")
+      .attr("class", function(d) { return "t" + d.date + " ff-ss fz-12 " + className; });
     }
- 
     function drawTextVi() {
-      var pos = {con:20, grn:20, lab:-10, ukip:-10, ldem:-10};
       gtVi.attr("x", function(d){ return x(d.date) - 5; })
-          .attr("y", function(d){ return y(d.vi) + pos[d.party]; })
-          .text(function(d) { return d.vi; });
+      .attr("y", function(d){ return y(d.vi) + posYShiftText[d.party]; })
+      .text(function(d) { return d.vi; });
     }
 
     function drawSVGInit(){
@@ -378,22 +376,25 @@ define([
 
     function drawSVG() {
       drawCoordinate();  
-      drawText();
+      drawTextAvg();
+      drawTextVi();
       drawPathWithLines();
       drawPolygons();
       drawCircles(gcPoll, 3);
       drawCircles(gcDate, 3.5);
       drawRects();
 
-      //TODO: remove hotfix
+      /*/TODO: remove hotfix
       var ele;
       svg.select(".tp-circle").remove();
-      ele = document.querySelector("#tpTextBox");
+      ele = document.querySelector("#pollchartTooltip");
+      console.log(ele);
       ele.style.top = "-100px";
       ele.style.left = "-100px";
       ele.style.rifht = "auto";
       eleList = ele.children;
       eleList[2].className = "";
+      */
     }
 
     function resize() {
@@ -408,24 +409,24 @@ define([
 
   /* Window size update and redraw 
   /* ******/
-  // Window resize 
   function setChartSize() {
     // Dimensions of the chart
     var w = window,
         d = document,
-        e = d.documentElement,
-        //p = d.querySelector("#pollchart").parentNode,
-        w = e.clientWidth || w.innerWidth,
-        h = e.clientHeight || w.innerHeight,
-        w = w - 10,
-        h = 400 - 15,
+        h = d.documentElement, //html
+        p = d.querySelector("#pollchart"),
+        s = d.querySelector("#pollchart svg"),
+        w = p.clientWidth || h.clientWidth || w.innerWidth,
+        h = h.clientHeight || w.innerHeight,
+        h = (h > 480) ? 480 : (h - 80),
         str;
 
     width = w - margin.left - margin.right;
     height = h - margin.top - margin.bottom;
-
-    //p.setAttribute("width", w);
-    //p.setAttribute("height", h);
+    console.log( p.clientWidth );
+    s.setAttribute("height", h);
+    console.log("w:", w, width);
+    console.log("h:", h, height);
 
     // Ranges of the charts
     x = d3.time.scale().range([0, width]);
@@ -433,11 +434,11 @@ define([
 
     // Define the axes
     xAxis = d3.svg.axis().scale(x).orient("bottom")
-      .ticks(d3.time.month),  
-      yAxis = d3.svg.axis().scale(y).orient("right")
-        .ticks(5).tickSize(width)
-        .tickFormat(function(d) {
-            return d === 40 ? formatPercent(d / 100) : d ;
+            .ticks(d3.time.month),  
+    yAxis = d3.svg.axis().scale(y).orient("right")
+            .ticks(5).tickSize(width)
+            .tickFormat(function(d) {
+              return d === 40 ? formatPercent(d / 100) : d ;
             });
 
     // for mobile
@@ -446,11 +447,11 @@ define([
           month = today.getMonth() + 1;
 
       dateStr = "24/11/2014"; 
-      dateEnd = (today.getDate() + 11) + "/" + month + "/" + today.getFullYear();
+      dateEnd = (today.getDate() + 20) + "/" + month + "/" + today.getFullYear();
       xAxisTextFormat = formatMon;
     } else {
       dateStr = "20/11/2014";  
-      dateEnd = "15/05/2015";
+      dateEnd = "12/05/2015";
       xAxisTextFormat = formatMonth;
     }
 

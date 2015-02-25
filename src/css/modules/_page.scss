@@ -192,7 +192,7 @@
     float: right;
   }
   .ul__party li {
-    padding-right: 20px;
+    padding-right: 15px;
     float: left;
   }
   li:first-child .rect {
@@ -201,6 +201,9 @@
   li:last-child {
     padding-right: 0;
   } 
+  li:last-child::after {
+    content: "Conservatives";
+  }
   
 
   // shapes
@@ -217,9 +220,14 @@
 
 // hotfix area
 //TODO: remove if possible
-#stickyRow > * {
-  margin: 10px 0;
+#stickyRow {
+  > * {
+  margin: 5px 0;
   z-index: 10;
+  }
+  .col-left {
+    width: 225px;
+  }
 }
 
 
@@ -239,6 +247,9 @@
     .col-left{
       margin-right: 0;
       padding-right: 0;
+    }
+    .mt-section {
+      margin-top: 0;
     } 
 }}
 // breakpoints: 740(tablet), 660, 480(mobile-l)
@@ -256,14 +267,21 @@
     .t-bd-h {
       padding: 10px 0 0;
     }
-    
 }}
-@media (max-width: 400px) {
+
+// ul, li styles just for looking nicer
+@media (max-width: 615px) {
   .guInteractive { 
-    li:last-child {
-      margin-left: -1px; // hotfix for looking nicer!
-    } 
-}}
+    .ul__party li {
+      width: calc(100% / 4);
+      padding-right: 0;
+}}}
+@media (max-width: 450px) {
+  .guInteractive { 
+    li:last-child::after {
+      content: "Con";
+}}}
+
 // breakpoints: 320(mobile-p)
 @media (max-width: 320px) {
   .guInteractive { 
