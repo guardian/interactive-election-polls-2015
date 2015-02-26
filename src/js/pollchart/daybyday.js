@@ -258,7 +258,7 @@ define([
 					})
 			title.append("span")
 					.html(function(d){
-						return " "+d.pollster
+						return " "+(options.termDic[d.pollster] || d.pollster)
 					})
 
 			var projections=new_polls.append("div")
