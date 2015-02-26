@@ -823,7 +823,7 @@ define([
                                     x2=to.x,
                                     w=Math.ceil(xscale(d.qty)),
                                     h=options.bottom-options.top;
-                                
+                                w=(xscale(d.qty));
                                 d.x2=x2;
                                 
                                     
@@ -1050,7 +1050,8 @@ define([
                     })
                     .selectAll("rect")
                         .attr("width",function(d){
-                            return Math.floor(xscale(d.qty))+1;
+                            return xscale(d.qty)
+                            return Math.ceil(xscale(d.qty))+0.5;
                         });
 
                 bars.select("text")
