@@ -45,8 +45,9 @@ define([
       commonsChart.render('#commonsChart' ,data);
       commonsChart.renderMainFlow('#flowsChart' ,data);
       commonsChart.renderFlows(data);
-      //pollChart.render(el.querySelector('#pollchart') ,data);
       commonsChart.renderDayByDay("#daybyday",data);
+      pollChart.render(el.querySelector('#pollchart') ,data);
+      
 
       if(window.location.hash) {
         //jumpTo("voting-intention-over-time")

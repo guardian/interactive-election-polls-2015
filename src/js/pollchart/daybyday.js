@@ -252,9 +252,9 @@ define([
 					.attr("class","date")
 					.text(function(d){
                         if(getWidth(1)<480) {
-                            return d3.time.format("%e %b")(d.timestamp);    
+                            return d3.time.format("%e %b")(d.timestamp2);    
                         }
-						return d3.time.format("%e %B")(d.timestamp);
+						return d3.time.format("%e %B")(d.timestamp2);
 					})
 			title.append("span")
 					.html(function(d){
@@ -426,9 +426,9 @@ define([
                     .text(function(d){
                         //console.log("!!!!!!",getWidth(1))
                         if(getWidth(1)<480) {
-                            return d3.time.format("%e %b")(d.timestamp);    
+                            return d3.time.format("%e %b")(d.timestamp2);    
                         }
-                        return d3.time.format("%e %B")(d.timestamp);
+                        return d3.time.format("%e %B")(d.timestamp2);
                     })
         }
 		function updateData() {
@@ -436,7 +436,7 @@ define([
 
 			data.forEach(function(d){
 				//console.log("aaaa",d)
-				d.timestamp=format.parse(d.date);
+				d.timestamp2=format.parse(d.date);
                 
                 d.status=true;
 
@@ -460,7 +460,7 @@ define([
 			})
 
 			data.sort(function(a,b){
-				return (+b.timestamp) - (+a.timestamp);
+				return (+b.timestamp2) - (+a.timestamp2);
 			})
 		}
 
