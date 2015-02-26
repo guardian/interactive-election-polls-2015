@@ -5,8 +5,8 @@ define([
   'use strict';  
   var dayAvg = 14,
       dayConst = 86400000,
-      partyList = ["con", "lab", "ldem", "ukip", "grn"/*, "others"*/],  
-      pGroup1 = ["Ashcroft", "Opinium", "Populus", "YouGov"],
+      partyList = ["con", "lab", "ldem", "ukip", "grn"],  
+      pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
       pGroup2 = ["ComResP", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
    
   function averageArray(array) {
@@ -32,9 +32,8 @@ define([
       var pollsterList = this.extractDataByKey(data, "pollster"),
           dataByParty,
           dataByPartyPollster,
-          dataByPartyDate,
-          dataByDate;
-     console.log(pollsterList); 
+          dataByPartyDate;
+      
       // data grouped by party  
       dataByParty = partyList.map(function(party) {
         return {
@@ -44,7 +43,7 @@ define([
               date: d.timestamp,
               pollster: d.pollster,
               vi: d[party]
-            }})//end of data.map (values)
+            };})//end of data.map (values)
       };});//end of partyList.map
 
       // data grouped by party and pollster  
@@ -127,8 +126,8 @@ define([
               vi: viAvg,
               //viAvgList: viAvgList,
               //viDayList: viDayList,
-              viMin: d3.min(viDayList), 
-              viMax: d3.max(viDayList) 
+              viMin: Math.min(viDayList), 
+              viMax: Math.max(viDayList) 
             };
           }) //end of dateList.map (values)  
         };
@@ -137,7 +136,7 @@ define([
       return { 
         date: dataByPartyDate,
         pollster: dataByPartyPollster
-      }
+      };
     }
 
   }; //end of polldata's return

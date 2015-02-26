@@ -20,9 +20,7 @@ define([
   d3.selectAll('[data-reload=global]')
       .remove();
 
-  
   function jumpTo(h) {
-    
     var url = location.href;               
     var newhref=location.href.split("#")[0]+"#"+h;
 
@@ -35,8 +33,6 @@ define([
     // DEBUG: What we get given on boot
     //console.log(el, context, config, mediator);
     
-    
-
     el.innerHTML = templateHTML;
     stickElementOnScroll();
     
@@ -44,24 +40,21 @@ define([
     title.innerHTML = d3.select(".l-title h1").text();
 
     loadData(function(data){
-      //chartView.render(el.querySelector('#chart'), data);
-      console.log(data)
+      //console.log(data)
       pageView.render(data["sheets"]["glosses"],data.updated);
       commonsChart.render('#commonsChart' ,data);
       commonsChart.renderMainFlow('#flowsChart' ,data);
       commonsChart.renderFlows(data);
       pollChart.render(el.querySelector('#pollchart') ,data);
       commonsChart.renderDayByDay("#daybyday",data);
-
       
       if(window.location.hash) {
         //jumpTo("voting-intention-over-time")
         jumpTo(window.location.hash.split('#')[1]);
       }
-      
-
     })
   }
+
 
   /* stick element (time and party labels) to top on scroll */
   function stickElementOnScroll() {
