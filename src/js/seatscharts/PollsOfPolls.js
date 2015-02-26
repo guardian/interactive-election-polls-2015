@@ -276,7 +276,7 @@ define([
             current.showDifferent(1);
         }
 
-        function getBars3(data,field) {
+        function getBars4(data,field) {
             var values=[];
             d3.entries(data).forEach(function(d){
                 //////////console.log(d)
@@ -310,7 +310,39 @@ define([
             return values;
         }
 
-        
+        function getBars3(data,field) {
+            var values=[];
+            d3.entries(data).forEach(function(d){
+                //////////console.log(d)
+                d3.entries(d.value[field]).forEach(function(s){
+                    values.push({
+                        from:d.key,
+                        to:s.key,
+                        qty:s.value
+                    })
+                })
+            });
+            var prev_x=0,
+                prev_x_real=0;
+            values.sort(function(a,b){
+                    if(options.order.indexOf(a.from) == options.order.indexOf(b.from)) {
+                        return options.order.indexOf(a.to) - options.order.indexOf(b.to);
+                    }
+                    return options.order.indexOf(a.from) - options.order.indexOf(b.from);
+                }).forEach(function(d){
+                    
+                    d.x_real=prev_x_real;
+                    prev_x_real+=d.qty;
+                    
+                    //d.x=prev_x;
+                    //prev_x+=xscale(d.qty);
+
+                    d.x=xscale(d.x_real)
+                    
+                })
+            ////console.log("========>",values)
+            return values;
+        }
 
 
 
@@ -1018,7 +1050,7 @@ define([
                     })
                     .selectAll("rect")
                         .attr("width",function(d){
-                            return Math.ceil(xscale(d.qty))+0.5;
+                            return Math.floor(xscale(d.qty))+1;
                         });
 
                 bars.select("text")
