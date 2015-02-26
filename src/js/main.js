@@ -50,10 +50,10 @@ define([
       commonsChart.render('#commonsChart' ,data);
       commonsChart.renderMainFlow('#flowsChart' ,data);
       commonsChart.renderFlows(data);
-      pollChart.render(el.querySelector('#pollchart') ,data);
+      //pollChart.render(el.querySelector('#pollchart') ,data);
       commonsChart.renderDayByDay("#daybyday",data);
 
-      
+      return;
       if(window.location.hash) {
         //jumpTo("voting-intention-over-time")
         jumpTo(window.location.hash.split('#')[1]);

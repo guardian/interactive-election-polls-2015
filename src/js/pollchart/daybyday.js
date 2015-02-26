@@ -424,7 +424,7 @@ define([
                         
             title.select("span")
                     .text(function(d){
-                        console.log("!!!!!!",getWidth(1))
+                        //console.log("!!!!!!",getWidth(1))
                         if(getWidth(1)<480) {
                             return d3.time.format("%e %b")(d.timestamp);    
                         }
@@ -435,8 +435,11 @@ define([
 			var format=d3.time.format("%d/%m/%Y")
 
 			data.forEach(function(d){
+				//console.log("aaaa",d)
 				d.timestamp=format.parse(d.date);
+                
                 d.status=true;
+
 				d.polls=options.parties.map(function(p){
 					var obj={
 						party:p,
@@ -445,6 +448,7 @@ define([
 					
 					return obj;
 				})
+
 				d.others=100-d3.sum(d.polls,function(p){
 					return p.value;
 				});
@@ -454,6 +458,7 @@ define([
 				});
 					
 			})
+
 			data.sort(function(a,b){
 				return (+b.timestamp) - (+a.timestamp);
 			})
