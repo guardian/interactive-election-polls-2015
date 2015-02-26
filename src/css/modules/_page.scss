@@ -67,6 +67,25 @@
     padding-bottom: 18px; //
     padding-top: 6px; //
   }
+  
+  
+  // link, links: (link-, links-)
+  .link-home {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .links-footer a {
+    color: #dcdcdc;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    text-decoration: none;
+  }
+  .links-footer a:hover {
+    text-decoration: underline;
+  }
 
 
   /** layout of the page: (l-) */
@@ -89,17 +108,7 @@
   }
   .l-stick {
     z-index: 999999;
-  }
-  
-  .l-footer ul {
-    column-count: 3;
-    margin-top: 0;   //override ul default
-    padding-left: 0; //override ul default
-    padding-top: 20px;
-  }
-  .l-footer li {
-    padding: 0 0 12px 0;
-  }
+  } 
 
   .l-logo__home {
     width: 15px;
@@ -166,26 +175,19 @@
     .btn-fb:hover { background-color: #3067a3 }
   }
 
-  // link, links: (link-, links-)
-  .link-home {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-  }
-
-  .links-footer a {
-    color: #dcdcdc;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 22px;
-    text-decoration: none;
-  }
-  .links-footer a:hover {
-    text-decoration: underline;
-  }
-
 
   // list: (ul-, li)
+  .ul-footer {
+    list-style: none;
+    column-count: 3;
+    margin-top: 0;   //override ul default
+    padding-left: 0; //override ul default
+    padding-top: 20px;
+  }
+  .ul-footer li {
+    padding: 0 0 12px 0;
+  }
+  
   .ul__party {
     list-style: none;
     margin: 0; 
@@ -235,7 +237,7 @@
 // breakpoints: 1300, 1140, 980(desktop)
 @media (min-width: 1300px) {
   .guInteractive { 
-    .l-footer ul {
+    .ul-footer {
       column-count: 4;
     } 
 }}
@@ -262,7 +264,7 @@
     .l-stick {
       min-width: calc(100% - 40px);     
     }
-   .l-footer ul {
+   .ul-footer {
       column-count: 2;
     } 
     .t-bd-h {
