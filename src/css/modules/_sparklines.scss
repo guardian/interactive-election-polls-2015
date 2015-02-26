@@ -90,9 +90,9 @@
 		
 	}
 	
-	.seats-chart svg .linechart g.day.hover circle { 
+	/*.seats-chart svg .linechart g.day.hover circle { 
 		fill-opacity:1;
-	}
+	}*/
 	.seats-chart svg .linechart g:last-child circle {
 		fill-opacity:1;
 	}
@@ -103,18 +103,20 @@
 		text-anchor:start;
 	}
 	
-	.seats-chart svg .linechart g.hover text {
+	/*.seats-chart svg .linechart g.hover text {
 		fill-opacity:1 !important;
-	}
+	}*/
 	
 	.seats-chart:first-child svg .linechart g.day.last text {
 		fill-opacity:1;
 	}
-	
+	/*.seats-chart:first-child svg:hover .linechart g.day.first text.dropline {
+		fill-opacity:0;
+	}
 	.seats-chart:first-child.hover svg .linechart g.day.first text,
 	.seats-chart:first-child.hover svg .linechart g.day.last text { 
 		fill-opacity:0;
-	}
+	}*/
 	.seats-chart svg .linechart g.day.right-aligned text {
 		text-anchor: end;
 	}
@@ -145,15 +147,21 @@
 	.seats-chart svg .linechart g.hover line.dropline {
 		stroke-opacity:0.8 !important;
 	}
+	.seats-chart svg .linechart g.hover text.dropline {
+		fill-opacity:1 !important;
+	}
 	
 	.seats-chart:first-child svg .linechart g.day.last line.dropline {
 		stroke-opacity:0.8;
 	}
-	
+	/*.seats-chart:first-child.hover svg:hover .linechart g.day.first line.dropline,
 	.seats-chart:first-child.hover svg .linechart g.day.first line.dropline,
 	.seats-chart:first-child.hover svg .linechart g.day.last line.dropline {
 		stroke-opacity:0;
-	}
+	}*/
+
+	
+
 	.seats-chart svg .linechart g.selected line.dropline {
 		stroke-opacity:0.8;
 		stroke:#666;
@@ -168,6 +176,19 @@
 	}
 	.seats-chart.show-first:first-child svg .linechart g.day.first line.dropline {
 		stroke-opacity:0.8;
+	}
+
+	.seats-chart.hover:first-child svg .linechart g.day.first text {
+		fill-opacity:0;
+	}
+	.seats-chart.hover:first-child svg .linechart g.day.first line.dropline {
+		stroke-opacity:0;
+	}
+	.seats-chart.hover:first-child svg .linechart g.day.last text {
+		fill-opacity:0;
+	}
+	.seats-chart.hover:first-child svg .linechart g.day.last line.dropline {
+		stroke-opacity:0;
 	}
 
 	.seats-chart svg .linechart rect.ix {
@@ -248,10 +269,11 @@
 		stroke-width:1;
 		stroke-dasharray: 2,2;
 	}
+	/*
 	.seats-chart .chart.first .seats-chart #axes line.ygrid,
 	.seats-chart .chart:hover .seats-chart #axes line.ygrid {
 		display: block;
-	}
+	}*/
 	.seats-chart #axes .y .tick text {
 		text-anchor:start !important;
 	}

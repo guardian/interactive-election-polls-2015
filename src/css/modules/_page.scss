@@ -195,13 +195,13 @@
     padding-right: 15px;
     float: left;
   }
-  li:first-child .rect {
+  .ul__party li:first-child .rect {
     margin-left: 0;
   }
-  li:last-child {
+  .ul__party li:last-child {
     padding-right: 0;
   } 
-  li:last-child::after {
+  .ul__party li:last-child::after {
     content: "Conservatives";
   }
   
@@ -226,7 +226,7 @@
   z-index: 10;
   }
   .col-left {
-    width: 225px;
+    /*width: 225px;*/
   }
 }
 

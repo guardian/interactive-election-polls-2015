@@ -23,9 +23,11 @@ define([
   
   function jumpTo(h) {
     
-    var url = location.href;               //Save down the URL without hash.
-    location.href+="#"+h;                 //Go to the target element.
-    history.replaceState(null,null,url);   //Don't like hashes. Changing it back.
+    var url = location.href;               
+    var newhref=location.href.split("#")[0]+"#"+h;
+
+    location.href = location.href.split("#")[0]+"#"+h;
+    //history.replaceState(null,null,url);
   }
 
 
@@ -52,8 +54,11 @@ define([
       commonsChart.renderDayByDay("#daybyday",data);
 
       
-
-      //jumpTo("voting-intention-over-time")
+      if(window.location.hash) {
+        //jumpTo("voting-intention-over-time")
+        jumpTo(window.location.hash.split('#')[1]);
+      }
+      
 
     })
   }
@@ -80,14 +85,24 @@ define([
     d3.json(jsonSrc, function(err, data) {
 
       data.sheets["RESULT"].forEach(function(d){
+          
+          d.unfiltered_projection=d.projection.toLowerCase();
+          d.unfiltered_winner2010=d.winner2010.toLowerCase();
+
           if(d.projection=="PC") {
               d.projection="others";
           }
           if(d.winner2010=="PC") {
               d.winner2010="others";
           }
+          if(d.projection=="DUP") {
+              d.projection="others";
+          }
+          if(d.winner2010=="DUP") {
+              d.winner2010="others";
+          }
       })
-
+      //console.log(data)
       callback(data);
     });
   }

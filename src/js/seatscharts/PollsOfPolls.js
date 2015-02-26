@@ -23,13 +23,15 @@ define([
             data.forEach(function(d){
                 d.projection=d.projection.toLowerCase(),
                 d.winner2010=d.winner2010.toLowerCase();
+                d.unfiltered_projection=d.unfiltered_projection.toLowerCase();
 
                 if(!churning[d.projection]) {
                     churning[d.projection]={
                         from:{},
                         to:{},
                         total:0,
-                        all:0
+                        all:0,
+                        unfiltered_all:0
                     };
                 }
                 if(!churning[d.winner2010]) {
@@ -37,12 +39,25 @@ define([
                         from:{},
                         to:{},
                         total:0,
-                        all:0
+                        all:0,
+                        unfiltered_all:0
                     };
                 }
+
+                if(!churning[d.unfiltered_projection]) {
+                    churning[d.unfiltered_projection]={
+                        from:{},
+                        to:{},
+                        total:0,
+                        all:0,
+                        unfiltered_all:0
+                    };
+                }
+
                 if(!churning[d.projection].from[d.winner2010]) {
                     churning[d.projection].from[d.winner2010]=0;
                 }
+
                 if(!churning[d.winner2010].to[d.projection]) {
                     churning[d.winner2010].to[d.projection]=0;
                 }
@@ -53,11 +68,14 @@ define([
                 //churning[d.projection].total.from+=(d.projection!=d.winner2010)?1:0;
                 //churning[d.winner2010].total.from+=(d.projection!=d.winner2010)?1:0;
                 churning[d.projection].all+=1;
+                churning[d.unfiltered_projection].unfiltered_all+=1;
+
             });
+            
             return churning;
         }
         data=generateData(data);
-
+        
         var self=this;
 
         var WIDTH=d3.select(options.container).node().clientWidth || d3.select(options.container).node().offsetWidth,//window.innerWidth,
@@ -376,39 +394,18 @@ define([
                     var glosses=coalitions_glosses.sort(function(a,b){
                         return a.order - b.order;
                     }).map(function(d){
-                        var parties=d.parties.split(",");
+                        var parties=d.parties.toLowerCase().split(",");
                         return {
                             parties:parties,
                             text:d.description,
                             total:d3.sum(parties,function(p){
-                                return data[p]["all"]
+                                console.log(p,data)
+                                return data[p]["unfiltered_all"]
                             }),
                             w:100/3
                         }
                     })
-                    /*
-                    var glosses=[
-                        {
-                            parties:["lab","snp"],
-                            text:"<span class=\"lab\">Labour</span> and the <span class=\"snp\">SNP</span> would need the support of a third party to form a coalition",
-                            total:data["lab"].all+data["snp"].all,
-                            w:(100/5*2)
-                        },
-                        {
-                            parties:["con","libdem"],
-                            text:"The current governing <span class=\"con\">Con</span>/<span class=\"libdem\">LD</span> coalition could not form a government",
-                            total:data["con"].all+data["libdem"].all,
-                            w:(100/5*3)/2
-                        },
-                        {
-                            parties:["con","libdem","ukip"],
-                            text:"Even by coopting <span class=\"ukip\">UKIP</span> the current coalition can't secure a majority",
-                            total:data["con"].all+data["libdem"].all+data["ukip"].all,
-                            w:(100/5*3)/2
-                        }
-                        
-                    ]
-                    */
+                    
                     var coalitions=d3.select(id || options.container)
                             .append("div")
                                 .attr("id","coalitions");
@@ -420,9 +417,7 @@ define([
                                 .attr("class",function(d,i){
                                     return "coalition n"+i;
                                 })
-                                //.style("width",function(d){
-                                //    return d.w+"%"
-                                //})
+
 
                     var party=coalition.append("div")
                                 .attr("class","coalition-balance")

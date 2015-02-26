@@ -21,7 +21,7 @@ define([
             "snp":"Scottish National",
             "lab":"Labour Party"
         };
-    var ORDER=(["con","libdem","dup","ukip","others","pc","green","snp","lab"]).reverse();
+    var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
     
 
     function render(el,data) {

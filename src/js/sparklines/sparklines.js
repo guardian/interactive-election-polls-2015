@@ -350,7 +350,8 @@ define([
 					});
 
 
-		var bar_width=xscale.range()[1]/(data.length-1);
+		var bar_width=xscale.range()[1]/(data.length-1)*1.05;
+
 		day
 			.append("rect")
 				.attr("class",function(d){
@@ -414,13 +415,13 @@ define([
 					y=yscale(d.value);
 				return "translate("+x+","+y+")"
 			});
-			bar_width=xscale.range()[1]/(data.length-1);
-			day
-				.append("rect")
-					.attr("class","ix")
+
+			bar_width=xscale.range()[1]/(data.length-1)*1.05;
+			/*day
+				.select("rect.ix")
 					.attr("x",-bar_width/2)
 					.attr("width",bar_width);
-
+			*/
 			axes.select(".x.axis").call(xAxis);
 
 		}
