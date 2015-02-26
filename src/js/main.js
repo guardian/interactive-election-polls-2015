@@ -1,6 +1,7 @@
 define([
   'd3',
   'underscore',
+  'classList',
   'page/page',
   'seatscharts/commons',
   'pollchart/pollchart',
@@ -8,6 +9,7 @@ define([
 ], function(
   d3,
   underscore,
+  classList,
   pageView,
   commonsChart,
   pollChart,
@@ -36,12 +38,12 @@ define([
     };
 
     function openShareWindow(e){
-
       var shareWindow = "";
       var twitterBaseUrl = "https://twitter.com/home?status=";
       var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
       var network = e.currentTarget.getAttribute('data-source'); 
       
+
       var currentView = e.currentTarget.getAttribute('data-view');
       var defaultSharemessage = "The Guardian poll projection";
       var sharemessages = {
@@ -55,7 +57,8 @@ define([
       }
       var sharemessage = sharemessages[currentView] !== undefined ? sharemessages[currentView] : defaultSharemessage;
       var shareImage = "";
-      var guardianUrl = "http://localhost:9000/#" + currentView;
+      var guardianUrl = "http://preview.gutools.co.uk/politics/ng-interactive/2015/feb/27/guardian-poll-projection/#" + currentView;
+
        
       if(network === "twitter"){
           shareWindow = 
@@ -108,12 +111,12 @@ define([
 
   /* stick element (time and party labels) to top on scroll */
   function stickElementOnScroll() {
+    var el = document.querySelector("#stickyRow"),
+        offset = el.offsetTop;
+    
     window.onscroll = _.throttle(stickIfNeeded, 100);
     
     function stickIfNeeded() {
-      var el = document.querySelector("#stickyRow"),
-          offset = el.offsetTop;
-      
       if (offset <= window.pageYOffset) {
         el.classList.add("l-stick");
       } else {
