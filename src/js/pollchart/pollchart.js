@@ -66,9 +66,10 @@ define([
     
 
     /* Data */
+    var dataAvg, dataEnd, avgList;
     data = rawData.sheets["vi-continuous-series"];
-    console.log(rawData.sheets["Con_Adj Log"]);
-    console.log(rawData.sheets["Constituency_adjustments"]);
+    dataAvg = rawData.sheets["Con_Adj Log"];
+    dataEnd = rawData.sheets["Constituency_adjustments"];
     // Parse date
     data = data.map(function(d) {
       // + convert a Date object to time in milliseconds
@@ -77,9 +78,15 @@ define([
     }).filter(function(d) {
       return d.timestamp >= (+parseDate(dateStr)); 
     });
+    dataAvg = dataAvg.map(function(d) {
+      d.timestamp = +parseDate(d.date);
+      return d;
+    });
+    dataEnd[0].timestamp = Date.now();
     // Compose data 
+    avgList = dataAvg.concat(dataEnd);
     dateList = polldata.extractDataByKey(data, "timestamp");
-    dataset = polldata.composeDataByParty(data, dateList);
+    dataset = polldata.composeDataByParty(data, dataAvg, dateList);
     
 
     /* D3: Drawing
@@ -343,7 +350,7 @@ define([
       svgDates = svg.selectAll("party-dates")
         .data(dataset.date)
         .enter().append("g")            
-        .attr("class", function(d) { return "paraty-dates " + d.party; });
+        .attr("class", function(d) { return "party-dates " + d.party; });
 
       svgPolls = svg.selectAll("party-polls")
         .data(dataset.pollster)
@@ -385,13 +392,13 @@ define([
 
     function drawSVG() {
       drawCoordinate();  
-      drawTextAvg();
+      drawCircles(gcDate, 3.5);
       drawTextVi();
+      drawRects();
+      drawTextAvg();
       drawPathWithLines();
       drawPolygons();
       drawCircles(gcPoll, 3);
-      drawCircles(gcDate, 3.5);
-      drawRects();
 
       /*/TODO: remove hotfix
       var ele;

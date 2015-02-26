@@ -28,7 +28,7 @@ define([
     },
 
     //function composeDataByParty(data) {
-    composeDataByParty: function(data, dateList) {
+    composeDataByParty: function(data, dataAvg, dateList) {
       var pollsterList = this.extractDataByKey(data, "pollster"),
           dataByParty,
           dataByPartyPollster,
@@ -122,11 +122,16 @@ define([
             viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
             
             /* Date after Feb. 2nd */
-            
+            dataAvg.filter(function(dAvg) {
+              if (dAvg.timestamp == date) {
+                viAvg = dAvg[d.party];
+              }
+            });
+
             return {
               party: d.party,
               date: date,
-              vi: viAvg,
+              vi: parseFloat(viAvg.toFixed(2)),
               //viAvgList: viAvgList,
               //viDayList: viDayList,
               viMin: Math.min.apply(null, viDayList), 

@@ -1,7 +1,7 @@
 define([
   'd3',
   'underscore',
-  'classList',
+  'classList.js',
   'page/page',
   'seatscharts/commons',
   'pollchart/pollchart',

@@ -82,7 +82,11 @@
   .polygon-range {
     cursor: pointer;
     fill: transparent;
-    *stroke: transparent;
+    stroke: transparent;
+  }
+  .party-dates text:last-child {
+    fill: transparent;
+    stroke: transparent;
   }
 
   /* SVG: axis */
