@@ -28,6 +28,43 @@ define([
     //history.replaceState(null,null,url);
   }
 
+  function shareInteractive(){
+    var shareButtons = document.querySelectorAll('.btns-share button');
+    
+    for (var i = 0; i < shareButtons.length; i++) {
+      shareButtons[i].addEventListener('click',openShareWindow);
+    };
+
+    function openShareWindow(e){
+      var shareWindow = "";
+      var twitterBaseUrl = "https://twitter.com/home?status=";
+      var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
+      var network = e.currentTarget.getAttribute('data-source'); 
+      
+      var hashKey = "#" + e.currentTarget.getAttribute('data-view');
+      var sharemessage = "The Guardian Poll Projection";
+      var shareImage = "";
+      var guardianUrl = "http://localhost:9000" + hashKey;
+       
+      if(network === "twitter"){
+          shareWindow = 
+              twitterBaseUrl + 
+              encodeURIComponent(sharemessage) + 
+              "%20" + 
+              encodeURIComponent(guardianUrl)
+          
+      }else if(network === "facebook"){
+          shareWindow = 
+              facebookBaseUrl + 
+              encodeURIComponent(guardianUrl) + 
+              "&picture=" + 
+              encodeURIComponent(shareImage) + 
+              "&redirect_uri=http://www.theguardian.com";
+      }
+      window.open(shareWindow, network + "share", "width=640,height=320");
+    }
+  }
+
 
   function init(el, context, config, mediator) {
     // DEBUG: What we get given on boot
@@ -47,7 +84,8 @@ define([
       commonsChart.renderFlows(data);
       commonsChart.renderDayByDay("#daybyday",data);
       pollChart.render(el.querySelector('#pollchart') ,data);
-      
+
+      shareInteractive();
 
       if(window.location.hash) {
         //jumpTo("voting-intention-over-time")
