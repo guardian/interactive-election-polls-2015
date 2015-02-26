@@ -55,7 +55,7 @@
 		font-family:$ff-agate;
 	}
 	.seats-chart {
-		width:33%;
+		width:50%;
 		
 		min-height: 70px;
 		padding:10px 0px;
@@ -199,8 +199,8 @@
 	}
 	.seats-chart svg .linechart path {
 		fill:none;
-		stroke-width:2;
-		shape-rendering:auto;/*crispEdges;*/
+		stroke-width:1;
+		shape-rendering:crispEdges;
 	}
 
 	.seats-chart svg .linechart path.area {
@@ -312,7 +312,13 @@
 	}
 
 	@media (min-width: 480px) {
-		
+		.seats-chart {
+			width:33%;
+		}
+		.seats-chart svg .linechart path {
+			stroke-width:2;
+			shape-rendering:auto;
+		}
     }
     @media (min-width: 740px) {
     	.seats-chart {
