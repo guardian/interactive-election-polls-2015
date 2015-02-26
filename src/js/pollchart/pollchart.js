@@ -1,8 +1,3 @@
-//TODO:
-// 1. load avg data from sheets
-// 3. fix tooltip on resize
-// 4. add voronoi for circle picking 
-// 5. space for overlapped circles
 define([
   'd3',
   'hammer.js',
@@ -87,7 +82,7 @@ define([
     avgList = dataAvg.concat(dataEnd);
     dateList = polldata.extractDataByKey(data, "timestamp");
     dataset = polldata.composeDataByParty(data, dataAvg, dateList);
-    
+   
 
     /* D3: Drawing
     /* ******/
@@ -152,12 +147,11 @@ define([
       var ele;
       ga.on("mouseover", function(d) { 
         ele = document.querySelector(".party-polls." + d.party);
-        ele.classList.add("op-1-polls");
-        this.parentNode.classList.add("op-1-path"); 
-      })
-      .on("mouseout", function() { 
-        ele.classList.remove("op-1-polls");
-        this.parentNode.classList.remove("op-1-path"); 
+        d3.select(ele).classed("op-1-polls", true);
+        d3.select(this.parentNode).classed("op-1-path", true); 
+      }).on("mouseout", function() { 
+        d3.select(ele).classed("op-1-polls", false);
+        d3.select(this.parentNode).classed("op-1-path", false); 
       });
     }
 
@@ -175,10 +169,10 @@ define([
       var nl; //node list
       gr.on("mouseover", function(d) {
         nl = document.querySelectorAll(".t" + d + ".op-0");
-        for (var i=0; i<nl.length; i++) { nl[i].classList.remove("op-0"); }
+        for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", false); }
       })
       .on("mouseout", function(d) {
-        for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); }
+        for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
       });
 
       // pan evnt using hammerjs
@@ -205,17 +199,17 @@ define([
         if (preCN === curCN ) { return; } 
         // remove highlight if any 
         if (preCN !== null) {
-          for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); } 
+          for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", true); } 
         }
         // add hightlight
         nl = document.querySelectorAll("." + curCN + ".op-0");
-        for (var i=0; i<nl.length; i++) { nl[i].classList.remove("op-0"); }
+        for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", false); }
         preCN = curCN;
       });
       
       hr.on("panend", function(e) {
         // remove last highlight 
-        for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); }
+        for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
       });
     }
      
@@ -263,7 +257,7 @@ define([
         //drawCircle(svg, xPos, yPos, 5, "tp-circle");
 
         ele = document.querySelector("#pollchartTooltip");
-        ele.classList.remove('d-n');
+        d3.select(ele).classed('d-n', false);
 
         // top or bottom  
         ele.style.top = ((yPos - yShift) < (-15)) ? ((yPos + yShift) + "px") : ((yPos - yShift) + "px");
@@ -282,10 +276,10 @@ define([
         eleList[0].textContent = termDic[d.pollster];                 //pollster
         eleList[1].textContent = dateText;                            //date
         eleList[2].textContent = termDic[d.party] + " " + d.vi + "%"; //party and vi
-        eleList[2].classList.add(d.party);
+        d3.select(eleList[2]).classed(d.party, true);
 
         // 2. highlight paths
-        this.parentNode.classList.add("op-1-pathpolls");
+        d3.select(this.parentNode).classed("op-1-pathpolls", true);
         d3.select("." + d.party).classed("op-1-path", true);
       })
       .on("mouseout", function(d) {
@@ -293,11 +287,11 @@ define([
         //svg.select(".tp-line").remove();
         //svg.select(".tp-circle").remove();
 
-        ele.classList.add('d-n');
-        eleList[2].classList.remove(d.party);
+        d3.select(ele).classed('d-n', true);
+        d3.select(eleList[2]).classed(d.party, false);
 
         // 2. Remove highlight
-        this.parentNode.classList.remove("op-1-pathpolls");
+        d3.select(this.parentNode).classed("op-1-pathpolls", false);
         d3.select("." + d.party).classed("op-1-path", false);
       });
     }
