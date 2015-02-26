@@ -104,6 +104,7 @@
     .bar rect {
         stroke:none;
         stroke-width:0;
+        shape-rendering:crispEdges;
     }
     .bar rect.ix {
         fill:transparent;
