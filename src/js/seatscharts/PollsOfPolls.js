@@ -633,9 +633,14 @@ define([
 
                 positionsLabels();
 
+                //BALANCE RESULT
+                var last_value=balanceValues.data()[balanceValues.data().length-1],
+                    balance_result_x=(last_value.x_label+label_width*2/3+label_width/2),
+                    delta_x=Math.min(WIDTH-(balance_result_x+50),0);
+                
                 balanceValues
                     .style("left",function(d){
-                                return (d.x_label||d.x)+"px"
+                                return ((d.x_label||d.x)+delta_x)+"px"
                     })
 
                 newBalanceValues
@@ -654,13 +659,11 @@ define([
                                     return "to<br/>"+termDic[d.from];
                                 })
 
-                //BALANCE RESULT
-                var last_value=balanceValues.data()[balanceValues.data().length-1]
                 
                 
                 balance.select("div.balance-equal")
                             .style("left",function(d){
-                                return (last_value.x_label+label_width*2/3)+"px"
+                                return ((last_value.x_label+label_width*2/3)+delta_x)+"px"
                             })
 
                 
@@ -689,8 +692,9 @@ define([
                                 })
 
                 balanceResult
-                    .style("left",function(d){
-                        return (last_value.x_label+label_width*2/3+label_width/2)+"px"
+                    .style("left",function(){
+                        console.log("///////////",balance_result_x,delta_x,balance_result_x+delta_x)
+                        return (balance_result_x+delta_x)+"px"
                     })
             }
             updateData();
