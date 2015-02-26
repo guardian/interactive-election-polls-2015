@@ -825,7 +825,7 @@ define([
                                 //////////console.log(to)
                                 var x1=d.x,
                                     x2=to.x,
-                                    w=Math.ceil(xscale(d.qty)),
+                                    w=Math.max(xscale(d.qty),1),
                                     h=options.bottom-options.top;
                                 w=(xscale(d.qty));
                                 d.x2=x2;
@@ -1054,8 +1054,7 @@ define([
                     })
                     .selectAll("rect")
                         .attr("width",function(d){
-                            return xscale(d.qty)
-                            return Math.ceil(xscale(d.qty))+0.5;
+                            return Math.max(xscale(d.qty),1);
                         });
 
                 bars.select("text")
