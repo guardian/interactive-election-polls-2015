@@ -86,7 +86,7 @@ define([
             }).map(function(d) { 
               return d.vi; 
             });
-
+            
             function findViListByGroup(group, p) {
               return datum.filter(function(d) {
                 switch (group) {
@@ -99,6 +99,7 @@ define([
               });
             }
 
+            /* Date before Feb. 2nd */
             // Take the vi from the past 14 days and average it (if any)
             pGroup1.forEach(function(d) {
               var li = findViListByGroup(1, d);
@@ -118,16 +119,18 @@ define([
             }});
             //console.log("[" + date.getDate() + "." + date.getMonth() + "]", viAvgList.join(", "));                     
             ////if (date === testDate) { console.log("avg =>", averageArray(viAvgList)); }
-
             viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
+            
+            /* Date after Feb. 2nd */
+            
             return {
               party: d.party,
               date: date,
               vi: viAvg,
               //viAvgList: viAvgList,
               //viDayList: viDayList,
-              viMin: Math.min(viDayList), 
-              viMax: Math.max(viDayList) 
+              viMin: Math.min.apply(null, viDayList), 
+              viMax: Math.max.apply(null, viDayList) 
             };
           }) //end of dateList.map (values)  
         };

@@ -82,7 +82,7 @@
   .polygon-range {
     cursor: pointer;
     fill: transparent;
-    stroke: transparent;
+    *stroke: transparent;
   }
 
   /* SVG: axis */

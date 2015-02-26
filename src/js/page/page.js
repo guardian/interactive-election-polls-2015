@@ -5,11 +5,8 @@ define([
 ) {
    'use strict';
 
-    function render(data,updated) {
+    function render(data, updated) {
         //console.log(data);
-        //el.innerHTML = 'POLLCHART';
-        console.log(data);
-
         //Feb 16 2015 16:32 GMT
 
         d3.select("#lastUpdate time")

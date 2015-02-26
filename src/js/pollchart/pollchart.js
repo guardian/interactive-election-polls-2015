@@ -65,10 +65,10 @@ define([
     setChartSize();
     
 
-    console.log(rawData);
-    console.log(rawData.sheets["con_adj log"]);
     /* Data */
     data = rawData.sheets["vi-continuous-series"];
+    console.log(rawData.sheets["Con_Adj Log"]);
+    console.log(rawData.sheets["Constituency_adjustments"]);
     // Parse date
     data = data.map(function(d) {
       // + convert a Date object to time in milliseconds
