@@ -18,7 +18,7 @@ define([
   var dayUnit,
       dayConst = 86400000,
       termDic = { con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green", 
-                  YouGov: "YouGov", Populus: "Populus", Ashcroft: "Ashcroft", "Lord Ashcroft": "Ashcroft", 
+                  YouGov: "YouGov", Populus: "Populus",/* Ashcroft: "Ashcroft",*/ "Lord Ashcroft": "Ashcroft", 
                   Opinium: "Opinium", ComResP: "ComRes", ComResO: "ComRes Online", 
                   TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
   
@@ -212,7 +212,7 @@ define([
       });
     }
      
-    function addCircle(svgObj, className) {
+    /*function addCircle(svgObj, className) {
       svgObj.append("circle")
         .attr("class", className);
     }
@@ -222,7 +222,7 @@ define([
         .attr("cx", cx) 
         .attr("cy", cy)
         .attr("r", r);
-    }
+    }*/
 
     function addCircles(svgObj, className, key) {
       var g = svgObj.selectAll("circle")
@@ -241,7 +241,7 @@ define([
 
     function onCirclePoll(gc) {
       var ele, eleList;
-      addCircle()
+      //addCircle()
 
       gc.on("mouseover", function(d) {
         // 1. Add tooltip
@@ -253,7 +253,7 @@ define([
         dateText = date.getDate() + " " + formatMonth(date);
 
         //drawLine(svg, xPos, yPos - 8, xPos, yPos - 120, "tp-line");
-        drawCircle(svg, xPos, yPos, 5, "tp-circle");
+        //drawCircle(svg, xPos, yPos, 5, "tp-circle");
 
         ele = document.querySelector("#pollchartTooltip");
         ele.classList.remove('d-n');
