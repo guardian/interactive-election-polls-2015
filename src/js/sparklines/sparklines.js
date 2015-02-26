@@ -75,11 +75,11 @@ define([
 			var last=extents.maxDate,
 				past_weeks = new Date(last.getTime());
 			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1));
-			//console.log("------->",data.length)
+			////console.log("------->",data.length)
 			data=data.filter(function(d){
 				return +d.date >= +past_weeks;
 			})
-			//console.log("------->",data.length)
+			////console.log("------->",data.length)
 
 			extents={
 				date:d3.extent(data,function(d){
@@ -229,13 +229,13 @@ define([
 								d3.event.preventDefault();
 								if(touchstart) {
 									var coord=d3.touches(linechart.node());
-									console.log(Math.round(coord[0][0]))
+									//console.log(Math.round(coord[0][0]))
 									var d=xscale.invert(Math.round(coord[0][0])).setHours(0,0,0,0);
 								    var poll=linedata[0].values.filter(function(p){
 								    		return +d === (+p.date);
 								    	})[0];
 							    	if(typeof poll != 'undefined') {
-							    		console.log(poll)
+							    		//console.log(poll)
 							    		if(options.mouseOverCallback) {
 											options.mouseOverCallback(poll);
 										}
@@ -382,7 +382,7 @@ define([
 			xscale.range([0,w]);
 			bar_width=xscale.range()[1]/(data.length-1);
 
-			console.log("!!!!!!!!!!!",w)
+			//console.log("!!!!!!!!!!!",w)
 			chartContainer.classed("show-first",(w>120))
 
 			linechart

@@ -230,7 +230,7 @@ define([
 									return i>=options.show;
 								})*/
 								.on("mouseover",function(d){
-									//console.log(d)
+									//console.log.log(d)
 									
 									var index=0;
 									table.selectAll("div.poll:not(.hidden)")
@@ -404,7 +404,7 @@ define([
 			var pollsters=arrayUnique(data.map(function(d){
 				return d.pollster;
 			}));
-			console.log(pollsters)
+			//console.log(pollsters)
 
 			return pollsters.map(function(d){
 				return {
@@ -424,7 +424,7 @@ define([
                         
             title.select("span")
                     .text(function(d){
-                        //console.log("!!!!!!",getWidth(1))
+                        //console.log.log("!!!!!!",getWidth(1))
                         if(getWidth(1)<480) {
                             return d3.time.format("%e %b")(d.timestamp2);    
                         }
@@ -435,7 +435,7 @@ define([
 			var format=d3.time.format("%d/%m/%Y")
 
 			data.forEach(function(d){
-				//console.log("aaaa",d)
+				//console.log.log("aaaa",d)
 				d.timestamp2=format.parse(d.date);
                 
                 d.status=true;

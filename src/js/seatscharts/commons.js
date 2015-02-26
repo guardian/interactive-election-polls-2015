@@ -25,9 +25,7 @@ define([
     
 
     function render(el,data) {
-        //console.log(data);
-        //el.innerHTML = 'POLLCHART';
-        console.log(data);
+        
 
         var projections=new PollsOfPolls(data.sheets["RESULT"],{
             container:el,
