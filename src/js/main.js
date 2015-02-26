@@ -59,12 +59,12 @@ define([
 
   /* stick element (time and party labels) to top on scroll */
   function stickElementOnScroll() {
-    var el = document.querySelector("#stickyRow"),
-        offset = el.offsetTop;
-    
     window.onscroll = _.throttle(stickIfNeeded, 100);
     
     function stickIfNeeded() {
+      var el = document.querySelector("#stickyRow"),
+          offset = el.offsetTop;
+      
       if (offset <= window.pageYOffset) {
         el.classList.add("l-stick");
       } else {
