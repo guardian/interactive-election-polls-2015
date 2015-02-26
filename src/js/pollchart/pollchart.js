@@ -1,11 +1,11 @@
 //TODO:
 // 1. load avg data from sheets
-//(o) fix size of svg container
 // 3. fix tooltip on resize
-// 4. add voronoi for circle picking
+// 4. add voronoi for circle picking 
+// 5. space for overlapped circles
 define([
   'd3',
-  'pollchart/hammer.js',
+  'hammer.js',
   'pollchart/polldata.js'
 ], function(
   d3,
@@ -18,8 +18,9 @@ define([
   var dayUnit,
       dayConst = 86400000,
       termDic = { con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green", 
-                  YouGov: "YouGov", Populus: "Populus", Ashcroft: "Ashcroft", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium", 
-                  ComResP: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
+                  YouGov: "YouGov", Populus: "Populus", Ashcroft: "Ashcroft", "Lord Ashcroft": "Ashcroft", 
+                  Opinium: "Opinium", ComResP: "ComRes", ComResO: "ComRes Online", 
+                  TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
   
   var data, dataset,
       svgParty, svgPolls, svgDates, svgRects,
@@ -64,6 +65,8 @@ define([
     setChartSize();
     
 
+    console.log(rawData);
+    console.log(rawData.sheets["con_adj log"]);
     /* Data */
     data = rawData.sheets["vi-continuous-series"];
     // Parse date
@@ -108,7 +111,7 @@ define([
       .attr("class", className); 
     }
     function drawPathWithLines(){
-      gp.attr("d", function(d) { return line(d.values); })
+      gp.attr("d", function(d) { return line(d.values); });
     }
 
     //TODO: change to use muti-line voronoi
@@ -141,28 +144,28 @@ define([
     function onPolygon() {
       var ele;
       ga.on("mouseover", function(d) { 
-        ele = document.querySelector(".party-polls." + d.party)
+        ele = document.querySelector(".party-polls." + d.party);
         ele.classList.add("op-1-polls");
         this.parentNode.classList.add("op-1-path"); 
       })
-      .on("mouseout",  function(d) { 
+      .on("mouseout", function() { 
         ele.classList.remove("op-1-polls");
         this.parentNode.classList.remove("op-1-path"); 
       });
     }
 
-    function addRects(svgObj, className) {
+    function addRects(svgObj) {
       gr = svgObj.append("rect")
       .attr("class", function(d) { return "t" + d; });
     }
-    function drawRects(svgObj) {
+    function drawRects() {
       gr.attr("x", function(d) { return x(d) - (x(d) - x(d - dayConst)) / 2; })
       .attr("y", 0)
       .attr("width", function(d) { return (x(d) - x(d - dayConst)); })
       .attr("height", height); 
     }
     function onRects() {
-      var cn, nl; //class name, node list
+      var nl; //node list
       gr.on("mouseover", function(d) {
         nl = document.querySelectorAll(".t" + d + ".op-0");
         for (var i=0; i<nl.length; i++) { nl[i].classList.remove("op-0"); }
@@ -172,44 +175,49 @@ define([
       });
 
       // pan evnt using hammerjs
-        var el = document.querySelector(".dates"),
-            op = { preventDefault: true },
-            hr = new Hammer(el, op),
-            preCN = null, // CN, classname
-            curCN,
-            strCN,
-            numCN;
+      var el = document.querySelector(".dates"),
+          op = { preventDefault: true },
+          hr = new Hammer(el, op),
+          preCN = null, // CN, classname
+          curCN,
+          strCN,
+          numCN;
 
-        hr.get("pan").set({ direction: Hammer.DIRECTION_HORIZONTAL });
-        hr.on("panstart", function(e) {
+      hr.get("pan").set({ direction: Hammer.DIRECTION_HORIZONTAL });
+      
+      hr.on("panstart", function(e) {
         strCN = e.target.className.baseVal;
         var s = strCN.slice(1);
         numCN = parseInt(s);
-      //console.log(strCN);
       });
+      
       hr.on("panmove", function(e) {
-      var d = Math.round(e.deltaX / dayUnit);
-      curCN = "t" + (numCN + dayConst * d);
-
-      if (preCN === curCN ) { return; } 
-      // remove highlight 
-      //console.log(curCN);
-      if (preCN !== null) {
-      for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); } 
-      }
-      // add hightlight
-      nl = document.querySelectorAll("." + curCN + ".op-0");
-      for (var i=0; i<nl.length; i++) { nl[i].classList.remove("op-0"); }
-      preCN = curCN;
+        var d = Math.round(e.deltaX / dayUnit);
+        curCN = "t" + (numCN + dayConst * d);
+        // if pan position has not change
+        if (preCN === curCN ) { return; } 
+        // remove highlight if any 
+        if (preCN !== null) {
+          for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); } 
+        }
+        // add hightlight
+        nl = document.querySelectorAll("." + curCN + ".op-0");
+        for (var i=0; i<nl.length; i++) { nl[i].classList.remove("op-0"); }
+        preCN = curCN;
       });
+      
       hr.on("panend", function(e) {
-      //console.log(curCN, "end");
-      for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); }
+        // remove last highlight 
+        for (var i=0; i<nl.length; i++) { nl[i].classList.add("op-0"); }
       });
     }
-
-    function drawCircle(svgObj, cx, cy, r, className) {
+     
+    function addCircle(svgObj, className) {
       svgObj.append("circle")
+        .attr("class", className);
+    }
+    function drawCircle(className, cx, cy, r) {
+      svgObj.select("className")
         .attr("class", className)
         .attr("cx", cx) 
         .attr("cy", cy)
@@ -233,6 +241,7 @@ define([
 
     function onCirclePoll(gc) {
       var ele, eleList;
+      addCircle()
 
       gc.on("mouseover", function(d) {
         // 1. Add tooltip
@@ -244,7 +253,7 @@ define([
         dateText = date.getDate() + " " + formatMonth(date);
 
         //drawLine(svg, xPos, yPos - 8, xPos, yPos - 120, "tp-line");
-        //drawCircle(svg, xPos, yPos, 5, "tp-circle");
+        drawCircle(svg, xPos, yPos, 5, "tp-circle");
 
         ele = document.querySelector("#pollchartTooltip");
         ele.classList.remove('d-n');
@@ -310,7 +319,7 @@ define([
       .attr("class", function(d) { return "t" + d.date + " ff-ss fz-12 " + className; });
     }
     function drawTextVi() {
-      gtVi.attr("x", function(d){ return x(d.date) - 5; })
+      gtVi.attr("x", function(d){ return x(d.date) - 3; })
       .attr("y", function(d){ return y(d.vi) + posYShiftText[d.party]; })
       .text(function(d) { return d.vi; });
     }
@@ -423,10 +432,7 @@ define([
 
     width = w - margin.left - margin.right;
     height = h - margin.top - margin.bottom;
-    console.log( p.clientWidth );
     s.setAttribute("height", h);
-    console.log("w:", w, width);
-    console.log("h:", h, height);
 
     // Ranges of the charts
     x = d3.time.scale().range([0, width]);
@@ -443,7 +449,7 @@ define([
 
     // for mobile
     if (width < (660 - 10)) {
-      var today = new Date,
+      var today = new Date(),
           month = today.getMonth() + 1;
 
       dateStr = "24/11/2014"; 
