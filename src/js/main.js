@@ -36,15 +36,26 @@ define([
     };
 
     function openShareWindow(e){
+
       var shareWindow = "";
       var twitterBaseUrl = "https://twitter.com/home?status=";
       var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
       var network = e.currentTarget.getAttribute('data-source'); 
       
-      var hashKey = "#" + e.currentTarget.getAttribute('data-view');
-      var sharemessage = "The Guardian Poll Projection";
+      var currentView = e.currentTarget.getAttribute('data-view');
+      var defaultSharemessage = "The Guardian poll projection";
+      var sharemessages = {
+          "voting-intention-over-time": "How the polls are evolving, from the Guardian poll projection",
+          "which-seats-are-changing-hands": "The Guardian poll projection shows how the seats would change hands",
+          "conservative-gains-and-losses": "The Guardian poll projection shows how many seats the Tories would gain and lose",
+          "labour-gains-and-losses": "The Guardian poll projection shows how many seats Labour would gain and lose",
+          "snp-gains-and-losses": "The Guardian poll projection shows how many seats the SNP would gain and lose",
+          "ld-gains-and-losses": "The Guardian poll projection shows how many seats the Lib Dems would gain and lose",
+          "all-uk-wide-polls":"Full list of opinion polls from the Guardian poll projection"
+      }
+      var sharemessage = sharemessages[currentView] !== undefined ? sharemessages[currentView] : defaultSharemessage;
       var shareImage = "";
-      var guardianUrl = "http://localhost:9000" + hashKey;
+      var guardianUrl = "http://localhost:9000/#" + currentView;
        
       if(network === "twitter"){
           shareWindow = 
