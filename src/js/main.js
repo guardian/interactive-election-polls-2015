@@ -42,9 +42,9 @@ define([
       var network = e.currentTarget.getAttribute('data-source'); 
       
       var hashKey = "#" + e.currentTarget.getAttribute('data-view');
-      var sharemessage = "The Guardian Poll Projection";
+      var sharemessage = "The Guardian poll projection";
       var shareImage = "";
-      var guardianUrl = "http://localhost:9000" + hashKey;
+      var guardianUrl = "http://preview.gutools.co.uk/politics/ng-interactive/2015/feb/27/guardian-poll-projection" + hashKey;
        
       if(network === "twitter"){
           shareWindow = 
