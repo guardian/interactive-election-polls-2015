@@ -131,6 +131,7 @@ define([
               }
             });
             }
+            //console.log(viAvg, date);
             return {
               party: d.party,
               date: date,

@@ -115,7 +115,7 @@ define([
                     }).map(function(d){
                         return d.new_extent;
                     })[0],
-                    weeks:3,
+                    weeks:4,
                     mouseOverCallback:function(d){
                         sparklines.forEach(function(c){
                             c.highlight(d);

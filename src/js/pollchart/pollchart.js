@@ -62,7 +62,7 @@ define([
 
     /* Data */
     var dataAvg, dataEnd, avgList,
-        today = parseInt(Date.now().toString().slice(0,-5).concat("00000"));
+        today = 1424995200000;//parseInt(Date.now().toString().slice(0,-5).concat("00000"));
     data = rawData.sheets["vi-continuous-series"];
     dataAvg = rawData.sheets["Con_Adj Log"];
     dataEnd = rawData.sheets["Constituency_adjustments"];
@@ -83,7 +83,6 @@ define([
     avgList = dataAvg.concat(dataEnd);
     dateList = polldata.extractDataByKey(data, "timestamp").concat(today);
     dataset = polldata.composeDataByParty(data, avgList, dateList);
-
 
     /* D3: Drawing
     /* ******/

@@ -75,13 +75,13 @@ define([
 			var last=extents.maxDate,
 				past_weeks = new Date(last.getTime());
 			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1));
-			////console.log("------->",data.length)
+			//console.log("------->",data.length)
 			data=data.filter(function(d){
 				return +d.date >= +past_weeks;
 			})
-			////console.log("------->",data.length)
-
-			extents={
+			//console.log("------->",data.length)
+			
+      extents={
 				date:d3.extent(data,function(d){
 					return d.date;
 				})
@@ -159,9 +159,7 @@ define([
 										return "translate("+(xscale.range()[1]*2)+",0)";
 									}
 									return "translate(0,0)";
-								});
-		
-		
+								});	
 		
 		var line = d3.svg.line()
 					    .x(function(d) { return xscale(d.date); })
@@ -283,7 +281,7 @@ define([
 					})
 					.html(function(){
 						var last=data[data.length-1][options.fields[0]],
-							before_last=data[data.length-7][options.fields[0]];
+							before_last=data[data.length-7*options.weeks][options.fields[0]];
 						return d3.format("+")(last-before_last)+" <i>seats</i>";
 					});
 		seatsDiff
@@ -403,11 +401,12 @@ define([
 				})
 				.select("span.seats-diff-day")
 					.html(function(){
-						var before_last=data[data.length-7].date;
-						if(WIDTH<160) {
-							return "since "+d3.time.format("%a")(before_last)+"<br/>last week"	
-						}
-						return "since "+d3.time.format("%A")(before_last)+"<br/>last week"
+            //TODO: check
+						var before_last=data[data.length-7*options.weeks-1].date;
+						/*if(WIDTH<160) {
+							return "since "+d3.time.format("%a")(before_last);	
+						}*/
+						return "since "+d3.time.format("%b %e")(before_last);
 					});
 
 			day.attr("transform",function(d){
@@ -426,12 +425,11 @@ define([
 
 		}
 		
-
-		xAxis = d3.svg.axis().scale(xscale).tickValues(function(){
+		xAxis = d3.svg.axis().scale(xscale).tickValues(function(d){
 			var last=xscale.domain()[1],
-				last_week = new Date(last.getTime());
-			last_week.setDate(last_week.getDate() - 7);
-			return [
+				  last_week = new Date(last.getTime());
+      
+      return [
 				last,extents.date[1],extents.date[0]
 			];
 		});
