@@ -62,7 +62,10 @@ define([
 
     /* Data */
     var dataAvg, dataEnd, avgList,
-        today = 1424995200000;//parseInt(Date.now().toString().slice(0,-5).concat("00000"));
+        now = new Date(),
+        dateString = now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
+        today = +parseDate(dateString);
+    
     data = rawData.sheets["vi-continuous-series"];
     dataAvg = rawData.sheets["Con_Adj Log"];
     dataEnd = rawData.sheets["Constituency_adjustments"];
@@ -81,9 +84,11 @@ define([
     dataEnd[0].timestamp = today;
     // Compose data 
     avgList = dataAvg.concat(dataEnd);
-    dateList = polldata.extractDataByKey(data, "timestamp").concat(today);
+    dateList = polldata.extractDataByKey(data, "timestamp")
+    if (dateList[dateList.length-1] !== today) {datList.concat(today);}
     dataset = polldata.composeDataByParty(data, avgList, dateList);
-
+    
+    
     /* D3: Drawing
     /* ******/
     function addCoordinate () {

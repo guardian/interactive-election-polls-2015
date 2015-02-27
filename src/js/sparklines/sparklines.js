@@ -24,12 +24,10 @@ define([
 		var HEIGHT=Math.max(WIDTH*(9/16),140);
     
     //TODO: check again, perhaps!
-    console.log(data);
-    console.log(dataToday);
-    dataToday.date = new Date("02/27/2015"); 
+    var now = new Date(),
+        today = (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
+    dataToday.date = new Date(today); 
     data = data.concat(dataToday);
-    console.log(data);
-		
 
 		var margins={
 			top:10,
