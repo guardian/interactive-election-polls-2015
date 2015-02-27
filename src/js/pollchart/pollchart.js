@@ -170,9 +170,11 @@ define([
       gr.on("mouseover", function(d) {
         nl = document.querySelectorAll(".t" + d + ".op-0");
         for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", false); }
+        var n = document.createTextNode(' '); document.body.appendChild(n); document.body.removeChild(n);
       })
       .on("mouseout", function(d) {
         for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
+        var n = document.createTextNode(' '); document.body.appendChild(n); document.body.removeChild(n);
       });
 
       // pan evnt using hammerjs
@@ -356,13 +358,13 @@ define([
         .attr("class", function(d, index) { return "pollster p" + index;} );
 
       // 2. Draw over time view
+      addRects(svgRects);
+      drawRects();
+      onRects();
       gcDate = addCircles(svgDates, "op-0", "date"); 
       drawCircles(gcDate, 3.5);
       addTextVi(svgDates, "op-0");
       drawTextVi();
-      addRects(svgRects);
-      drawRects();
-      onRects();
 
       // 3. Draw area, path (with lines) - avarage, text
       addTextAvg(svgParty, "ff-ss fz-14", "party");
@@ -386,9 +388,9 @@ define([
 
     function drawSVG() {
       drawCoordinate();  
+      drawRects();
       drawCircles(gcDate, 3.5);
       drawTextVi();
-      drawRects();
       drawTextAvg();
       drawPathWithLines();
       drawPolygons();
@@ -478,6 +480,18 @@ define([
       .attr("height", height + margin.top + margin.bottom);
   } 
   /* ************/
+
+
+  function isIE()
+  // Returns the version of Internet Explorer or a -1
+  // (indicating the use of another browser).
+  {
+    var flag = false;    
+    if (navigator.appName == 'Microsoft Internet Explorer') { 
+      flag = true; 
+    }
+    return flag;
+  }
 
   return {
     render: render
