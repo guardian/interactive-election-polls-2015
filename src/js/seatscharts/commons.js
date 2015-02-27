@@ -98,10 +98,13 @@ define([
             i=0;
         parties.forEach(function(party){
             sparklines.push(
-                new Sparkline(data.sheets["Log Seats"].map(function(d){
-                    d.date=format.parse(d.logdate);
-                    return d;
-                }),{
+                new Sparkline(
+                    data.sheets["Log Seats"].map(function(d){
+                      d.date=format.parse(d.logdate);
+                      return d;
+                  }),
+                    data.sheets["RESULT"][0],
+                  {
                     container:"#seatsCharts",
                     n:Math.max(parties.length,4),
                     index:i,

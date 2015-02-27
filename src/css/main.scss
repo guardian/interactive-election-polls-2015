@@ -92,6 +92,11 @@ img {
 #article-body li::before {
   display: none;
 }
+ 
+#article-body a {
+  text-shadow: none !important; // Override apps
+}
+
 
 /** Atomic CSS, kind of */
 // fonts: (f*-)
