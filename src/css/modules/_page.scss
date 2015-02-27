@@ -239,6 +239,12 @@
 // breakpoints: 1300, 1140, 980(desktop)
 @media (min-width: 1300px) {
   .guInteractive { 
+    .l-nav,
+    .l-main,
+    .l-footer,
+    .l-stick {
+      max-width: 1300px;
+    }
     /*.ul-footer {
       column-count: 4;
     }*/
