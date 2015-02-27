@@ -131,7 +131,6 @@ define([
               }
             });
             }
-
             return {
               party: d.party,
               date: date,

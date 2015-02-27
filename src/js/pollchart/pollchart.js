@@ -61,7 +61,8 @@ define([
     
 
     /* Data */
-    var dataAvg, dataEnd, avgList;
+    var dataAvg, dataEnd, avgList,
+        today = parseInt(Date.now().toString().slice(0,-5).concat("00000"));
     data = rawData.sheets["vi-continuous-series"];
     dataAvg = rawData.sheets["Con_Adj Log"];
     dataEnd = rawData.sheets["Constituency_adjustments"];
@@ -77,12 +78,12 @@ define([
       d.timestamp = +parseDate(d.date);
       return d;
     });
-    dataEnd[0].timestamp = Date.now();
+    dataEnd[0].timestamp = today;
     // Compose data 
     avgList = dataAvg.concat(dataEnd);
-    dateList = polldata.extractDataByKey(data, "timestamp");
-    dataset = polldata.composeDataByParty(data, dataAvg, dateList);
-   
+    dateList = polldata.extractDataByKey(data, "timestamp").concat(today);
+    dataset = polldata.composeDataByParty(data, avgList, dateList);
+
 
     /* D3: Drawing
     /* ******/
@@ -455,7 +456,8 @@ define([
       var today = new Date(),
           month = today.getMonth() + 1;
 
-      dateStr = "24/11/2014"; 
+      dateStr = "24/11/2014";
+      //TODO: 
       dateEnd = (today.getDate() + 20) + "/" + month + "/" + today.getFullYear();
       xAxisTextFormat = formatMon;
     } else {
