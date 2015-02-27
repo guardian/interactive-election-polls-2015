@@ -55,7 +55,7 @@ define([
       }
       var sharemessage = sharemessages[currentView] !== undefined ? sharemessages[currentView] : defaultSharemessage;
       var shareImage = "";
-      var guardianUrl = "http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection/#" + currentView;
+      var guardianUrl = "http://gu.com/p/464t6#" + currentView;
 
        
       if(network === "twitter"){

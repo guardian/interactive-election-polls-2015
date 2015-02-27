@@ -75,10 +75,22 @@ img {
 .article__header {
   display: none;
 }
-.article__body {
-  
+#article-body 
+#article-body .l-main {
+  padding: 0;
+  margin: 0;  
 }
-
+#article-body .l-header {
+  display: none;  
+}
+#article-body .bgc-grey-light {
+  background-color: white;
+}
+#article-body {
+  .l-main ul__party,
+  .l-footer ul__footer {
+    list-style: none;
+}}
 
 /** Atomic CSS, kind of */
 // fonts: (f*-)
