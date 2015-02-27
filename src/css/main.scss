@@ -71,6 +71,15 @@ img {
   border: none;
 }
 
+// for app version
+.article__header {
+  display: none;
+}
+.article__body {
+  
+}
+
+
 /** Atomic CSS, kind of */
 // fonts: (f*-)
 .ff-s  { font-family: $ff-s; }
