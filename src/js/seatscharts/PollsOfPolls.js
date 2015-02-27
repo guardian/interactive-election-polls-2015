@@ -693,7 +693,7 @@ define([
 
                 balanceResult
                     .style("left",function(){
-                        console.log("///////////",balance_result_x,delta_x,balance_result_x+delta_x)
+                        //console.log("///////////",balance_result_x,delta_x,balance_result_x+delta_x)
                         return (balance_result_x+delta_x)+"px"
                     })
             }

@@ -5,10 +5,11 @@ define([
   'use strict';  
   var dayAvg = 14,
       dayConst = 86400000,
+      daySpecial = +(new Date(2015, 1, 4)),
       partyList = ["con", "lab", "ldem", "ukip", "grn"],  
       pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
       pGroup2 = ["ComResP", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
-   
+  
   function averageArray(array) {
     var sum = array.reduce(function(preVal, curVal) {
         return preVal + curVal;
@@ -99,6 +100,7 @@ define([
               });
             }
 
+            if (date <= daySpecial) {
             /* Date before Feb. 2nd */
             // Take the vi from the past 14 days and average it (if any)
             pGroup1.forEach(function(d) {
@@ -121,12 +123,14 @@ define([
             ////if (date === testDate) { console.log("avg =>", averageArray(viAvgList)); }
             viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
             
+            } else {
             /* Date after Feb. 2nd */
             dataAvg.filter(function(dAvg) {
               if (dAvg.timestamp == date) {
                 viAvg = dAvg[d.party];
               }
             });
+            }
 
             return {
               party: d.party,

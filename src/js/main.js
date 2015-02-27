@@ -1,7 +1,6 @@
 define([
   'd3',
   'underscore',
-  'classList.js',
   'page/page',
   'seatscharts/commons',
   'pollchart/pollchart',
@@ -9,7 +8,6 @@ define([
 ], function(
   d3,
   underscore,
-  classList,
   pageView,
   commonsChart,
   pollChart,
@@ -118,9 +116,9 @@ define([
     
     function stickIfNeeded() {
       if (offset <= window.pageYOffset) {
-        el.classList.add("l-stick");
+        d3.select(el).classed("l-stick", true);
       } else {
-        el.classList.remove("l-stick");
+        d3.select(el).classed("l-stick", false);
       }
     }
   }
