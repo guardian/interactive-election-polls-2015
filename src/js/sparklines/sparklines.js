@@ -79,6 +79,7 @@ define([
 			var last=extents.maxDate,
 				past_weeks = new Date(last.getTime());
 			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1));
+			
 			//console.log("------->",data.length)
 			data=data.filter(function(d){
 				return +d.date >= +past_weeks;
@@ -284,7 +285,8 @@ define([
 					})
 					.html(function(){
 						var last=data[data.length-1][options.fields[0]],
-							before_last=data[data.length-7*options.weeks][options.fields[0]];
+							before_last=data[data.length-7*options.weeks-1][options.fields[0]];
+							//alert(last+" "+before_last)
 						return d3.format("+")(last-before_last)+" <i>seats</i>";
 					});
 		seatsDiff
@@ -293,7 +295,7 @@ define([
 					return "seats-diff-day"
 				})
 				.html(function(){
-					var before_last=data[data.length-7].date;
+					var before_last=data[data.length-7*options.weeks-1].date;
 					if(WIDTH<160) {
 						return "since "+d3.time.format("%a")(before_last)+"<br/>last week"	
 					}
@@ -381,7 +383,7 @@ define([
 		function update() {
 			var w=(WIDTH-(margins.left+margins.right+padding.left+padding.right));
 			xscale.range([0,w]);
-			bar_width=xscale.range()[1]/(data.length-1);
+			bar_width=xscale.range()[1]/(data.length-1)*1.05;
 
 			//console.log("!!!!!!!!!!!",w)
 			chartContainer.classed("show-first",(w>120))

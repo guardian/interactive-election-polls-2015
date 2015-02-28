@@ -85,7 +85,7 @@ define([
     // Compose data 
     avgList = dataAvg.concat(dataEnd);
     dateList = polldata.extractDataByKey(data, "timestamp")
-    if (dateList[dateList.length-1] !== today) {datList.concat(today);}
+    if (dateList[dateList.length-1] !== today) {dateList.concat(today);}
     dataset = polldata.composeDataByParty(data, avgList, dateList);
     
     
