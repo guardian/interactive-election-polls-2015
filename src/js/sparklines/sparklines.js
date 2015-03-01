@@ -78,7 +78,7 @@ define([
 
 			var last=extents.maxDate,
 				past_weeks = new Date(last.getTime());
-			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1));
+			past_weeks.setDate(past_weeks.getDate() - 7*(options.weeks || 1)-1);
 			
 			//console.log("------->",data.length)
 			data=data.filter(function(d){
@@ -285,7 +285,7 @@ define([
 					})
 					.html(function(){
 						var last=data[data.length-1][options.fields[0]],
-							before_last=data[data.length-7*options.weeks-1][options.fields[0]];
+							before_last=data[0][options.fields[0]];
 							//alert(last+" "+before_last)
 						return d3.format("+")(last-before_last)+" <i>seats</i>";
 					});
@@ -295,7 +295,7 @@ define([
 					return "seats-diff-day"
 				})
 				.html(function(){
-					var before_last=data[data.length-7*options.weeks-1].date;
+					var before_last=xscale.domain()[0];//data[data.length-7*options.weeks-1].date;
 					if(WIDTH<160) {
 						return "since "+d3.time.format("%a")(before_last)+"<br/>last week"	
 					}
@@ -407,7 +407,7 @@ define([
 				.select("span.seats-diff-day")
 					.html(function(){
             //TODO: check
-						var before_last=data[data.length-7*options.weeks-1].date;
+						var before_last=xscale.domain()[0];//data[data.length-7*options.weeks-1].date;
 						/*if(WIDTH<160) {
 							return "since "+d3.time.format("%a")(before_last);	
 						}*/
@@ -431,8 +431,8 @@ define([
 		}
 		
 		xAxis = d3.svg.axis().scale(xscale).tickValues(function(d){
-			var last=xscale.domain()[1],
-				  last_week = new Date(last.getTime());
+			var last=xscale.domain()[1];//,
+				  //last_week = new Date(last.getTime());
       
       return [
 				last,extents.date[1],extents.date[0]
