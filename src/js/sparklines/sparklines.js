@@ -353,7 +353,7 @@ define([
 					});
 
 
-		var bar_width=xscale.range()[1]/(data.length-1)*1.05;
+		var bar_width=xscale.range()[1]/(data.length-1);
 
 		day
 			.append("rect")
@@ -383,7 +383,7 @@ define([
 		function update() {
 			var w=(WIDTH-(margins.left+margins.right+padding.left+padding.right));
 			xscale.range([0,w]);
-			bar_width=xscale.range()[1]/(data.length-1)*1.05;
+			bar_width=xscale.range()[1]/(data.length-1)*1.0;
 
 			//console.log("!!!!!!!!!!!",w)
 			chartContainer.classed("show-first",(w>120))
@@ -420,12 +420,12 @@ define([
 				return "translate("+x+","+y+")"
 			});
 
-			bar_width=xscale.range()[1]/(data.length-1)*1.05;
-			/*day
+			bar_width=xscale.range()[1]/(data.length-1);
+			day
 				.select("rect.ix")
 					.attr("x",-bar_width/2)
 					.attr("width",bar_width);
-			*/
+			
 			axes.select(".x.axis").call(xAxis);
 
 		}
