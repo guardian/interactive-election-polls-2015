@@ -66,9 +66,9 @@ define([
         dateString = now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
         today = +parseDate(dateString);
     
-    data = rawData.sheets["vi-continuous-series"];
-    dataAvg = rawData.sheets["Con_Adj Log"];
-    dataEnd = rawData.sheets["Constituency_adjustments"];
+    data = rawData.sheets['vi-continuous-series'];
+    dataAvg = rawData.sheets['Con_Adj Log'];
+    dataEnd = rawData.sheets['Constituency_adjustments'];
     // Parse date
     data = data.map(function(d) {
       // + convert a Date object to time in milliseconds
@@ -84,11 +84,11 @@ define([
     dataEnd[0].timestamp = today;
     // Compose data 
     avgList = dataAvg.concat(dataEnd);
-    dateList = polldata.extractDataByKey(data, "timestamp")
-    if (dateList[dateList.length-1] !== today) {dateList.concat(today);}
+    dateList = polldata.extractDataByKey(data, "timestamp");
+    if (dateList[dateList.length-1] !== today) { dateList = dateList.concat(today); }
     dataset = polldata.composeDataByParty(data, avgList, dateList);
     
-    
+
     /* D3: Drawing
     /* ******/
     function addCoordinate () {

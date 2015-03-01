@@ -126,7 +126,7 @@ define([
             } else {
             /* Date after Feb. 2nd */
             dataAvg.filter(function(dAvg) {
-              if (dAvg.timestamp == date) {
+              if (dAvg.timestamp === date) {
                 viAvg = dAvg[d.party];
               }
             });
