@@ -17,12 +17,12 @@ define([
                   Opinium: "Opinium", ComResP: "ComRes", ComResO: "ComRes Online", 
                   TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
   
-  var data, dataset,
+  var data, dataAvg, dataset,
       svgParty, svgPolls, svgDates, svgRects,
       dateList; 
 
   // Date format:
-  var dateStr, dateEnd, //TODO: fix left padding; 7/5 election date
+  var dateStrX, dateEndX, // dates for axes drawing      
       dateFormat = "%d/%m/%Y",
       xAxisTextFormat,
       formatMon = d3.time.format("%b"),
@@ -56,37 +56,43 @@ define([
         .y(function(d) { return y(d.vi); });
 
     
-    /* Window */
-    setChartSize();
-    
-
     /* Data */
-    var dataAvg, dataEnd, avgList,
-        now = new Date(),
-        dateString = now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
-        today = +parseDate(dateString);
-    
+    var dataAvgEnd;
+
     data = rawData.sheets['vi-continuous-series'];
     dataAvg = rawData.sheets['Con_Adj Log'];
-    dataEnd = rawData.sheets['Constituency_adjustments'];
+    dataAvgEnd = rawData.sheets['Constituency_adjustments'];
+
     // Parse date
     data = data.map(function(d) {
       // + convert a Date object to time in milliseconds
       d.timestamp = +parseDate(d.date); 
       return d;  
     }).filter(function(d) {
-      return d.timestamp >= (+parseDate(dateStr)); 
+      // only use daya since the beginning of Dec.
+      return d.timestamp >= (+parseDate("01/12/2014")); 
     });
+    
+    // dataAvgEnd[0].date indicates when the script last ran
+    // dataAvgEnd[0].currentdate is the date in reality
+    dataAvgEnd[0].date = dataAvgEnd[0].currentdate;
+    // Append the last avg to dataAvg if it's not yet there
+    if (dataAvg[dataAvg.length-1].date !== dataAvgEnd.date) { 
+      dataAvg = dataAvg.concat(dataAvgEnd); 
+    }
     dataAvg = dataAvg.map(function(d) {
       d.timestamp = +parseDate(d.date);
       return d;
     });
-    dataEnd[0].timestamp = today;
+    
     // Compose data 
-    avgList = dataAvg.concat(dataEnd);
-    dateList = polldata.extractDataByKey(data, "timestamp");
-    if (dateList[dateList.length-1] !== today) { dateList = dateList.concat(today); }
-    dataset = polldata.composeDataByParty(data, avgList, dateList);
+    // extract dates from both polls (data) and avg (dataAvg) datasets 
+    dateList = polldata.extractDataByKey(data.concat(dataAvg), "timestamp");
+    dataset = polldata.composeDataByParty(data, dataAvg, dateList);
+    
+    
+    /* Window */
+    setChartSize();
     
 
     /* D3: Drawing
@@ -133,7 +139,6 @@ define([
 
         // area for avg line and all vi dots
         ptMax = d.values.map(function(d) {
-          //console.log(d);
           yMax = (d.viMax > d.vi) ? y(d.viMax) : y(d.vi) - 10;
           return [x(d.date), yMax].join(","); 
         }).join(" ");
@@ -141,8 +146,6 @@ define([
           yMin = (d.viMin < d.vi) ? y(d.viMin) : y(d.vi) + 10;
           return [x(d.date), yMin].join(","); 
         }).reverse().join(" ");
-        //TODO: area for detection
-        // ...
 
         points = [ptMax, ptMin];
         return points;
@@ -255,7 +258,7 @@ define([
         // 1. Add tooltip
         var xPos = parseFloat(d3.select(this).attr("cx")),
         yPos = parseFloat(d3.select(this).attr("cy")),
-        xPosEnd = x(parseDate(dateEnd)),
+        xPosEnd = x(dateEndX),
         yShift = 60,
         date = new Date(d.date),
         dateText = date.getDate() + " " + formatMonth(date);
@@ -278,7 +281,6 @@ define([
           ele.style.right = (xPosEnd - xPos - 10) + "px";
         }
 
-        //TODO: bottom if too height access the iframe
         eleList = ele.children;
         eleList[0].textContent = termDic[d.pollster];                 //pollster
         eleList[1].textContent = dateText;                            //date
@@ -414,9 +416,16 @@ define([
       */
     }
 
+    var to = null;
     function resize() {
-      setChartSize();
-      drawSVG();
+      if (to) {
+        clearTimeout(to);
+        to = null;
+      }
+      to = setTimeout(function() {
+        setChartSize();
+        drawSVG();
+      }, 100);
     }
 
     drawSVGInit();
@@ -457,25 +466,22 @@ define([
 
     // for mobile
     if (width < (660 - 10)) {
-      var today = new Date(),
-          month = today.getMonth() + 1;
-
-      dateStr = "24/11/2014";
-      //TODO: 
-      dateEnd = (today.getDate() + 20) + "/" + month + "/" + today.getFullYear();
+      var today = dataAvg[dataAvg.length-1].date;
+      dateStrX = (+parseDate("24/11/2014"));
+      dateEndX = (+parseDate(today)) + 20*dayConst;      
       xAxisTextFormat = formatMon;
     } else {
-      dateStr = "20/11/2014";  
-      dateEnd = "12/05/2015";
+      dateStrX = (+parseDate("20/11/2014"));  
+      dateEndX = (+parseDate("12/05/2015")); //election date is 07/05/2015
       xAxisTextFormat = formatMonth;
     }
 
+    // Calculate dayUnit
+    dayUnit = x(dateStrX + dayConst) - x(dateStrX);
+    
     // Scale the range of the data
-    x.domain([parseDate(dateStr), parseDate(dateEnd)]);
+    x.domain([dateStrX, dateEndX]);
     y.domain([coord.x, coord.y]); 
-
-    str = +parseDate(dateStr);
-    dayUnit = x(str + dayConst) - x(str);
 
     // xAxis format
     xAxis.tickFormat(xAxisTextFormat);
@@ -498,6 +504,7 @@ define([
     }
     return flag;
   }
+
 
   return {
     render: render

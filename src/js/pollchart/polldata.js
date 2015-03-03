@@ -73,21 +73,15 @@ define([
       dataByPartyDate = dataByParty.map(function(d) {
         var datum = d.values;
         //testDate = (+parseDate("15/02/2015"));
-
+        
         return {
           party: d.party,
 
           values: dateList.map(function(date) {
             var viDayList, 
             viAvgList = [],
-            viAvg; 
-
-            viDayList = datum.filter(function(d) { 
-              return d.date === date; 
-            }).map(function(d) { 
-              return d.vi; 
-            });
-            
+            viAvg;  
+                        
             function findViListByGroup(group, p) {
               return datum.filter(function(d) {
                 switch (group) {
@@ -99,47 +93,71 @@ define([
                 return d.vi;
               });
             }
-
+           
+            // Get average vi (viAvg) value 
             if (date <= daySpecial) {
-            /* Date before Feb. 2nd */
-            // Take the vi from the past 14 days and average it (if any)
-            pGroup1.forEach(function(d) {
-              var li = findViListByGroup(1, d);
-              //if (date === testDate) { console.log(li, averageArray(li), d); }
-              if (li.length !== 0) {
-                viAvgList.push(averageArray(li));
-            }});
-            //if (date === testDate) { console.log("---");}  
+            
+              /* Date before Feb. 2nd */
+              // 1a. Take the vi from the past 14 days and average it (if any)
+              pGroup1.forEach(function(d) {
+                var li = findViListByGroup(1, d);
+                //if (date === testDate) { console.log(li, averageArray(li), d); }
+                if (li.length !== 0) {
+                  viAvgList.push(averageArray(li));
+              }});
+              //if (date === testDate) { console.log("---");}  
 
-            // Take the nearest vi from the past (if any)
-            pGroup2.forEach(function(d) {
-              var li = findViListByGroup(2, d),
-              len = li.length;
-              // if (date === testDate) { console.log(li, li[len-1], d);}  
-              if (len !== 0) {
-                viAvgList.push(li[len-1]);
-            }});
-            //console.log("[" + date.getDate() + "." + date.getMonth() + "]", viAvgList.join(", "));                     
-            ////if (date === testDate) { console.log("avg =>", averageArray(viAvgList)); }
-            viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
+              // 1b. Take the nearest vi from the past (if any)
+              pGroup2.forEach(function(d) {
+                var li = findViListByGroup(2, d),
+                len = li.length;
+                // if (date === testDate) { console.log(li, li[len-1], d);}  
+                if (len !== 0) {
+                  viAvgList.push(li[len-1]);
+              }});
+              //console.log("[" + date.getDate() + "." + date.getMonth() + "]", viAvgList.join(", "));                     
+              ////if (date === testDate) { console.log("avg =>", averageArray(viAvgList)); }
+              // 1. avg vi from calculation 
+              viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
             
             } else {
-            /* Date after Feb. 2nd */
-            dataAvg.filter(function(dAvg) {
-              if (dAvg.timestamp === date) {
-                viAvg = dAvg[d.party];
-              }
-            });
+            
+              /* Date after Feb. 2nd */
+              // 2. avg vi from dataAvg (precalculated by a script)
+              dataAvg.filter(function(dAvg) {
+                if (dAvg.timestamp === date) {
+                  viAvg = dAvg[d.party];
+                }
+              });
             }
-            //console.log(viAvg, date);
+
+            //TODO: add precaution conditions 
+            if (viAvg !== undefined) {
+              viAvg = parseFloat(viAvg.toFixed(2));
+            } 
+            
+            // a list of vi of the day (viDayList)
+            // for drawing the event area for vi average
+            viDayList = datum.filter(function(d) { 
+              return d.date === date; 
+            }).map(function(d) { 
+              return d.vi; 
+            });
+            
+            // append viAvg if poll data is empty on this day
+            if (viDayList.length === 0) {
+              viDayList[0] = viAvg;
+            }      
+            
+            //console.log(new Date(date), viAvg, viDayList);
             return {
               party: d.party,
               date: date,
-              vi: parseFloat(viAvg.toFixed(2)),
-              //viAvgList: viAvgList,
-              //viDayList: viDayList,
+              vi: viAvg,
               viMin: Math.min.apply(null, viDayList), 
               viMax: Math.max.apply(null, viDayList) 
+              //viDayList: viDayList,
+              //viAvgList: viAvgList,
             };
           }) //end of dateList.map (values)  
         };
