@@ -5,7 +5,7 @@ define([
 ) {
    'use strict';
    
-	function Sparkline(data, dataToday, options) {
+	function Sparkline(data, options) {
 		var self=this;
 		var chartContainer=d3.select(options.container)
 								.append("div")
@@ -23,11 +23,16 @@ define([
 		//WIDTH=WIDTH/options.n;
 		var HEIGHT=Math.max(WIDTH*(9/16),140);
     
+	
+		
     //TODO: check again, perhaps!
-    var now = new Date(),
+    /*var now = new Date(),
         today = (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
-    dataToday.date = new Date(today); 
-    data = data.concat(dataToday);
+    dataToday.date = new Date(today);*/
+
+    
+    //console.log(data);
+    //return;
 
 		var margins={
 			top:10,
