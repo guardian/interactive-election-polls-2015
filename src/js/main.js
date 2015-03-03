@@ -43,19 +43,17 @@ define([
       
 
       var currentView = e.currentTarget.getAttribute('data-view');
-      var defaultSharemessage = "The Guardian poll projection";
-      var sharemessages = {
-          "voting-intention-over-time": "How the polls are evolving, from the Guardian poll projection",
-          "which-seats-are-changing-hands": "The Guardian poll projection shows how the seats would change hands",
-          "conservative-gains-and-losses": "The Guardian poll projection shows how many seats the Tories would gain and lose",
-          "labour-gains-and-losses": "The Guardian poll projection shows how many seats Labour would gain and lose",
-          "snp-gains-and-losses": "The Guardian poll projection shows how many seats the SNP would gain and lose",
-          "ld-gains-and-losses": "The Guardian poll projection shows how many seats the Lib Dems would gain and lose",
-          "all-uk-wide-polls":"Full list of opinion polls from the Guardian poll projection"
+      var defaultSharemessage = "The Guardian poll projection. ";
+      
+      var sharemessage=document.querySelector("a[name=default]");
+      if(currentView) {
+        sharemessage = document.querySelector("a[name="+currentView+"]");
       }
-      var sharemessage = sharemessages[currentView] !== undefined ? sharemessages[currentView] : defaultSharemessage;
+
+      sharemessage=sharemessage.getAttribute("data-status");
+
       var shareImage = "";
-      var guardianUrl = "http://gu.com/p/464t6#" + currentView;
+      var guardianUrl = "http://gu.com/p/464t6"+(currentView?("#"+currentView):"");
 
        
       if(network === "twitter"){
@@ -63,7 +61,7 @@ define([
               twitterBaseUrl + 
               encodeURIComponent(sharemessage) + 
               "%20" + 
-              encodeURIComponent(guardianUrl)
+              (currentView?encodeURIComponent(guardianUrl):"")
           
       }else if(network === "facebook"){
           shareWindow = 
@@ -90,7 +88,7 @@ define([
 
     loadData(function(data){
       //console.log(data)
-      pageView.render(data["sheets"]["glosses"],data.updated);
+      pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
       commonsChart.render('#commonsChart' ,data);
       commonsChart.renderMainFlow('#flowsChart' ,data);
       commonsChart.renderFlows(data);
@@ -126,7 +124,11 @@ define([
   /* load json date */
   function loadData(callback) {
     var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
+    
+
     d3.json(jsonSrc, function(err, data) {
+
+      //data=testData;
 
       data.sheets["RESULT"].forEach(function(d){
           
