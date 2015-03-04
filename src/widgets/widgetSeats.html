@@ -8,6 +8,7 @@
 	<link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
 	<link rel="stylesheet" href="@@assetPath@@/css/main.css">
 	<link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
+	<script src="//interactive.guim.co.uk/libs/iframe-messenger/iframeMessenger.js"></script>
 	<script src="@@assetPath@@/js/curl.js"></script>
 </head>
 <body>
@@ -52,6 +53,7 @@
 	<script>
 		require=curl;
 		
+		iframeMessenger.enableAutoResize();
 
 		require(['@@assetPath@@/js/main.js'], function(req) {
             // Main app returns a almond instance of require to avoid
