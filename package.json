@@ -10,7 +10,8 @@
   "license": "Apache 2.0",
   "config": {
     "port": 9000,
-    "s3_folder": "visuals-blank-page/guardian-poll-projections/"
+    "s3_folder": "next-gen/uk/polls/",
+    "s3_embed_folder":"embed/2015/feb/uk-polls/"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

@@ -5,6 +5,7 @@ var versionedAssetPath = 'assets-' + currentTime;
 var CDN = 'http://interactive.guim.co.uk/';
 var deployAssetPath = CDN + pkg.config.s3_folder + versionedAssetPath;
 var localAssetPath = 'http://localhost:' + pkg.config.port + '/assets';
+var deployAssetPathEmbed = CDN + pkg.config.s3_embed_folder + versionedAssetPath;
 
 module.exports = function(grunt) {
   var isDev = !(grunt.cli.tasks && grunt.cli.tasks[0] === 'deploy');
@@ -44,7 +45,10 @@ module.exports = function(grunt) {
             sourcemap: (isDev) ? 'inline' : 'none'
        },
         build: {
-            files: { 'build/assets/css/main.css': 'src/css/main.scss' }
+            files: { 
+              'build/assets/css/main.css': 'src/css/main.scss',
+              'build/assets/css/widgets.css': 'src/widgets/css/widgets.scss',
+            }
         }
     },
 
@@ -114,7 +118,7 @@ module.exports = function(grunt) {
         },
       },
       css: {
-        files: ['src/css/**/*.*'],
+        files: ['src/css/**/*.*','src/widgets/css/**/*.*'],
         tasks: ['sass', 'autoprefixer', 'replace:local'],
         options: {
           spawn: false,
@@ -143,6 +147,12 @@ module.exports = function(grunt) {
               src: 'imgs/**',
               dest: 'build/assets/',
               expand: true
+          },
+          {
+              cwd: 'src/widgets/',
+              src: '**',
+              dest: 'build/widgets/',
+              expand: true
           }
         ]
       }
@@ -153,7 +163,7 @@ module.exports = function(grunt) {
             options: {
                 patterns: [{
                   match: /@@assetPath@@/g,
-                  replacement: deployAssetPath 
+                  replacement: (grunt.option('embed'))?deployAssetPathEmbed:deployAssetPath 
                 }]
             },
             files: [{
@@ -197,7 +207,12 @@ module.exports = function(grunt) {
             files: [{
                 cwd: 'build',
                 src: '*.*',
-                dest: pkg.config.s3_folder
+                dest: (grunt.option('embed')) ? pkg.config.s3_embed_folder : pkg.config.s3_folder
+            },
+            {
+                cwd: 'build/widgets',
+                src: '*.*',
+                dest: ((grunt.option('embed')) ? pkg.config.s3_embed_folder : pkg.config.s3_folder)+"widgets/"
             }]
         },
         assets: {
@@ -209,7 +224,7 @@ module.exports = function(grunt) {
             files: [{
                 cwd: 'build',
                 src: versionedAssetPath + '/**/*.*',
-                dest: pkg.config.s3_folder
+                dest: (grunt.option('embed')) ? pkg.config.s3_embed_folder : pkg.config.s3_folder
             }]
         }
     },

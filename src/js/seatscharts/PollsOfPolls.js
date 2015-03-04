@@ -416,7 +416,7 @@ define([
                             .attr("id",id)
                                 .attr("class","polls-trends")
         }
-        this.addCoalitions=function(id,coalitions_glosses) {
+        this.addCoalitions=function(id,coalitions_glosses,max) {
                     
                     //////console.log("CIAOOOOOOOO")
                     //////console.log(data)
@@ -443,7 +443,9 @@ define([
                                 .attr("id","coalitions");
 
                     var coalition=coalitions.selectAll("div")
-                            .data(glosses)
+                            .data(glosses.filter(function(d,i){
+                                return max?i<max:1;
+                            }))
                             .enter()
                             .append("div")
                                 .attr("class",function(d,i){

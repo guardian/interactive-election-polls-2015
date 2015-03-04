@@ -1,0 +1,141 @@
+.guInteractive.widget .btns-share {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.widget {
+
+	border-bottom:1px solid #ddd;
+	
+	
+    .row [class*="col-"] {
+      width: 100%;
+      float: none;
+    }
+    .col-left{
+      margin-right: 0;
+      padding-right: 0;
+    }
+    .mt-section {
+      margin-top: 0;
+	}
+
+	.header {
+		position:relative;
+		overflow: hidden;
+		border-top:1px solid #ddd;
+		
+		h2 {
+			float: left;
+			margin: 0;
+			padding: 0;
+			font-size: 18px;
+		}
+		
+		h2 > span {
+			color:#B3B3B4;
+			display: block;
+		}
+		img {
+			display: none;
+			width:90px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.widget-btns {
+			float: left;
+			margin-top: -5px;
+			line-height: 25px;
+		}
+
+		.btns-share {
+			float:right;
+			margin-bottom: 10px;
+		}
+		
+		a.btn-next {
+			padding:0;
+			margin:0;
+			margin-left:2px;
+			font-family:'Guardian Egyptian Headline', Georgia, serif;
+			font-size:16px;
+			font-weight:normal;
+			color: #00588a;
+			display: inline-block;
+			position:relative;
+			float:right;
+			
+		}
+		a.btn-next svg {
+			
+			
+			display: inline-block;
+		}
+		a.btn-next svg path {
+			fill: #005689;
+		}
+		a.btn-next span {
+			display: inline-block;
+			margin-left:5px;
+		}
+	}
+
+	.pt-section-top {
+		padding-top: 15px;
+	}
+
+	.mt-commons-gloss {
+		margin-top:8px;
+	}
+
+	.mt-coalitions-gloss {
+		margin-top:47px;
+	}
+	
+
+
+	@media (min-width: 480px) {
+
+		.header {
+			.widget-btns {
+				margin-left: 0;
+				float: right;
+				margin-top: 10px;
+			}	
+			
+			h2 {
+				margin-left:100px;
+				font-size: 22px;
+				line-height:50px;
+				
+				b {
+					display: inline-block;
+					margin-left:10px;
+				}
+
+				> span {
+					display: inline;
+				}
+			}
+			img {
+				display: block;
+			}
+		}
+
+		.row {
+			overflow: auto;
+		}
+		.row .col-left {
+			width: 240px; 
+			float: left;
+			margin-right: 10px;
+			padding-right: 20px;
+		}
+		.row .col-right {
+			width: calc(100% - 240px - 30px);
+			overflow: hidden;
+			zoom: 1; //for IE!?  
+		}
+	}
+}
