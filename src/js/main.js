@@ -19,7 +19,19 @@ define([
       .remove();
   d3.selectAll('[data-reload=global]')
       .remove();
-
+  d3.selectAll('.top-banner-ad-container')
+      .remove();
+  d3.selectAll('header#header')
+      .remove();
+  d3.selectAll('header.content__head')
+      .remove();
+  d3.selectAll('.gs-container.u-cf')
+      .remove();
+  d3.selectAll('.content-footer')
+      .remove();
+  d3.selectAll('.l-footer.u-cf')
+      .remove();
+      
   function jumpTo(h) {
     var url = location.href;               
     var newhref=location.href.split("#")[0]+"#"+h;
