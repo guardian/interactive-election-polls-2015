@@ -59,6 +59,12 @@ a { cursor: pointer; }
     width: 100%;
     float: none;
   }
+  .col-left {
+    margin-right: 0; //override
+  }
+  .coalition {
+    width: 100%;
+  }
 }
 
 
@@ -77,11 +83,11 @@ a { cursor: pointer; }
   
   .widget-section {
 	  .col-left {
-		  width: 208px; 
+		  width: 210px; 
 		  float: left;
   	}
 	  .col-right {
-		  width: calc(100% - 208px - 30px);
+		  width: calc(100% - 210px - 20px);
 		  overflow: hidden;
 		  zoom: 1; //for IE!?  
 	}}
@@ -99,10 +105,11 @@ a { cursor: pointer; }
       position: absolute;
       right: 0;
       bottom: -3px; 
-  }}
-  
+  }} 
+
   .widget-section {
     .coalition {
-    }  
+      width: 33.33%;
+    }
   }
 }
