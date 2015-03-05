@@ -636,9 +636,14 @@ define([
                 positionsLabels();
 
                 //BALANCE RESULT
-                var last_value=balanceValues.data()[balanceValues.data().length-1],
+                var last_value=labels[labels.length-1],
                     balance_result_x=(last_value.x_label+label_width*2/3+label_width/2),
                     delta_x=Math.min(WIDTH-(balance_result_x+50),0);
+
+                if(options.viewport) {
+                    delta_x=Math.min((options.viewport.w+options.viewport.l)-(balance_result_x+60),0);
+                    //console.log(WIDTH,options.viewport,delta_x)
+                }
                 
                 balanceValues
                     .style("left",function(d){
