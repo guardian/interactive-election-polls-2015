@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title></title>
-	<!-- Libs -->
-	<link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
-	<link rel="stylesheet" href="@@assetPath@@/css/main.css">
-	<link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
-	<!--[if gte IE 9]>
-		<style type="text/css">
-			.gradient {
-				filter: none;
-			}
-		</style>
-	<![endif]-->
-	<script src="//interactive.guim.co.uk/libs/iframe-messenger/iframeMessenger.js"></script>
-	<script src="@@assetPath@@/js/curl.js"></script>
-</head>
-<body>
-	<div id="wrapper" class="widget flows guInteractive">
-<!-- widget header --> 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Libs -->
+    <link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
+    <link rel="stylesheet" href="@@assetPath@@/css/main.css">
+    <link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
+    <!--[if gte IE 9]>
+    <style type="text/css">
+      .gradient {
+        filter: none;
+      }
+    </style>
+    <![endif]-->
+    <script src="//interactive.guim.co.uk/libs/iframe-messenger/iframeMessenger.js"></script>
+    <script src="@@assetPath@@/js/curl.js"></script>
+  </head>
+  <body>
+    <div id="wrapper" class="widget flows guInteractive">
+
+      <!-- widget header --> 
       <div class="row pos-r widget-header">
         <!-- header image -->	
         <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
         <!-- header title -->
         <div class="col-title">
           <h2 class="h2 c-b3"><span id="dayToGo">64 days</span> to go</h2> 
-          <h2 class="h2 c-3" id="title_lab-transfers"></h2>
+          <h2 class="h2 c-3" id="title_con-transfers"></h2>
         </div>
         <!-- header btns -->
         <div class="col-btns pos-btns">
@@ -41,282 +42,283 @@
           </a>
         </div>
       </div>
-      
+
       <!-- widget section --> 		
       <div class="row bdt-section pt-section-top">
-			<div class="col-left">
-				<p class="t-bd-s" id="par_con-transfers"></p>
-				<div id="seatsCharts" class="polls-trends poll-chart"></div>
-			</div>
-			<div class="charts-container col-right mb-60">
-				<div class="flow-container w60p">
-					<div id="conChart" class="poll-chart"></div>
-					<div class="grad l-grad"></div>
-					<div class="grad r-grad"></div>
-				</div>
-				<div class="chart-info">
-					<div class="y2010"><p class="t-bd-s">Which seats in the <b>current parliament</b>...</p></div>
-					<div class="y2015"><p class="t-bd-s">...could change hands in the <b>2015 Guardian projection</b></p></div>
-				</div>
-				<div id="coalitionsChart" class="poll-chart">
-					<p class="t-bd-s"><b>It could form alliances with</b></p>
-				</div>
-		</div>
-	</div>
-	<script>
-		require=curl;
-		
-		iframeMessenger.enableAutoResize();
+        <div class="col-left">
+          <p class="t-bd-s" id="par_con-transfers"></p>
+          <div id="seatsCharts" class="polls-trends poll-chart"></div>
+        </div>
+        <div class="charts-container col-right mb-60">
+          <div class="flow-container w60p">
+            <div id="conChart" class="poll-chart"></div>
+            <div class="grad l-grad"></div>
+            <div class="grad r-grad"></div>
+          </div>
+          <div class="chart-info">
+            <div class="y2010"><p class="t-bd-s">Which seats in the <b>current parliament</b>...</p></div>
+            <div class="y2015"><p class="t-bd-s">...could change hands in the <b>2015 Guardian projection</b></p></div>
+          </div>
+          <div id="coalitionsChart" class="poll-chart">
+            <p class="t-bd-s"><b>It could form alliances with</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      require=curl;
 
-		require(['@@assetPath@@/js/main.js'], function(req) {
-            // Main app returns a almond instance of require to avoid
-            // R2 / NGW inconsistencies.
-            req([
-            	'd3',
-            	'page/page',
-            	'seatscharts/PollsOfPolls',
-            	'sparklines/sparklines'
-            ], function(
-            	d3,
-            	pageView,
-            	PollsOfPolls,
-            	Sparkline
-            ) {
+      iframeMessenger.enableAutoResize();
 
-            	loadData(function(data){
-					console.log(data);
+      require(['@@assetPath@@/js/main.js'], function(req) {
+        // Main app returns a almond instance of require to avoid
+        // R2 / NGW inconsistencies.
+        req([
+          'd3',
+          'page/page',
+          'seatscharts/PollsOfPolls',
+          'sparklines/sparklines'
+        ], function(
+          d3,
+          pageView,
+          PollsOfPolls,
+          Sparkline
+        ) {
 
-					buildWidget('#commonsChart',data)
+          loadData(function(data){
+            console.log(data);
 
-				});
+            buildWidget('#commonsChart',data)
 
-				function buildWidget(el,data) {
-					var names={
-			            "con":"Conservative",
-			            "libdem":"Liberal Democrats",
-			            "ukip":"UKIP",
-			            "others":"Others",
-			            "pc":"PC",
-			            "green":"Green Party",
-			            "snp":"Scottish National",
-			            "lab":"Labour Party"
-			        };
-					var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
+          });
 
-					var today = new Date(),
-		            electionDay = new Date(2015,4,7),
-		            diff = d3.time.format("%j")(electionDay) - d3.time.format("%j")(today);
+          function buildWidget(el,data) {
+            var names={
+              "con":"Conservative",
+              "libdem":"Liberal Democrats",
+              "ukip":"UKIP",
+              "others":"Others",
+              "pc":"PC",
+              "green":"Green Party",
+              "snp":"Scottish National",
+              "lab":"Labour Party"
+            };
+            var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
 
-		            d3.select("#dayToGo").text(function(){
-		            	return diff+" day"+(diff>1?"s":"")
-		            })
+            var today = new Date(),
+            electionDay = new Date(2015,4,7),
+            diff = d3.time.format("%j")(electionDay) - d3.time.format("%j")(today);
 
-					pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
+            d3.select("#dayToGo").text(function(){
+              return diff+" day"+(diff>1?"s":"")
+            })
 
-					var parties=["con"];
+            pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
 
-					renderFlows();
-					buildSparklines();
+            var parties=["con"];
 
-					function renderFlows() {
-				        
-				        parties.forEach(function(party){
-				            var flow=new PollsOfPolls(data.sheets["RESULT"],{
-				                container:"#"+party+"Chart",
-				                order:ORDER,
-				                height:265,
-				                top:150,
-				                additionalTriangle:{
-				                    verticalPosition:150+80,
-				                    orientation:1
-				                },
-				                filter:[party],
-				                ix:false,
-				                names:names,
-				                notitle:true,
-				                viewport: {
-				                	w:d3.select(".flow-container").node().clientWidth || d3.select(".flow-container").node().offsetWidth,
-				                	l:285
-				                }
-				            })
-				            flow.addLastElections();
-				            flow.addFlows();
-				            flow.addBalanceSheet(party);
+            renderFlows();
+            buildSparklines();
 
-				            flow.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3);
-				        })
-				        
-				    }
-				
+            function renderFlows() {
 
-					function buildSparklines(){
-						// SPARKLINES
-				        var format=d3.time.format("%d/%m/%Y")
-				        data.sheets["Log Seats"]=data.sheets["Log Seats"].filter(function(d){
-				            return typeof d.logdate == "string"
-				        })
-				        
-				        function getExtents(data) {
-				            var all_extents=[];
+              parties.forEach(function(party){
+                var flow=new PollsOfPolls(data.sheets["RESULT"],{
+                  container:"#"+party+"Chart",
+                  order:ORDER,
+                  height:265,
+                  top:150,
+                  additionalTriangle:{
+                    verticalPosition:150+80,
+                    orientation:1
+                  },
+                  filter:[party],
+                  ix:false,
+                  names:names,
+                  notitle:true,
+                  viewport: {
+                    w:d3.select(".flow-container").node().clientWidth || d3.select(".flow-container").node().offsetWidth,
+                    l:285
+                  }
+                })
+                flow.addLastElections();
+                flow.addFlows();
+                flow.addBalanceSheet(party);
 
-				            parties.forEach(function(party){
-				                var extent=d3.extent(data,function(d){
-				                    return d[party]
-				                })
-				                all_extents.push(
-				                        {
-				                            party:party,
-				                            extent:extent,
-				                            delta:extent[1]-extent[0]
-				                        }
-				                    );
-				            });
-				            
-				            var max_delta=d3.max(all_extents,function(d){
-				                return d.delta;
-				            });
+                flow.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3);
+              })
 
-				            all_extents.forEach(function(d){
-				                d.new_extent=[];
-				                d.new_extent[0]=d.extent[0];
-				                d.new_extent[1]=d.extent[1]
-				                if(d.delta<max_delta) {
-				                    d.new_extent[0]-=(max_delta-d.delta)
-				                }
-				            })
-
-				            return all_extents
-				        }
-
-				        function cloneObj(obj) {
-				            return JSON.parse( JSON.stringify(obj));
-				        }
-				        var today=format.parse(data.sheets["RESULT"][0]["currentdate"]);
-				        //.new Date(new Date().setHours(0,0,0,0));
-				        var sparklinesData=data.sheets["Log Seats"].map(function(d){
-				                                  d.date=format.parse(d.logdate);
-				                                  return d;
-				                              })
+            }
 
 
-				        // IF IT IS NOT UPDATED TO TODAY: ADD DAYS WITH SAME VALUE TILL TODAY
-				        if(sparklinesData[sparklinesData.length-1].date<today) {
-				            
-				            var diff=d3.time.format("%j")(today) - d3.time.format("%j")(sparklinesData[sparklinesData.length-1].date);
-				            //console.log("MISSING DAYS",diff)
+            function buildSparklines(){
+              // SPARKLINES
+              var format=d3.time.format("%d/%m/%Y")
+              data.sheets["Log Seats"]=data.sheets["Log Seats"].filter(function(d){
+                return typeof d.logdate == "string"
+              })
 
-				            d3.range(diff-1).forEach(function(d){
-				                
-				                console.log("add day",d,sparklinesData[sparklinesData.length-1])
-				                var new_day=cloneObj(sparklinesData[sparklinesData.length-1]);
-				                new_day.date=new Date(new_day.date);
-				                new_day.date.setDate(new_day.date.getDate()+1)
-				                console.log(new_day.date)
-				                sparklinesData.push(new_day);
+              function getExtents(data) {
+                var all_extents=[];
 
-				            })
-				        }
-				        
-				        // IF THE LAST RECORDED IN THE LOG IS TODAY => REMOVE IT
-				        sparklinesData = sparklinesData.filter(function(d){
-				            return +d.date !=  (+today);
-				        })
+                parties.forEach(function(party){
+                  var extent=d3.extent(data,function(d){
+                    return d[party]
+                  })
+                  all_extents.push(
+                    {
+                    party:party,
+                    extent:extent,
+                    delta:extent[1]-extent[0]
+                  }
+                  );
+                });
 
-				        var dataLatest=(function(latest){
-				                            latest.logdate=format.parse(latest.date)
+                var max_delta=d3.max(all_extents,function(d){
+                  return d.delta;
+                });
 
-				                            return latest;
+                all_extents.forEach(function(d){
+                  d.new_extent=[];
+                  d.new_extent[0]=d.extent[0];
+                  d.new_extent[1]=d.extent[1]
+                  if(d.delta<max_delta) {
+                    d.new_extent[0]-=(max_delta-d.delta)
+                  }
+                })
 
-				                        }(data.sheets["RESULT"][0]));
+                return all_extents
+              }
 
-				        dataLatest.date=today;
+              function cloneObj(obj) {
+                return JSON.parse( JSON.stringify(obj));
+              }
+              var today=format.parse(data.sheets["RESULT"][0]["currentdate"]);
+              //.new Date(new Date().setHours(0,0,0,0));
+              var sparklinesData=data.sheets["Log Seats"].map(function(d){
+                d.date=format.parse(d.logdate);
+                return d;
+              })
 
-				        //console.log("OOOOO",dataLatest)
 
-				        // ADD THE VALUES FROM RESULT
-				        sparklinesData.push(dataLatest)
+              // IF IT IS NOT UPDATED TO TODAY: ADD DAYS WITH SAME VALUE TILL TODAY
+              if(sparklinesData[sparklinesData.length-1].date<today) {
 
-				        //console.log(sparklinesData);
+                var diff=d3.time.format("%j")(today) - d3.time.format("%j")(sparklinesData[sparklinesData.length-1].date);
+                //console.log("MISSING DAYS",diff)
 
-				        
+                d3.range(diff-1).forEach(function(d){
 
-				        var sparklines=[],
-				            i=0;
-				        parties.forEach(function(party){
-				        	console.log(party)
-				            //try {
-				                sparklines.push(
-				                    new Sparkline(sparklinesData,
-				                      {
-				                        container:"#seatsCharts",
-				                        n:Math.max(parties.length,4),
-				                        index:i,
-				                        fields:[party],
-				                        interpolate:"step-after",
-				                        extents:getExtents(sparklinesData).filter(function(d){
-				                            return d.party==party;
-				                        }).map(function(d){
-				                            return d.new_extent;
-				                        })[0],
-				                        weeks:4,
-				                        mouseOverCallback:function(d){
-				                            sparklines.forEach(function(c){
-				                                c.highlight(d);
-				                            })
-				                        },
-				                        mouseOutCallback:function(){
-				                            sparklines.forEach(function(c){
-				                                c.highlight();
-				                            })
-				                        }
-				                    })
-				                );
-				                i++;
-				            //} catch(e){
-				             //   console.error("sparkline error");
-				            //}
-				            
-				        })
-					}
-				}
+                  console.log("add day",d,sparklinesData[sparklinesData.length-1])
+                  var new_day=cloneObj(sparklinesData[sparklinesData.length-1]);
+                  new_day.date=new Date(new_day.date);
+                  new_day.date.setDate(new_day.date.getDate()+1)
+                  console.log(new_day.date)
+                  sparklinesData.push(new_day);
 
-            });
-        }, function(err) { console.error('Error loading boot.', err); });
+                })
+              }
+
+              // IF THE LAST RECORDED IN THE LOG IS TODAY => REMOVE IT
+              sparklinesData = sparklinesData.filter(function(d){
+                return +d.date !=  (+today);
+              })
+
+              var dataLatest=(function(latest){
+                latest.logdate=format.parse(latest.date)
+
+                return latest;
+
+              }(data.sheets["RESULT"][0]));
+
+              dataLatest.date=today;
+
+              //console.log("OOOOO",dataLatest)
+
+              // ADD THE VALUES FROM RESULT
+              sparklinesData.push(dataLatest)
+
+              //console.log(sparklinesData);
 
 
 
-		function loadData(callback) {
-			var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
+              var sparklines=[],
+              i=0;
+              parties.forEach(function(party){
+                console.log(party)
+                //try {
+                sparklines.push(
+                  new Sparkline(sparklinesData,
+                                {
+                                  container:"#seatsCharts",
+                                  n:Math.max(parties.length,4),
+                                  index:i,
+                                  fields:[party],
+                                  interpolate:"step-after",
+                                  extents:getExtents(sparklinesData).filter(function(d){
+                                    return d.party==party;
+                                  }).map(function(d){
+                                    return d.new_extent;
+                                  })[0],
+                                  weeks:4,
+                                  mouseOverCallback:function(d){
+                                    sparklines.forEach(function(c){
+                                      c.highlight(d);
+                                    })
+                                  },
+                                  mouseOutCallback:function(){
+                                    sparklines.forEach(function(c){
+                                      c.highlight();
+                                    })
+                                  }
+                                })
+                );
+                i++;
+                //} catch(e){
+                //   console.error("sparkline error");
+                //}
+
+              })
+            }
+          }
+
+        });
+      }, function(err) { console.error('Error loading boot.', err); });
 
 
-			d3.json(jsonSrc, function(err, data) {
 
-			  //data=testData;
-
-			  data.sheets["RESULT"].forEach(function(d){
-			      
-			      d.unfiltered_projection=d.projection.toLowerCase();
-			      d.unfiltered_winner2010=d.winner2010.toLowerCase();
-
-			      if(d.projection=="PC") {
-			          d.projection="others";
-			      }
-			      if(d.winner2010=="PC") {
-			          d.winner2010="others";
-			      }
-			      if(d.projection=="DUP") {
-			          d.projection="others";
-			      }
-			      if(d.winner2010=="DUP") {
-			          d.winner2010="others";
-			      }
-			  })
-			  //console.log(data)
-			  callback(data);
-			});
-		}
+      function loadData(callback) {
+        var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
 
 
-	</script>
-</body>
+        d3.json(jsonSrc, function(err, data) {
+
+          //data=testData;
+
+          data.sheets["RESULT"].forEach(function(d){
+
+            d.unfiltered_projection=d.projection.toLowerCase();
+            d.unfiltered_winner2010=d.winner2010.toLowerCase();
+
+            if(d.projection=="PC") {
+              d.projection="others";
+            }
+            if(d.winner2010=="PC") {
+              d.winner2010="others";
+            }
+            if(d.projection=="DUP") {
+              d.projection="others";
+            }
+            if(d.winner2010=="DUP") {
+              d.winner2010="others";
+            }
+          })
+          //console.log(data)
+          callback(data);
+        });
+      }
+
+
+    </script>
+  </body>
 </html>
