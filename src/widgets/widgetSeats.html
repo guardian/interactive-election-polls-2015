@@ -1,172 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title></title>
-	<!-- Libs -->
-	<link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
-	<link rel="stylesheet" href="@@assetPath@@/css/main.css">
-	<link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
-	<script src="@@assetPath@@/js/curl.js"></script>
-</head>
-<body>
-	<div id="wrapper" class="widget guInteractive">
-    
-    <!-- widget header --> 
-    <div class="row pos-r widget-header">
-      
-      <!-- header image -->	
-      <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Libs -->
+    <link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
+    <link rel="stylesheet" href="@@assetPath@@/css/main.css">
+    <link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
+    <script src="@@assetPath@@/js/curl.js"></script>
+  </head>
+  <body>
+    <div id="wrapper" class="widget guInteractive">
 
-      <!-- header title -->
-      <div class="col-title">
-        <h2 class="h2 c-b3"><span id="dayToGo">64 days</span> to go</h2> 
-        <h2 class="h2 c-3" id="title_mainprojection"></h2>
-      </div>
-      
-      <!-- header btns -->
-      <div class="col-right">
-        <div class="fl-r">
-        <div class="btns-share">
-					<button class="btn-tt" data-source="twitter"></button>
-					<button class="btn-fb" data-source="facebook"></button>
+      <!-- widget header --> 
+      <div class="row pos-r widget-header">
+        <!-- header image -->	
+        <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
+        <!-- header title -->
+        <div class="col-title">
+          <h2 class="h2 c-b3"><span id="dayToGo">64 days</span> to go</h2> 
+          <h2 class="h2 c-3" id="title_mainprojection"></h2>
         </div>
-        <a>
-          <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
-          <span class="txt-next">See full projection</span>
-        </a>
+        <!-- header btns -->
+        <div class="col-btns pos-btns">
+          <div class="btns-share">
+            <button class="btn-tt" data-source="twitter"></button>
+            <button class="btn-fb" data-source="facebook"></button>
+          </div>
+          <a>
+            <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
+            <span class="txt-next">See full projection</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- widget sections -->
+      <div class="row widget-section mt-10">  
+        <div class="col-left mt-25">
+          <p class="t-bd-s" id="par_mainprojection"></p>				
+        </div>
+        <div class="col-right">
+          <div id="commonsChart" class="poll-chart"></div>
+        </div>
+      </div>
+
+      <div class="row widget-section">
+        <div class="col-left mt-47">
+          <p class="t-bd-s" id="par_coalitions"></p>
+        </div>
+        <div class="col-right t-bd-s">
+          <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
         </div>
       </div>
     </div>
     
-    <!-- widget body -->
-		<div class="row bdt-section pt-section-top">
-			<div class="col-left mt-commons-gloss">
-				<h2 class="t-h2-s"></h2>
-				<p class="t-bd-s" id="par_mainprojection"></p>				
-			</div>
-			<div class="col-right">
-				<div id="commonsChart" class="poll-chart"></div>
-			</div>
-		</div>
-		<div class="row">
-	      <div class="col-left mt-coalitions-gloss">
-	        <p class="t-bd-s" id="par_coalitions"></p>
-	      </div>
+    <script>
+      require=curl;
 
-	      <div class="col-right t-bd-s">
-	        <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
-	      </div>
-	      
-	    </div>
-	</div>
-	<script>
-		require=curl;
-		
 
-		require(['@@assetPath@@/js/main.js'], function(req) {
-            // Main app returns a almond instance of require to avoid
-            // R2 / NGW inconsistencies.
-            req([
-            	'd3',
-            	'page/page',
-            	'seatscharts/PollsOfPolls'
-            ], function(
-            	d3,
-            	pageView,
-            	PollsOfPolls
-            ) {
+      require(['@@assetPath@@/js/main.js'], function(req) {
+        // Main app returns a almond instance of require to avoid
+        // R2 / NGW inconsistencies.
+        req([
+          'd3',
+          'page/page',
+          'seatscharts/PollsOfPolls'
+        ], function(
+          d3,
+          pageView,
+          PollsOfPolls
+        ) {
 
-            	loadData(function(data){
-					console.log(data);
+          loadData(function(data){
+            console.log(data);
 
-					buildWidget('#commonsChart',data)
+            buildWidget('#commonsChart',data)
 
-				});
+          });
 
-				function buildWidget(el,data) {
-					var names={
-			            "con":"Conservative",
-			            "libdem":"Liberal Democrats",
-			            "ukip":"UKIP",
-			            "others":"Others",
-			            "pc":"PC",
-			            "green":"Green Party",
-			            "snp":"Scottish National",
-			            "lab":"Labour Party"
-			        };
-					var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
+          function buildWidget(el,data) {
+            var names={
+              "con":"Conservative",
+              "libdem":"Liberal Democrats",
+              "ukip":"UKIP",
+              "others":"Others",
+              "pc":"PC",
+              "green":"Green Party",
+              "snp":"Scottish National",
+              "lab":"Labour Party"
+            };
+            var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
 
-					var today = new Date(),
-		            electionDay = new Date(2015,4,7),
-		            diff = d3.time.format("%j")(electionDay) - d3.time.format("%j")(today);
+            var today = new Date(),
+            electionDay = new Date(2015,4,7),
+            diff = d3.time.format("%j")(electionDay) - d3.time.format("%j")(today);
 
-		            d3.select("#dayToGo").text(function(){
-		            	return diff+" day"+(diff>1?"s":"")
-		            })
+            d3.select("#dayToGo").text(function(){
+              return diff+" day"+(diff>1?"s":"")
+            })
 
-					pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
+            pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
 
-					var projections=new PollsOfPolls(data.sheets["RESULT"],{
-			            container:el,
-			            order:ORDER,
-			            height:140,
-			            top:0,
-			            margins:{
-			                left:0,
-			                top:40,
-			                right:0,
-			                bottom:0
-			            },
-			            additionalTriangle:null,
-			            triangle:1,
-			            ix:true,
-			            names:names,
-			            notitle:true,
-			            showValues:true,
-			            majorityText:true
-			        });
-			        projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3);
-				}
-
+            var projections=new PollsOfPolls(data.sheets["RESULT"],{
+              container:el,
+              order:ORDER,
+              height:140,
+              top:0,
+              margins:{
+                left:0,
+                top:40,
+                right:0,
+                bottom:0
+              },
+              additionalTriangle:null,
+              triangle:1,
+              ix:true,
+              names:names,
+              notitle:true,
+              showValues:true,
+              majorityText:true
             });
-        }, function(err) { console.error('Error loading boot.', err); });
+            projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3);
+          }
+
+        });
+      }, function(err) { console.error('Error loading boot.', err); });
 
 
 
-		function loadData(callback) {
-			var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
+      function loadData(callback) {
+        var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
 
 
-			d3.json(jsonSrc, function(err, data) {
+        d3.json(jsonSrc, function(err, data) {
 
-			  //data=testData;
+          //data=testData;
 
-			  data.sheets["RESULT"].forEach(function(d){
-			      
-			      d.unfiltered_projection=d.projection.toLowerCase();
-			      d.unfiltered_winner2010=d.winner2010.toLowerCase();
+          data.sheets["RESULT"].forEach(function(d){
 
-			      if(d.projection=="PC") {
-			          d.projection="others";
-			      }
-			      if(d.winner2010=="PC") {
-			          d.winner2010="others";
-			      }
-			      if(d.projection=="DUP") {
-			          d.projection="others";
-			      }
-			      if(d.winner2010=="DUP") {
-			          d.winner2010="others";
-			      }
-			  })
-			  //console.log(data)
-			  callback(data);
-			});
-		}
+            d.unfiltered_projection=d.projection.toLowerCase();
+            d.unfiltered_winner2010=d.winner2010.toLowerCase();
+
+            if(d.projection=="PC") {
+              d.projection="others";
+            }
+            if(d.winner2010=="PC") {
+              d.winner2010="others";
+            }
+            if(d.projection=="DUP") {
+              d.projection="others";
+            }
+            if(d.winner2010=="DUP") {
+              d.winner2010="others";
+            }
+          })
+          //console.log(data)
+          callback(data);
+        });
+      }
 
 
-	</script>
-</body>
+    </script>
+  </body>
 </html>

@@ -2,8 +2,9 @@
 .c-3  { color: #333; }
 .c-b3 { color: #b3b3b3; }
 
-.fl-r { float: right; }
-
+.mt-10 { margin-top: 20px; }
+.mt-25 { margin-top: 25px; }
+.mt-47 { margin-top: 47px; }
 
 /* override */
 a { cursor: pointer; }
@@ -15,27 +16,24 @@ a { cursor: pointer; }
 	border-bottom:1px solid #ddd;
 }
 
-
 .widget-header {
+  border-bottom: 1px solid #dcdcdc;
+  
   .img__projection {
+    display: none;
 		width:90px;
 		height: 100%;
 	}
-
+  
   .col-title {
-    float: left;
-    width: calc(100% - 100px - 250px); //250 is col-right
-    margin: 8px 0 8px 100px;
+    width: 100%;
+    margin: 8px 0 5px 0;
   }
-  .col-right {
-    margin-top: 5px; //remove this!!!
-  }
-   
+  
   .h2 {
 		font-family:'Guardian Egyptian Web', Georgia, serif;
-    font-size: 18px;
-	  
-    display: inline-block
+    font-size: 22px;
+    line-height: 1.2;
   }
 
   .btns-share {
@@ -54,76 +52,56 @@ a { cursor: pointer; }
   }
 }
 
-//widget-body  
-.widget {
-    .mt-section {
-    margin-top: 0;
-	}
-
-	.pt-section-top {
-		padding-top: 15px;
-	}
-
-	.mt-commons-gloss {
-		margin-top:8px;
-	}
-
-	.mt-coalitions-gloss {
-		margin-top:47px;
-	}
+.widget-section {
+  .col-left,
+  .col-right {
+    width: 100%;
+    float: none;
+  }
 }
 
-@media (max-width: 740px) {
+
+@media (min-width: 480px) {
   .widget-header {
-    .h2 {
+    .img__projection {
       display: block;
-    }
+	  }
     .col-title {
       width: calc(100% - 100px);
-    }
-    .col-right {
-      float: left;
       margin-left: 100px;
     }
-  }
+    .col-btns {
+      margin-left: 100px;
+  }}
+  
+  .widget-section {
+	  .col-left {
+		  width: 208px; 
+		  float: left;
+  	}
+	  .col-right {
+		  width: calc(100% - 208px - 30px);
+		  overflow: hidden;
+		  zoom: 1; //for IE!?  
+	}}
 }
 
-@media (max-width: 480px) {
-  .img__projection {
-    display: none;
-	}
- 
+@media (min-width: 740px) {
   .widget-header {
+    .h2 {
+      display: inline-block;
+    }
     .col-title {
-      width: 100%;
-      margin-left: 0;
+      width: calc(100% - 100px - 250px); //250 is col-btns
     }
-    .col-right {
-      margin-left: 0;
-    }
-  }
+    .pos-btns {
+      position: absolute;
+      right: 0;
+      bottom: -3px; 
+  }}
   
-	/*.row [class*="col-"] {
-    //width: 100%;
-    //float: none;
+  .widget-section {
+    .coalition {
+    }  
   }
-  .col-left{
-    margin-right: 0;
-    padding-right: 0;
-  }
-
-  .row {
-		overflow: auto;
-	}
-	.row .col-left {
-		width: 240px; 
-		float: left;
-		margin-right: 10px;
-		padding-right: 20px;
-	}
-	.row .col-right {
-		width: calc(100% - 240px - 30px);
-		overflow: hidden;
-		zoom: 1; //for IE!?  
-	}*/
 }
