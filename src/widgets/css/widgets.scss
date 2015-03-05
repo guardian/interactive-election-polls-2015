@@ -1,84 +1,63 @@
-.guInteractive.widget .btns-share {
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-.widget {
+/* Atomic CSS */
+.c-3  { color: #333; }
+.c-b3 { color: #b3b3b3; }
 
+.fl-r { float: right; }
+
+
+/* override */
+a { cursor: pointer; }
+
+
+/* Style of widget */
+.widget {
+  border-top:1px solid #ddd;
 	border-bottom:1px solid #ddd;
-	
-	
-    .row [class*="col-"] {
-      width: 100%;
-      float: none;
-    }
-    .col-left{
-      margin-right: 0;
-      padding-right: 0;
-    }
-    .mt-section {
-      margin-top: 0;
+}
+
+
+.widget-header {
+  .img__projection {
+		width:90px;
+		height: 100%;
 	}
 
-	.header {
-		position:relative;
-		overflow: hidden;
-		border-top:1px solid #ddd;
-		
-		h2 {
-			float: left;
-			margin: 0;
-			padding: 0;
-			font-size: 18px;
-		}
-		
-		h2 > span {
-			color:#B3B3B4;
-			display: block;
-		}
-		img {
-			display: none;
-			width:90px;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-		.widget-btns {
-			float: left;
-			margin-top: -5px;
-			line-height: 25px;
-		}
+  .col-title {
+    float: left;
+    width: calc(100% - 100px - 250px); //250 is col-right
+    margin: 8px 0 8px 100px;
+  }
+  .col-right {
+    margin-top: 5px; //remove this!!!
+  }
+   
+  .h2 {
+		font-family:'Guardian Egyptian Web', Georgia, serif;
+    font-size: 18px;
+	  
+    display: inline-block
+  }
 
-		.btns-share {
-			float:right;
-			margin-bottom: 10px;
-		}
-		
-		a.btn-next {
-			padding:0;
-			margin:0;
-			margin-left:2px;
-			font-family:'Guardian Egyptian Headline', Georgia, serif;
-			font-size:16px;
-			font-weight:normal;
-			color: #00588a;
-			display: inline-block;
-			position:relative;
-			float:right;
-			
-		}
-		a.btn-next svg {
-			
-			
-			display: inline-block;
-		}
-		a.btn-next svg path {
-			fill: #005689;
-		}
-		a.btn-next span {
-			display: inline-block;
-			margin-left:5px;
-		}
+  .btns-share {
+    display: inline; //TODO: remove this, if possible
+  }
+  .btn-next path {
+		fill: #005689;
+	}
+  .txt-next {
+		font-family:'Guardian Egyptian Headline', Georgia, serif;
+		color: #00588a; 
+    
+    display: inline-block;
+    margin-top: 5px;
+    vertical-align: top;  
+  }
+}
+
+//widget-body  
+.widget {
+    .mt-section {
+    margin-top: 0;
 	}
 
 	.pt-section-top {
@@ -92,50 +71,59 @@
 	.mt-coalitions-gloss {
 		margin-top:47px;
 	}
-	
+}
 
+@media (max-width: 740px) {
+  .widget-header {
+    .h2 {
+      display: block;
+    }
+    .col-title {
+      width: calc(100% - 100px);
+    }
+    .col-right {
+      float: left;
+      margin-left: 100px;
+    }
+  }
+}
 
-	@media (min-width: 480px) {
-
-		.header {
-			.widget-btns {
-				margin-left: 0;
-				float: right;
-				margin-top: 10px;
-			}	
-			
-			h2 {
-				margin-left:100px;
-				font-size: 22px;
-				line-height:50px;
-				
-				b {
-					display: inline-block;
-					margin-left:10px;
-				}
-
-				> span {
-					display: inline;
-				}
-			}
-			img {
-				display: block;
-			}
-		}
-
-		.row {
-			overflow: auto;
-		}
-		.row .col-left {
-			width: 240px; 
-			float: left;
-			margin-right: 10px;
-			padding-right: 20px;
-		}
-		.row .col-right {
-			width: calc(100% - 240px - 30px);
-			overflow: hidden;
-			zoom: 1; //for IE!?  
-		}
+@media (max-width: 480px) {
+  .img__projection {
+    display: none;
 	}
+ 
+  .widget-header {
+    .col-title {
+      width: 100%;
+      margin-left: 0;
+    }
+    .col-right {
+      margin-left: 0;
+    }
+  }
+  
+	/*.row [class*="col-"] {
+    //width: 100%;
+    //float: none;
+  }
+  .col-left{
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .row {
+		overflow: auto;
+	}
+	.row .col-left {
+		width: 240px; 
+		float: left;
+		margin-right: 10px;
+		padding-right: 20px;
+	}
+	.row .col-right {
+		width: calc(100% - 240px - 30px);
+		overflow: hidden;
+		zoom: 1; //for IE!?  
+	}*/
 }
