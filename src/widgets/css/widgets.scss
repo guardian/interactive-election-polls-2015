@@ -9,11 +9,12 @@
 /* override */
 a { cursor: pointer; }
 
+@import 'modules/flows';
 
 /* Style of widget */
 .widget {
   border-top:1px solid #ddd;
-	border-bottom:1px solid #ddd;
+  border-bottom:1px solid #ddd;
 }
 
 .widget-header {
