@@ -20,9 +20,9 @@
   </head>
   <body>
     <div id="wrapper" class="guInteractive widget">
+      <!-- widget's header --> 
+      <div class="widget-header row pos-r">
 
-      <!-- widget header --> 
-      <div class="row widget-header pos-r">
         <!-- header image -->	
         <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
         <!-- header title -->
@@ -41,33 +41,38 @@
             <span class="txt-next">See full projection</span>
           </a>
         </div>
+
       </div>
 
-      <!-- widget section --> 		
-      <div class="row widget-section mt-20 mb-10 ff-ss">
+      <!-- widget's body: flow --> 		
+      <div class="widget-body-flow row mt-20 ff-ss fz-14">
 
-        <div class="col-left">
-          <p class="t-bd-s" id="par_con-transfers"></p>
-          <div class="polls-trends poll-chart" id="seatsCharts" ></div>
+        <!-- box-side -->
+        <div class="col-side">
+          <p class="" id="par_con-transfers"></p>
         </div>
-        
-        <div class="col-right pos-r t-bd-s charts-container">
-          
-          <div class="box-flow mb-10 flow-container">
+        <!-- box-main -->
+        <div class="col-flow pos-r t-bd-s charts-container">
+          <p class="pos-a__txt2010">Which seats in the <b>current parliament</b>...</p>
+          <p class="pos-a__txt2015">...could change hands in the <b>2015 Guardian projection</b>:</p>
+          <div class="box-flow pos-r mb-10 flow-container">
             <div class="poll-chart" id="conChart"></div>
-            <div class="grad l-grad"></div>
-            <div class="grad r-grad"></div>
-          </div>
-          
-          <div class="box-info">
-            <div><p class="t-bd-s">Which seats in the <b>current parliament</b>...</p></div>
-            <div class="mt-120"><p class="t-bd-s">...could change hands in the <b>2015 Guardian projection</b></p></div>
-          </div>
-          
-          <div class="box-coalition poll-chart" id="coalitionsChart"> 
-            <p class="t-bd-s"><b>It could form alliances with</b></p>
+            <div class="pos-a__grad grad-l"></div>
+            <div class="pos-a__grad grad-r"></div>
           </div>
         </div>
+        <!-- box-info -->
+        <div class="col-info">
+          <div class="box-seat">
+            <p>It is <b id="txtSeats">+3 seats</b> since <span id="txtDate">since Feb 5</span></p>
+            <div class="polls-trends poll-chart mb-10" id="seatsCharts"></div>
+          </div>
+          <div class="box-coalition">
+            <p class="mb-10">It could form <b>alliances</b> with</p>
+            <div class="t-bd-s poll-chart" id="coalitionsChart"></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
