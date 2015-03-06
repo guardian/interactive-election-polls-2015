@@ -126,6 +126,35 @@ define([
 				showMore();
 			})
 
+		this.selectRow=function(rowNumber) {
+			var table=d3.select(options.container+" div#pollsTable"),
+				selected_poll=table   				
+						.selectAll("div.poll")
+							.sort(function(a,b){
+								if(a.rowNumber===rowNumber) {
+									return -1;
+								}
+								if(b.rowNumber===rowNumber) {
+									return 1;
+								}
+								return b.rowNumber - a.rowNumber;
+							})
+							.classed("selected",function(d){
+								return rowNumber === d.rowNumber;
+							})
+							.filter(function(d){
+								return rowNumber === d.rowNumber;
+							}).classed("hidden",false).node();
+
+			table.selectAll("div.poll:not(.hidden)")
+					.classed("hidden",function(d,i){
+						return i>=options.show;
+					})
+
+			console.log(selected_poll)
+			selected_poll.parentNode.insertBefore( selected_poll, selected_poll.parentNode.firstChild.nextSibling );
+		}
+
 		function backingScale(context) {
 			if ('devicePixelRatio' in window) {
 				if (window.devicePixelRatio > 1) {
@@ -337,6 +366,7 @@ define([
     				.select(".projection")
     				.style("background-image","url("+bgImage+")");	
 		}
+
 		function showMore() {
 			
 			var polls=d3.selectAll(options.container+" div.poll")
@@ -460,7 +490,9 @@ define([
 			})
 
 			data.sort(function(a,b){
-				return (+b.timestamp2) - (+a.timestamp2);
+				return b.rowNumber-a.rowNumber;
+				//console.log(a)
+				//return (+b.timestamp2) - (+a.timestamp2);
 			})
 		}
 

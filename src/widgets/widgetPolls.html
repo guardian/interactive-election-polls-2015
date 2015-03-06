@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Libs -->
+    <link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
+    <link rel="stylesheet" href="@@assetPath@@/css/main.css">
+    <link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
+    <script src="//interactive.guim.co.uk/libs/iframe-messenger/iframeMessenger.js"></script>
+    <script src="@@assetPath@@/js/curl.js"></script>
+  </head>
+  <body>
+    <div id="wrapper" class="all-polls guInteractive">
+
+      <!-- widget header --> 
+      <div class="row pos-r widget-header">
+        <!-- header image -->	
+        <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
+        <!-- header title -->
+        <div class="col-title">
+          <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
+          <h2 class="h2 c-3" id="title_all-polls-embed"></h2>
+        </div>
+        <!-- header btns -->
+        <div class="col-btns pos-btns">
+          <div class="btns-share">
+            <button class="btn-tt" data-source="twitter"></button>
+            <button class="btn-fb" data-source="facebook"></button>
+          </div>
+          <a>
+            <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
+            <span class="txt-next">See full projection</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- widget sections -->
+      <div class="row widget-section mt-20">
+        <div>
+          <p class="t-bd-s mb-15" id="par_all-polls-embed"></p>
+          <div id="daybyday">
+            <!--<div id="pollsterFilterContainer">
+              <span class="filter-title">Filter by pollster:</span>
+              <ul id="pollstersFilter"></ul>
+            </div>-->
+            <div id="pollsTable" ></div>
+          </div>
+          <div class="polls-trends poll-chart" id="seatsCharts">
+            <p class="t-bd-s mt-20" id="par_all-polls-embed-sparklines"></p>
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="row widget-section">
+        <div class="col-left mt-47">
+          <p class="t-bd-s" id="par_coalitions"></p>
+        </div>
+        <div class="col-right t-bd-s">
+          <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
+        </div>
+      </div>
+      -->
+    </div>
+    
+    <script>
+      require=curl;
+      iframeMessenger.enableAutoResize();
+
+      require(['@@assetPath@@/js/main.js'], function(req) {
+        // Main app returns a almond instance of require to avoid
+        // R2 / NGW inconsistencies.
+        req([
+          'd3',
+          'page/page',
+          'pollchart/daybyday',
+          'sparklines/sparklines'
+        ], function(
+          d3,
+          pageView,
+          DayByDay,
+          Sparkline
+        ) {
+
+          loadData(function(data){
+            console.log(data);
+
+            buildWidget(data);
+            
+
+          });
+          function buildWidget(data) {
+            var names={
+              "con":"Conservative",
+              "libdem":"Liberal Democrats",
+              "ukip":"UKIP",
+              "others":"Others",
+              "pc":"PC",
+              "green":"Green Party",
+              "snp":"Scottish National",
+              "lab":"Labour Party"
+            };
+            var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
+
+            var today = new Date(),
+            electionDay = new Date(2015,4,7),
+            diff = d3.time.format("%j")(electionDay) - d3.time.format("%j")(today);
+
+            d3.select("#dayToGo").text(function(){
+              return diff+" day"+(diff>1?"s":"")
+            })
+
+            pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
+
+            var dayByDay=renderDayByDay("#daybyday",data);
+
+            
+            
+            var row=location.href.split("#")[1];
+            if(row) {
+              dayByDay.selectRow((+row)-1)  
+            }
+            
+            buildSparklines(data);
+          }
+          function renderDayByDay(el,data) {
+              return new DayByDay(data.sheets["vi-continuous-series"],{
+                  container:el,
+                  parties:["con","grn","lab","ldem","ukip"],
+                  termDic: { 
+                    con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green", 
+                    YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", Opinium: "Opinium", 
+                    ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" 
+                  },
+                  show:5
+              })
+          }
+
+          function buildSparklines(data){
+
+              var parties=["lab","snp","ukip","libdem","con"]
+
+              // SPARKLINES
+              var format=d3.time.format("%d/%m/%Y")
+              data.sheets["Log Seats"]=data.sheets["Log Seats"].filter(function(d){
+                return typeof d.logdate == "string"
+              })
+
+              function getExtents(data) {
+                var all_extents=[];
+
+                parties.forEach(function(party){
+                  var extent=d3.extent(data,function(d){
+                    return d[party]
+                  })
+                  all_extents.push(
+                    {
+                    party:party,
+                    extent:extent,
+                    delta:extent[1]-extent[0]
+                  }
+                  );
+                });
+
+                var max_delta=d3.max(all_extents,function(d){
+                  return d.delta;
+                });
+
+                all_extents.forEach(function(d){
+                  d.new_extent=[];
+                  d.new_extent[0]=d.extent[0];
+                  d.new_extent[1]=d.extent[1]
+                  if(d.delta<max_delta) {
+                    d.new_extent[0]-=(max_delta-d.delta)
+                  }
+                })
+
+                return all_extents
+              }
+
+              function cloneObj(obj) {
+                return JSON.parse( JSON.stringify(obj));
+              }
+              var today=format.parse(data.sheets["RESULT"][0]["currentdate"]);
+              //.new Date(new Date().setHours(0,0,0,0));
+              var sparklinesData=data.sheets["Log Seats"].map(function(d){
+                d.date=format.parse(d.logdate);
+                return d;
+              })
+
+
+              // IF IT IS NOT UPDATED TO TODAY: ADD DAYS WITH SAME VALUE TILL TODAY
+              if(sparklinesData[sparklinesData.length-1].date<today) {
+
+                var diff=d3.time.format("%j")(today) - d3.time.format("%j")(sparklinesData[sparklinesData.length-1].date);
+                //console.log("MISSING DAYS",diff)
+
+                d3.range(diff-1).forEach(function(d){
+
+                  console.log("add day",d,sparklinesData[sparklinesData.length-1])
+                  var new_day=cloneObj(sparklinesData[sparklinesData.length-1]);
+                  new_day.date=new Date(new_day.date);
+                  new_day.date.setDate(new_day.date.getDate()+1)
+                  console.log(new_day.date)
+                  sparklinesData.push(new_day);
+
+                })
+              }
+
+              // IF THE LAST RECORDED IN THE LOG IS TODAY => REMOVE IT
+              sparklinesData = sparklinesData.filter(function(d){
+                return +d.date !=  (+today);
+              })
+
+              var dataLatest=(function(latest){
+                latest.logdate=format.parse(latest.date)
+
+                return latest;
+
+              }(data.sheets["RESULT"][0]));
+
+              dataLatest.date=today;
+
+              //console.log("OOOOO",dataLatest)
+
+              // ADD THE VALUES FROM RESULT
+              sparklinesData.push(dataLatest)
+
+              //console.log(sparklinesData);
+
+
+
+              var sparklines=[],
+              i=0;
+              parties.forEach(function(party){
+                //console.log(party)
+                //try {
+                sparklines.push(
+                  new Sparkline(sparklinesData,
+                                {
+                                  container:"#seatsCharts",
+                                  n:Math.max(parties.length,4),
+                                  index:i,
+                                  fields:[party],
+                                  interpolate:"step-after",
+                                  extents:getExtents(sparklinesData).filter(function(d){
+                                    return d.party==party;
+                                  }).map(function(d){
+                                    return d.new_extent;
+                                  })[0],
+                                  weeks:4,
+                                  mouseOverCallback:function(d){
+                                    sparklines.forEach(function(c){
+                                      c.highlight(d);
+                                    })
+                                  },
+                                  mouseOutCallback:function(){
+                                    sparklines.forEach(function(c){
+                                      c.highlight();
+                                    })
+                                  }
+                                })
+                );
+                i++;
+                //} catch(e){
+                //   console.error("sparkline error");
+                //}
+
+              })
+            }
+
+        });
+      }, function(err) { console.error('Error loading boot.', err); });
+
+
+
+      function loadData(callback) {
+        var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
+
+
+        d3.json(jsonSrc, function(err, data) {
+
+          //data=testData;
+
+          data.sheets["RESULT"].forEach(function(d){
+
+            d.unfiltered_projection=d.projection.toLowerCase();
+            d.unfiltered_winner2010=d.winner2010.toLowerCase();
+
+            if(d.projection=="PC") {
+              d.projection="others";
+            }
+            if(d.winner2010=="PC") {
+              d.winner2010="others";
+            }
+            if(d.projection=="DUP") {
+              d.projection="others";
+            }
+            if(d.winner2010=="DUP") {
+              d.winner2010="others";
+            }
+          })
+          //console.log(data)
+          callback(data);
+        });
+      }
+
+
+    </script>
+  </body>
+</html>

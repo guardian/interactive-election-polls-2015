@@ -1,0 +1,45 @@
+.all-polls {
+
+	
+
+	.mb-15 {
+	  margin-bottom: 15px;
+	}
+	.poll.selected {
+		background-color: #fffae3;
+	}
+	.polls-trends .seats-chart {
+		width: 50%;
+	}
+	
+	@media (min-width: 480px) {
+		.polls-trends .seats-chart {
+			width: 20%;
+		}
+		.widget-header {
+	    .h2 {
+	      display: inline-block;
+	    }
+	    .col-title {
+	      width: calc(100% - 100px - 250px); //250 is col-btns
+	    }
+	    .pos-btns {
+	      position: absolute;
+	      right: 0;
+	      bottom: -3px; 
+	  }} 
+
+	  .widget-section {
+	    .coalition {
+	      width: 33.33%;
+	    }
+	  }
+	}
+
+	@media (min-width: 740px) {
+		.polls-trends .seats-chart {
+			width: 20%;
+		}
+	}
+
+}
