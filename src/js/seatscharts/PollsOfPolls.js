@@ -416,14 +416,24 @@ define([
                             .attr("id",id)
                                 .attr("class","polls-trends")
         }
-        this.addCoalitions=function(id,coalitions_glosses) {
+        this.addCoalitions=function(id,coalitions_glosses,max,filter) {
                     
                     //////console.log("CIAOOOOOOOO")
                     //////console.log(data)
 
                     
 
-                    var glosses=coalitions_glosses.sort(function(a,b){
+                    var glosses=coalitions_glosses.filter(function(d){
+                        //console.log(d.parties);
+                        if(filter) {
+                            var check=false;
+                            filter.forEach(function(p){
+                                check = (d.parties.indexOf(p)>-1) || check;
+                            })
+                            return check;
+                        }
+                        return 1;
+                    }).sort(function(a,b){
                         return a.order - b.order;
                     }).map(function(d){
                         var parties=d.parties.toLowerCase().split(",");
@@ -443,7 +453,9 @@ define([
                                 .attr("id","coalitions");
 
                     var coalition=coalitions.selectAll("div")
-                            .data(glosses)
+                            .data(glosses.filter(function(d,i){
+                                return max?i<max:1;
+                            }))
                             .enter()
                             .append("div")
                                 .attr("class",function(d,i){
@@ -637,6 +649,17 @@ define([
                 var last_value=balanceValues.data()[balanceValues.data().length-1],
                     balance_result_x=(last_value.x_label+label_width*2/3+label_width/2),
                     delta_x=Math.min(WIDTH-(balance_result_x+50),0);
+
+                if(options.viewport) {
+                    var delta_x1=(balance_result_x)-(options.viewport.l+options.viewport.w);
+                    labels.forEach(function(d){
+                        d.x_label-=(delta_x1+50);
+                        if(d.x_label<options.viewport.l) {
+                            d.x_label=d.x;
+                        }
+                    })
+                    positionsLabels();
+                }
                 
                 balanceValues
                     .style("left",function(d){
