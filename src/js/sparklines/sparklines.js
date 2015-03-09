@@ -391,7 +391,12 @@ define([
 			bar_width=xscale.range()[1]/(data.length-1)*1.0;
 
 			//console.log("!!!!!!!!!!!",w)
-			chartContainer.classed("show-first",(w>120))
+			chartContainer.classed("show-first",function(d,i){
+				return w>120 && options.index===0;
+			})
+			chartContainer.classed("show-last",function(d,i){
+				return options.index===0;
+			})
 
 			linechart
 				.select("path")

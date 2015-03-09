@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="wrapper" class="all-polls guInteractive">
-
+      
       <!-- widget header --> 
       <div class="row pos-r widget-header">
         <!-- header image -->	
@@ -35,7 +35,22 @@
           </a>
         </div>
       </div>
-
+      <div class="row bgc-white" id="stickyRow">
+        <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
+        <ul class="col-right mb-60 ul__party t-ul__party" style="list-style-type: none">
+          <li style="list-style: none"><span class="rect bgc-lab"></span>Labour</li>
+          <li><span class="rect bgc-snp"></span>SNP</li>
+          <li><span class="rect bgc-grn"></span>Green</li>
+          
+          <li><span class="rect bgc-others"></span>Others</li>
+          
+          
+          <li><span class="rect bgc-ukip"></span>Ukip</li>
+          
+          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+          <li><span class="rect bgc-con"></span></li>
+        </ul>
+      </div>
       <!-- widget sections -->
       <div class="row widget-section mt-20">
         <div>
@@ -125,7 +140,7 @@
             buildSparklines(data);
           }
           function renderDayByDay(el,data) {
-              return new DayByDay(data.sheets["vi-continuous-series"],{
+              var dayByDay=new DayByDay(data.sheets["vi-continuous-series"],{
                   container:el,
                   parties:["con","grn","lab","ldem","ukip"],
                   termDic: { 
@@ -134,7 +149,17 @@
                     ComRes: "ComRes", ComResO: "ComRes Online", TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" 
                   },
                   show:5
+              });
+              
+              d3.select(el+" #pollsTable").insert("div", ".poll:not(.selected)")
+                .append("p")
+                  .attr("class","t-bd-s mt-20")
+                  .text("CIAO CIAO CIAO")
+              d3.selectAll(el+" #pollsTable .poll:not(.selected)").classed("bt",function(d,i){
+                return i===0;
               })
+
+              return dayByDay;
           }
 
           function buildSparklines(data){

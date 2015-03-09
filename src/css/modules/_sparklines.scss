@@ -103,20 +103,11 @@
 		text-anchor:start;
 	}
 	
-	/*.seats-chart svg .linechart g.hover text {
-		fill-opacity:1 !important;
-	}*/
 	
-	.seats-chart:first-child svg .linechart g.day.last text {
+	.seats-chart.show-last svg .linechart g.day.last text {
 		fill-opacity:1;
 	}
-	/*.seats-chart:first-child svg:hover .linechart g.day.first text.dropline {
-		fill-opacity:0;
-	}
-	.seats-chart:first-child.hover svg .linechart g.day.first text,
-	.seats-chart:first-child.hover svg .linechart g.day.last text { 
-		fill-opacity:0;
-	}*/
+	
 	.seats-chart svg .linechart g.day.right-aligned text {
 		text-anchor: end;
 	}
@@ -151,16 +142,9 @@
 		fill-opacity:1 !important;
 	}
 	
-	.seats-chart:first-child svg .linechart g.day.last line.dropline {
+	.seats-chart.show-last svg .linechart g.day.last line.dropline {
 		stroke-opacity:0.8;
 	}
-	/*.seats-chart:first-child.hover svg:hover .linechart g.day.first line.dropline,
-	.seats-chart:first-child.hover svg .linechart g.day.first line.dropline,
-	.seats-chart:first-child.hover svg .linechart g.day.last line.dropline {
-		stroke-opacity:0;
-	}*/
-
-	
 
 	.seats-chart svg .linechart g.selected line.dropline {
 		stroke-opacity:0.8;
@@ -168,26 +152,26 @@
 		font-size:12px;
 	}
 	
-	.seats-chart:first-child .seats-change span {
+	.seats-chart.show-last .seats-change span {
 		visibility: visible;
 	}
-	.seats-chart.show-first:first-child svg .linechart g.day.first text {
+	.seats-chart.show-first svg .linechart g.day.first text {
 		fill-opacity:1;
 	}
-	.seats-chart.show-first:first-child svg .linechart g.day.first line.dropline {
+	.seats-chart.show-first svg .linechart g.day.first line.dropline {
 		stroke-opacity:0.8;
 	}
 
-	.seats-chart.hover:first-child svg .linechart g.day.first text {
+	.seats-chart.hover svg .linechart g.day.first text {
 		fill-opacity:0;
 	}
-	.seats-chart.hover:first-child svg .linechart g.day.first line.dropline {
+	.seats-chart.hover svg .linechart g.day.first line.dropline {
 		stroke-opacity:0;
 	}
-	.seats-chart.hover:first-child svg .linechart g.day.last text {
+	.seats-chart.hover svg .linechart g.day.last text {
 		fill-opacity:0;
 	}
-	.seats-chart.hover:first-child svg .linechart g.day.last line.dropline {
+	.seats-chart.hover svg .linechart g.day.last line.dropline {
 		stroke-opacity:0;
 	}
 
@@ -308,7 +292,7 @@
 		display: none;
 		font-style: normal;
 	}
-	.seats-chart:first-child .seats-change span i {
+	.seats-chart.show-last .seats-change span i {
 		display: inline;
 	}
 

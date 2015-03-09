@@ -28,7 +28,7 @@
         <!-- header title -->
         <div class="col-title">
           <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
-          <h2 class="h2 c-3" id="title_con-transfers"></h2>
+          <h2 class="h2 c-3" id="title_con-transfers-embed"></h2>
         </div>
         <!-- header btns -->
         <div class="col-btns pos-btns">
@@ -64,7 +64,7 @@
         <!-- box-info -->
         <div class="col-info">
           <div class="box-seat">
-            <p>It is <b id="txtSeats">+3 seats</b><span id="txtDate"> since Feb 8</span></p>
+            <p>They are <b id="txtSeats"></b><span id="txtDate"></span></p>
             <div class="polls-trends poll-chart mb-10" id="seatsCharts"></div>
           </div>
           <div class="box-coalition">
@@ -130,6 +130,16 @@
 
             renderFlows();
             buildSparklines();
+
+            var seats_diff= +d3.select(".seats-diff-n").text().split(" ")[0],
+                seats_diff_day=d3.select(".seats-diff-day").text();
+
+            d3.select(".box-seat #txtSeats").text(function(){
+              return (seats_diff<0?"down ":"up ")+Math.abs(seats_diff)+" seat"+(Math.abs(seats_diff)===1?"":"s")
+            })
+            d3.select(".box-seat #txtDate").text(" "+seats_diff_day);
+            
+
 
             function renderFlows() {
 

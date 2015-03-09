@@ -5,8 +5,13 @@
 	.mb-15 {
 	  margin-bottom: 15px;
 	}
-	.poll.selected {
+	#daybyday .poll.selected {
 		background-color: #fffae3;
+		border-bottom:1px solid #ddd;
+		margin-bottom:10px;
+	}
+	#daybyday .poll.bt {
+		border-top:1px dotted #999;
 	}
 	.polls-trends .seats-chart {
 		width: 50%;
