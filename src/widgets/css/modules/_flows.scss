@@ -14,8 +14,7 @@
     margin-left: -290px;
   }
   
-  #coalitionsChart p,
-  #coalitionsChart .n0 {
+  #coalitionsChart p {
     display: none;
   }
   #coalitionsChart .coalition {
@@ -125,12 +124,7 @@
 }
 
 @media (min-width: 1140px) { 
-  .col-side { width: 140px; float: left; }
   .col-info { width: 240px;}  
-}
-@media (min-width: 1300px) { 
-  .col-side { width: 220px; }
-  .col-info { width: 240px; }  
 }
 
 

@@ -1,6 +1,7 @@
 /* Atomic CSS */
 .c-3  { color: #333; }
 .c-b3 { color: #b3b3b3; }
+.c-76 { color: #767676; }
 
 .mt-20  { margin-top: 20px; }
 .mt-25  { margin-top: 25px; }
@@ -57,26 +58,7 @@ a { cursor: pointer; }
   }
 }
 
-//override
-.widget-section {
-  .col-left,
-  .col-right {
-    width: 100%;
-    float: none;
-  }
-  .col-left {
-    margin-right: 0;
-  }
-  .coalition {
-    width: 100%;
-  }
-  .t-bd-s {
-    color:#000;
-  }
-}
-
-
-@media (min-width: 480px) {
+@media (min-width: 660px) {
   .widget-header {
     .img__projection {
       display: block;
@@ -88,19 +70,7 @@ a { cursor: pointer; }
     .col-btns {
       margin-left: 100px;
   }}
-  
-  .widget-section {
-	  .col-left {
-		  width: 210px; 
-		  float: left;
-    }
-	  .col-right {
-		  width: calc(100% - 210px - 20px);
-		  overflow: hidden;
-		  zoom: 1; //for IE!?  
-	}}
 }
-
 @media (min-width: 740px) {
   .widget-header {
     .h2 {
@@ -121,3 +91,54 @@ a { cursor: pointer; }
     }
   }
 }
+
+
+@media (min-width: 1140px) { 
+  .col-side { width: 140px; float: left; }
+}
+@media (min-width: 1300px) { 
+  .col-side { width: 220px; }
+}
+
+
+//override
+.widget-section {
+/*  .col-side,
+  .col-main {
+    width: 100%;
+    float: none;
+    padding-left: 0;
+  }
+  .col-side {
+    margin-right: 0;
+  }*/
+  .coalition {
+    width: 100%;
+  }
+  .t-bd-s {
+    color:#000;
+  }
+}
+
+@media (min-width: 660px) {
+  .widget-section {
+	  .col-side {
+		  float: left;
+		  width: 210px; 
+    }
+	  .col-main {
+		  width: calc(100% - 210px - 20px);
+		  overflow: hidden;
+		  zoom: 1; //for IE!?  
+  }}
+}
+@media (min-width: 740px) {
+  .widget-section {
+    .coalition {
+      width: 33.33%;
+    }
+  }
+}
+
+
+
