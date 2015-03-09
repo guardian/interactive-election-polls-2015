@@ -82,7 +82,7 @@ a { cursor: pointer; }
     .pos-btns {
       position: absolute;
       right: 0;
-      bottom: -3px; 
+      bottom: 0; 
   }} 
 
   .widget-section {
@@ -93,15 +93,34 @@ a { cursor: pointer; }
 }
 
 
+// padding due to media object
+@media (max-width:  659px) { .widget { padding: 0 20px; }}
+@media (max-width:  479px) { .widget { padding: 0 10px; }}
+
+/*/ sizes of media object
+@media (max-width:  320px) { .widget { width: 320px; }}
+@media (min-width:  660px) { .widget { width: 620px; }}
+@media (min-width:  740px) { .widget { width: 700px; }}
+@media (min-width:  980px) { .widget { width: 620px; }}
+@media (min-width: 1140px) { .widget { width: 780px; }}
+@media (min-width: 1300px) { .widget { width: 860px; }}
+*/
+
 @media (min-width: 1140px) { 
-  .col-side { width: 140px; float: left; }
+  .col-side { 
+    float: left; 
+    width: 140px; 
+    padding-right: 20px;
+  }
 }
 @media (min-width: 1300px) { 
-  .col-side { width: 220px; }
+  .col-side { 
+    width: 220px; 
+  }
 }
 
 
-//override
+/*  */
 .widget-section {
 /*  .col-side,
   .col-main {
@@ -115,12 +134,9 @@ a { cursor: pointer; }
   .coalition {
     width: 100%;
   }
-  .t-bd-s {
-    color:#000;
-  }
 }
 
-@media (min-width: 660px) {
+@media (min-width: 660px) and (max-width: 1140px) {
   .widget-section {
 	  .col-side {
 		  float: left;

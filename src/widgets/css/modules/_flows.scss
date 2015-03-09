@@ -63,19 +63,6 @@
   }
 }
 
-
-// padding due to media object
-@media (max-width:  659px) { .widget { padding: 0 20px; }}
-@media (max-width:  479px) { .widget { padding: 0 10px; }}
-
-// sizes of media object
-@media (max-width:  320px) { .widget { width: 320px; }}
-@media (min-width:  660px) { .widget { width: 620px; }}
-@media (min-width:  740px) { .widget { width: 700px; }}
-@media (min-width:  980px) { .widget { width: 620px; }}
-@media (min-width: 1140px) { .widget { width: 780px; }}
-@media (min-width: 1300px) { .widget { width: 860px; }}
-
 // responsive control
 @media (max-width: 480px) { 
   .box-flow {
@@ -124,7 +111,7 @@
 }
 
 @media (min-width: 1140px) { 
-  .col-info { width: 240px;}  
+  .col-info { width: 220px;}  
 }
 
 
