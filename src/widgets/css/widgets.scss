@@ -57,7 +57,28 @@ a { cursor: pointer; }
     vertical-align: top;  
   }
 }
+.widget-footer {
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  background-color:#eee;
+  padding-top:5px;
+  padding-left:5px;
 
+  .btns-share {
+      display: inline; //TODO: remove this, if possible
+    }
+    .btn-next path {
+      fill: #005689;
+    }
+    .txt-next {
+      font-family:'Guardian Egyptian Headline', Georgia, serif;
+      color: #00588a; 
+      
+      display: inline-block;
+      margin-top: 5px;
+      vertical-align: top;  
+    }
+}
 @media (min-width: 660px) {
   .widget-header {
     .img__projection {
