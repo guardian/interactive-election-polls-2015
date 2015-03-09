@@ -416,9 +416,6 @@ define([
                             .attr("id",id)
                                 .attr("class","polls-trends")
         }
-        this.repositionCoalitions=function(){
-
-        }
         this.addCoalitions=function(id,coalitions_glosses,max,filter) {
                     
                     //////console.log("CIAOOOOOOOO")
@@ -649,11 +646,10 @@ define([
                 positionsLabels();
 
                 //BALANCE RESULT
-                var last_value=labels[labels.length-1],
+                var last_value=balanceValues.data()[balanceValues.data().length-1],
                     balance_result_x=(last_value.x_label+label_width*2/3+label_width/2),
                     delta_x=Math.min(WIDTH-(balance_result_x+50),0);
-                
-                
+
                 if(options.viewport) {
                     var delta_x1=(balance_result_x)-(options.viewport.l+options.viewport.w);
                     labels.forEach(function(d){
@@ -664,7 +660,6 @@ define([
                     })
                     positionsLabels();
                 }
-                
                 
                 balanceValues
                     .style("left",function(d){
@@ -721,7 +716,6 @@ define([
 
                 balanceResult
                     .style("left",function(){
-                        //console.log("///////////",balance_result_x,delta_x,balance_result_x+delta_x)
                         var x=(last_value.x_label+label_width)+delta_x;
                         return (x)+"px"
                     })
