@@ -427,7 +427,7 @@ define([
                     
 
                     var glosses=coalitions_glosses.filter(function(d){
-                        console.log(d.parties);
+                        //console.log(d.parties);
                         if(filter) {
                             var check=false;
                             filter.forEach(function(p){
