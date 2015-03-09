@@ -52,9 +52,9 @@
         </ul>
       </div>
       <!-- widget sections -->
-      <div class="row widget-section mt-20">
+      <div class="row widget-section mt-20 ff-ss fz-14">
         <div>
-          <p class="t-bd-s mb-15" id="par_all-polls-embed"></p>
+          <p class="mb-15" id="par_all-polls-embed"></p>
           <div id="daybyday">
             <!--<div id="pollsterFilterContainer">
               <span class="filter-title">Filter by pollster:</span>
@@ -63,7 +63,7 @@
             <div id="pollsTable" ></div>
           </div>
           <div class="polls-trends poll-chart" id="seatsCharts">
-            <p class="t-bd-s mt-20" id="par_all-polls-embed-sparklines"></p>
+            <p class="mt-20" id="par_all-polls-embed-sparklines"></p>
           </div>
         </div>
       </div>
@@ -134,7 +134,16 @@
             
             var row=location.href.split("#")[1];
             if(row) {
-              dayByDay.selectRow((+row)-1)  
+              dayByDay.selectRow((+row)-1);
+
+              d3.select("#daybyday #pollsTable").insert("div", ".poll:not(.selected)")
+                .append("p")
+                  .attr("class","mt-20 fz-14")
+                  .text("The latest polls")
+              d3.selectAll("#daybyday #pollsTable .poll:not(.selected)").classed("bt",function(d,i){
+                return i===0;
+              })
+
             }
             
             buildSparklines(data);
@@ -151,13 +160,7 @@
                   show:5
               });
               
-              d3.select(el+" #pollsTable").insert("div", ".poll:not(.selected)")
-                .append("p")
-                  .attr("class","t-bd-s mt-20")
-                  .text("CIAO CIAO CIAO")
-              d3.selectAll(el+" #pollsTable .poll:not(.selected)").classed("bt",function(d,i){
-                return i===0;
-              })
+              
 
               return dayByDay;
           }
