@@ -716,8 +716,8 @@ define([
 
                 balanceResult
                     .style("left",function(){
-                        //console.log("///////////",balance_result_x,delta_x,balance_result_x+delta_x)
-                        return (balance_result_x+delta_x)+"px"
+                        var x=(last_value.x_label+label_width)+delta_x;
+                        return (x)+"px"
                     })
             }
             updateData();
