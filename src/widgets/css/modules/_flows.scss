@@ -45,7 +45,7 @@
 
 
 // wrap flow's texts
-@media (max-width: 660px) {
+@media (max-width: 380px) {
   .box-flow {
     width: 100%;
     min-width: 280px;
@@ -64,13 +64,12 @@
 }
 
 // responsive control
-@media (max-width: 480px) { 
+@media (max-width: 560px) { 
   .box-flow {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px dotted lightgrey;
+    //border-bottom: 1px dotted lightgrey;
   }
-
   .box-seat {
     float: left;
     width: 50%;
@@ -80,37 +79,32 @@
     width: calc(50% - 20px - 1px);
     padding-left: 20px;
     border-left: 1px dotted lightgrey;
-  }
+  }  
 }
 
-@media (min-width: 480px) { 
+@media (min-width: 560px) { 
   .col-flow { 
     float: left;
-    width: 260px; 
+    width: 360px; 
   }
   .col-info { 
     float: right;
-    width: calc(100% - 320px);
+    width: calc(100% - 401px); //380+20+20+1
     margin-top: -4px;  
     padding-left: 20px;
     border-left: 1px dotted lightgrey;
   }
 }
-@media (min-width: 660px) { 
-  .col-flow { 
+@media (min-width: 620px) { 
+  /*.col-flow { 
     width: 360px; 
   }
   .col-info { 
     width: calc(100% - 400px);
     border-left: 1px dotted lightgrey;
-  }
-  .pos-a__txt2010,
-  .pos-a__txt2015 { 
-    width: 90px; 
-  }
+  }*/
 }
-
-@media (min-width: 1140px) { 
+@media (min-width: 700px) { 
   .col-info { width: 220px;}  
 }
 

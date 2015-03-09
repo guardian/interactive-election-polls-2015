@@ -94,8 +94,8 @@ a { cursor: pointer; }
 
 
 // padding due to media object
-@media (max-width:  659px) { .widget { padding: 0 20px; }}
-@media (max-width:  479px) { .widget { padding: 0 10px; }}
+//@media (max-width:  619px) { .widget { padding: 0 20px; }}
+//@media (max-width:  479px) { .widget { padding: 0 10px; }}
 
 /*/ sizes of media object
 @media (max-width:  320px) { .widget { width: 320px; }}
@@ -106,55 +106,47 @@ a { cursor: pointer; }
 @media (min-width: 1300px) { .widget { width: 860px; }}
 */
 
-@media (min-width: 1140px) { 
+
+/* iframe breakpoints */
+@media (max-width: 620px) {
+  .widget-section {
+    .col-side {
+      float: left;
+      width: 210;
+    }
+    .col-main {
+		  width: calc(100% - 210px - 20px);
+		  overflow: hidden;
+		  zoom: 1; //for IE!?  
+    }
+}}
+@media (min-width: 780px) { 
   .col-side { 
     float: left; 
     width: 140px; 
     padding-right: 20px;
   }
+  .cal-main {
+    width: 620px;
+  }
 }
-@media (min-width: 1300px) { 
+@media (min-width: 860px) { 
   .col-side { 
     width: 220px; 
   }
 }
 
 
-/*  */
+/* style of seat chart */
+// override coalition
 .widget-section {
-/*  .col-side,
-  .col-main {
-    width: 100%;
-    float: none;
-    padding-left: 0;
-  }
-  .col-side {
-    margin-right: 0;
-  }*/
   .coalition {
     width: 100%;
   }
-}
-
-@media (min-width: 660px) and (max-width: 1140px) {
-  .widget-section {
-	  .col-side {
-		  float: left;
-		  width: 210px; 
-    }
-	  .col-main {
-		  width: calc(100% - 210px - 20px);
-		  overflow: hidden;
-		  zoom: 1; //for IE!?  
-  }}
 }
 @media (min-width: 740px) {
   .widget-section {
     .coalition {
       width: 33.33%;
-    }
-  }
+  }}
 }
-
-
-
