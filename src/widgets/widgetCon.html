@@ -142,16 +142,16 @@
                   ix:false,
                   names:names,
                   notitle:true,
-                  viewport: {
+                  viewport:{
                     w:d3.select(".flow-container").node().clientWidth || d3.select(".flow-container").node().offsetWidth,
                     l:285
                   }
-                })
+                });
+
                 flow.addLastElections();
                 flow.addFlows();
                 flow.addBalanceSheet(party);
-
-                flow.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3);
+                flow.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3,parties);
               })
 
             }
