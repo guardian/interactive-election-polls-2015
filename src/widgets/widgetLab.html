@@ -131,6 +131,14 @@
             renderFlows();
             buildSparklines();
 
+            var seats_diff= +d3.select(".seats-diff-n").text().split(" ")[0],
+                seats_diff_day=d3.select(".seats-diff-day").text();
+
+            d3.select(".box-seat #txtSeats").text(function(){
+              return (seats_diff<0?"down ":"up ")+Math.abs(seats_diff)+" seat"+(Math.abs(seats_diff)===1?"":"s")
+            })
+            d3.select(".box-seat #txtDate").text(" "+seats_diff_day);
+
             function renderFlows() {
 
               parties.forEach(function(party){
