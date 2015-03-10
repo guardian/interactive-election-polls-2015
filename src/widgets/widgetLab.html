@@ -30,17 +30,7 @@
           <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
           <h2 class="h2 c-3" id="title_lab-transfers-embed"></h2>
         </div>
-        <!-- header btns -->
-        <div class="col-btns pos-btns">
-          <div class="btns-share">
-            <button class="btn-tt" data-source="twitter"></button>
-            <button class="btn-fb" data-source="facebook"></button>
-          </div>
-          <a>
-            <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
-            <span class="txt-next">See full projection</span>
-          </a>
-        </div>
+       
 
       </div>
 
@@ -64,7 +54,7 @@
         <!-- box-info -->
         <div class="col-info">
           <div class="box-seat">
-            <p>It is <b id="txtSeats">+1 seats</b><span id="txtDate"> since Feb 8</span></p>
+            <p></p>
             <div class="polls-trends poll-chart mb-10" id="seatsCharts"></div>
           </div>
           <div class="box-coalition">
@@ -73,6 +63,19 @@
           </div>
         </div>
 
+      </div>
+      <div class="row pos-r widget-footer">
+        <!-- header btns -->
+        <div class="col-btns pos-btns">
+          <div class="btns-share">
+            <button class="btn-tt" data-source="twitter"></button>
+            <button class="btn-fb" data-source="facebook"></button>
+          </div>
+          <a>
+            <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
+            <span class="txt-next">See full projection</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -133,11 +136,19 @@
 
             var seats_diff= +d3.select(".seats-diff-n").text().split(" ")[0],
                 seats_diff_day=d3.select(".seats-diff-day").text();
-
+            /*
             d3.select(".box-seat #txtSeats").text(function(){
               return (seats_diff<0?"down ":"up ")+Math.abs(seats_diff)+" seat"+(Math.abs(seats_diff)===1?"":"s")
             })
             d3.select(".box-seat #txtDate").text(" "+seats_diff_day);
+            */
+
+            var sentence="They are <b>"+(seats_diff<0?"down ":"up ")+Math.abs(seats_diff)+" seat"+(Math.abs(seats_diff)===1?"":"s")+"</b> "+seats_diff_day;
+            if(seats_diff===0) {
+              sentence="Their overall seat total is unchanged "+seats_diff_day;
+            }
+            d3.select(".polls-trends-diff")
+              .html(sentence);
 
             function renderFlows() {
 
