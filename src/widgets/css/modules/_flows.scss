@@ -1,4 +1,6 @@
-/* override charts */
+/* flow chart */
+
+// override
 .widget-body-flow {
   #seatsCharts .seats-chart {
     width: 100%;
@@ -24,9 +26,7 @@
   }
 }
 
-/* style and responsive 
- *for the flow widget */
-.col-side,
+// style
 .col-info {
   margin-bottom: 20px;
 }
@@ -44,7 +44,7 @@
 .pos-a__txt2015 { top: 145px; }
 
 
-// wrap flow's texts
+// responsive: wrap flow's texts
 @media (max-width: 380px) {
   .box-flow {
     width: 100%;
@@ -63,7 +63,7 @@
   }
 }
 
-// responsive control
+// responsive: iframe
 @media (max-width: 559px) { 
   .box-flow {
     margin-bottom: 20px;
@@ -95,21 +95,12 @@
     border-left: 1px dotted lightgrey;
   }
 }
-@media (min-width: 620px) { 
-  /*.col-flow { 
-    width: 360px; 
-  }
-  .col-info { 
-    width: calc(100% - 400px);
-    border-left: 1px dotted lightgrey;
-  }*/
-}
 @media (min-width: 700px) { 
   .col-info { width: 220px;}  
 }
 
 
-/* fancy grdient area */
+/* style: fancy grdient area */
 .pos-a__grad {
   position: absolute;
   width:40px;
