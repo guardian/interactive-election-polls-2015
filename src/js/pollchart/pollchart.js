@@ -89,7 +89,9 @@ define([
     // extract dates from both polls (data) and avg (dataAvg) datasets 
     dateList = polldata.extractDataByKey(data.concat(dataAvg), "timestamp");
     dataset = polldata.composeDataByParty(data, dataAvg, dateList);
-    
+    //console.log(dateList); 
+    //console.log(dataAvg);
+    //console.log(dataset.pollster); 
     
     /* Window */
     setChartSize();
@@ -315,9 +317,9 @@ define([
     function drawTextAvg() {
       gtAvg.attr("text-anchor", "left")
       .attr("x", function(d){ return x(d.value.date) + 8; })
-      .attr("y", function(d){ return y(d.value.vi) + 6 + posYShiftText[d.party] / 4; })
+      .attr("y", function(d){ return y(d.value.vi) + 6 + posYShiftText[d.party] / 3; })
       .text(function(d) { 
-        var num = (d.value.vi).toFixed(1); 
+        var num = Math.round(d.value.vi * 10) / 10; 
         return d.party === "lab" ? num + "%" : num; 
       });
     }
@@ -363,7 +365,7 @@ define([
         .data(function(d) { return d.pollster; })
         .enter().append("g")
         .attr("class", function(d, index) { return "pollster p" + index;} );
-
+      
       // 2. Draw over time view
       addRects(svgRects);
       drawRects();

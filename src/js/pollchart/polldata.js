@@ -133,7 +133,9 @@ define([
 
             //TODO: add precaution conditions 
             if (viAvg !== undefined) {
-              viAvg = parseFloat(viAvg.toFixed(2));
+              //console.log(viAvg);
+              viAvg = Math.round(viAvg * 100) / 100;
+              //console.log(viAvg, " [r]");
             } 
             
             // a list of vi of the day (viDayList)
@@ -149,7 +151,7 @@ define([
               viDayList[0] = viAvg;
             }      
             
-            //console.log(new Date(date), viAvg, viDayList);
+            //console.log(new Date(date), date, viAvg, viDayList);
             return {
               party: d.party,
               date: date,
