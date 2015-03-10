@@ -75,7 +75,16 @@ define([
                 
 
 				tooltipRow
-					.style("top",(index*46+5)+"px")
+					.style("top",function(d){
+						var delta_y=0;
+						if(index>0) {
+							d3.selectAll(".poll.selected")
+								.each(function(d){
+									delta_y+=42;
+								})	
+						}
+						return (index*46+5+delta_y)+"px";
+					});
 
 				var prev_x=0;
 				tooltips
@@ -87,7 +96,7 @@ define([
 					})
 					.style("top",function(d,i){
                         if(canvas.width/xscale.domain()[1]<10) {
-                            return 30*(i%2)+"px";    
+                            return (30*(i%2))+"px";    
                         }
 						return 30+"px";
 					})
@@ -148,10 +157,10 @@ define([
 
 			table.selectAll("div.poll:not(.hidden)")
 					.classed("hidden",function(d,i){
-						return i>=options.show;
+						return i>=options.show+1;
 					})
 
-			console.log(selected_poll)
+			//console.log(selected_poll)
 			selected_poll.parentNode.insertBefore( selected_poll, selected_poll.parentNode.firstChild.nextSibling );
 		}
 

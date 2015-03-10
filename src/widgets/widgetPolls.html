@@ -128,10 +128,13 @@
             if(row) {
               dayByDay.selectRow((+row)-1);
 
+              d3.select("#par_all-polls-embed")
+                .text("How this poll compares")
+
               d3.select("#daybyday #pollsTable").insert("div", ".poll:not(.selected)")
                 .append("p")
                   .attr("class","mt-20 fz-14")
-                  .text("The latest polls")
+                  .text("to the latest polls")
               d3.selectAll("#daybyday #pollsTable .poll:not(.selected)").classed("bt",function(d,i){
                 return i===0;
               })
