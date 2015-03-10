@@ -129,7 +129,7 @@ a { cursor: pointer; }
 
 
 /* iframe breakpoints */
-@media (max-width: 620px) {
+/*@media (max-width: 620px) {
   .widget-section {
     .col-side {
       float: left;
@@ -140,7 +140,7 @@ a { cursor: pointer; }
 		  overflow: hidden;
 		  zoom: 1; //for IE!?  
     }
-}}
+}}*/
 @media (min-width: 780px) { 
   .col-side { 
     float: left; 
@@ -165,9 +165,23 @@ a { cursor: pointer; }
     width: 100%;
   }
 }
-@media (min-width: 740px) {
+@media (min-width: 620px) {
   .widget-section {
     .coalition {
       width: 33.33%;
   }}
 }
+
+@media (min-width: 480px) { 
+  .widget-section {
+    .col-side { 
+      float: left; 
+      width: 140px; 
+      padding-right: 20px;
+    }
+    .cal-main {
+      width: 620px;
+    }
+}}
+
+
