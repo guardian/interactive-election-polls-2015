@@ -4,7 +4,6 @@
 
 /* widget */
 // override
-a { cursor: pointer; }
 
 
 // style
@@ -22,7 +21,7 @@ a { cursor: pointer; }
   
   .img__projection {
     display: none;
-		width:90px;
+		width: 90px;
 		height: 100%;
 	}
   
@@ -78,7 +77,10 @@ a { cursor: pointer; }
     margin-top: 5px;
     vertical-align: top;  
   }
-  a {
+  
+  // override
+  a { 
+    cursor: pointer; 
     text-decoration: none;
   }
 }
@@ -94,10 +96,11 @@ a { cursor: pointer; }
 	  }
     .h2 {
       display: inline-block;
+      margin-left: 6px;
     }
     .col-title {
-      width: calc(100% - 100px);
-      margin-left: 100px;
+      width: calc(100% - 90px);
+      margin-left: 90px;
     }
     .col-btns {
       margin-left: 100px;
@@ -141,4 +144,3 @@ a { cursor: pointer; }
 @media (min-width: 1140px) { .widget { width: 780px; }}
 @media (min-width: 1300px) { .widget { width: 860px; }}
 */
-
