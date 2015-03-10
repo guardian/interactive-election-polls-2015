@@ -23,12 +23,12 @@
       <!-- widget's header --> 
       <div class="widget-header row pos-r">
 
-        <!-- header image -->	
+        <!-- header image --> 
         <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
         <!-- header title -->
         <div class="col-title">
           <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
-          <h2 class="h2 c-3" id="title_con-transfers-embed"></h2>
+          <h2 class="h2 c-3" id="title_snp-transfers-embed"></h2>
         </div>
         
 
@@ -51,19 +51,19 @@
         </ul>
       </div>
 
-      <!-- widget's body: flow chart --> 		
+      <!-- widget's body: flow chart -->    
       <div class="widget-body-flow row mt-20 ff-ss fz-14">
 
         <!-- box-side -->
         <div class="col-side">
-          <p class="" id="par_con-transfers"></p>
+          <p class="" id="par_snp-transfers"></p>
         </div>
         <!-- box-main -->
         <div class="col-flow pos-r charts-container">
           <p class="pos-a__txt2010 c-76">Which seats in the <b>current parliament</b>...</p>
           <p class="pos-a__txt2015 c-76">...could change hands in the <b>2015 Guardian projection</b>:</p>
           <div class="box-flow pos-r mb-10 flow-container">
-            <div class="poll-chart" id="conChart"></div>
+            <div class="poll-chart" id="snpChart"></div>
             <div class="pos-a__grad grad-l"></div>
             <div class="pos-a__grad grad-r"></div>
           </div>
@@ -146,7 +146,7 @@
 
             pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
 
-            var parties=["con"];
+            var parties=["snp"];
 
             renderFlows();
             buildSparklines();
