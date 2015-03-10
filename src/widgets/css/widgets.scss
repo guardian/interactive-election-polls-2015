@@ -84,11 +84,14 @@ a { cursor: pointer; }
 // responsive: 
 
 // responsvie: widget's header
-@media (min-width: 660px) {
+@media (min-width: 460px) {
   .widget-header {
     .img__projection {
       display: block;
 	  }
+    .h2 {
+      display: inline-block;
+    }
     .col-title {
       width: calc(100% - 100px);
       margin-left: 100px;
@@ -96,20 +99,6 @@ a { cursor: pointer; }
     .col-btns {
       margin-left: 100px;
   }}
-}
-@media (min-width: 740px) {
-  .widget-header {
-    .h2 {
-      display: inline-block;
-    }
-    .col-title {
-      width: calc(100% - 100px - 250px); //250 is col-btns
-    }
-    .pos-btns {
-      position: absolute;
-      right: 0;
-      bottom: 0; 
-  }} 
 }
 
 // responsive: widget's body
