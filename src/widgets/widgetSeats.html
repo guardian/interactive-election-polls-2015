@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="wrapper" class="widget guInteractive">
-
+      <a class="anchor" name="default" data-status="The Guardian poll projection"></a>
       <!-- widget header --> 
       <div class="row pos-r widget-header">
         <!-- header image -->	
@@ -87,17 +87,20 @@
         req([
           'd3',
           'page/page',
-          'seatscharts/PollsOfPolls'
+          'seatscharts/PollsOfPolls',
+          'social/social'
         ], function(
           d3,
           pageView,
-          PollsOfPolls
+          PollsOfPolls,
+          shareInteractive
         ) {
 
           loadData(function(data){
             console.log(data);
 
             buildWidget('#commonsChart',data)
+            shareInteractive();
 
           });
 

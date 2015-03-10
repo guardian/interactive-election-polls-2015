@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="wrapper" class="all-polls widget guInteractive">
-      
+      <a class="anchor" name="all-uk-wide-polls" data-status="Full list of opinion polls from the Guardian poll projection"></a>
       <!-- widget header --> 
       <div class="row pos-r widget-header">
         <!-- header image -->	
@@ -60,8 +60,8 @@
         <!-- header btns -->
         <div class="col-btns pos-btns">
           <div class="btns-share">
-            <button class="btn-tt" data-source="twitter"></button>
-            <button class="btn-fb" data-source="facebook"></button>
+            <button class="btn-tt" data-source="twitter" data-view="all-uk-wide-polls"></button>
+            <button class="btn-fb" data-source="facebook" data-view="all-uk-wide-polls"></button>
           </div>
           <a href="http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection" title="See full projection" target="_parent">
             <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
@@ -82,19 +82,22 @@
           'd3',
           'page/page',
           'pollchart/daybyday',
-          'sparklines/sparklines'
+          'sparklines/sparklines',
+          'social/social'
         ], function(
           d3,
           pageView,
           DayByDay,
-          Sparkline
+          Sparkline,
+          shareInteractive
         ) {
 
           loadData(function(data){
-            console.log(data);
+            //console.log(data);
 
             buildWidget(data);
             
+            shareInteractive();
 
           });
           function buildWidget(data) {
@@ -129,12 +132,12 @@
               dayByDay.selectRow((+row)-1);
 
               d3.select("#par_all-polls-embed")
-                .text("How this poll compares")
+                .text("How this poll compares ...")
 
               d3.select("#daybyday #pollsTable").insert("div", ".poll:not(.selected)")
                 .append("p")
                   .attr("class","mt-20 fz-14")
-                  .text("to the latest polls")
+                  .text("... to the latest polls")
               d3.selectAll("#daybyday #pollsTable .poll:not(.selected)").classed("bt",function(d,i){
                 return i===0;
               })
@@ -296,7 +299,7 @@
         });
       }, function(err) { console.error('Error loading boot.', err); });
 
-
+      
 
       function loadData(callback) {
         var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";

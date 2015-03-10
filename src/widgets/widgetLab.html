@@ -20,6 +20,7 @@
   </head>
   <body>
     <div id="wrapper" class="guInteractive widget">
+      <a class="anchor" name="labour-gains-and-losses" data-status="The Guardian poll projection shows how many seats Labour would gain and lose"></a>
       <!-- widget's header --> 
       <div class="widget-header row pos-r">
 
@@ -60,8 +61,8 @@
         </div>
         <!-- box-main -->
         <div class="col-flow pos-r charts-container">
-          <p class="pos-a__txt2010 c-76">Which seats in the <b>current parliament</b>...</p>
-          <p class="pos-a__txt2015 c-76">...could change hands in the <b>2015 Guardian projection</b>:</p>
+          <p class="pos-a__txt2010 c-76">Which seats in the <b>current parliament</b> ...</p>
+          <p class="pos-a__txt2015 c-76">... could change hands in the <b>2015 Guardian projection</b>:</p>
           <div class="box-flow pos-r mb-10 flow-container">
             <div class="poll-chart" id="labChart"></div>
             <div class="pos-a__grad grad-l"></div>
@@ -85,8 +86,8 @@
         <!-- header btns -->
         <div class="col-btns pos-btns">
           <div class="btns-share">
-            <button class="btn-tt" data-source="twitter"></button>
-            <button class="btn-fb" data-source="facebook"></button>
+            <button class="btn-tt" data-source="twitter" data-view="labour-gains-and-losses"></button>
+            <button class="btn-fb" data-source="facebook" data-view="labour-gains-and-losses"> </button>
           </div>
           <a href="http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection" title="See full projection" target="_parent">
             <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
@@ -108,12 +109,14 @@
           'd3',
           'page/page',
           'seatscharts/PollsOfPolls',
-          'sparklines/sparklines'
+          'sparklines/sparklines',
+          'social/social'
         ], function(
           d3,
           pageView,
           PollsOfPolls,
-          Sparkline
+          Sparkline,
+          shareInteractive
         ) {
 
           loadData(function(data){
@@ -150,6 +153,7 @@
 
             renderFlows();
             buildSparklines();
+            shareInteractive();
 
             var seats_diff= +d3.select(".seats-diff-n").text().split(" ")[0],
                 seats_diff_day=d3.select(".seats-diff-day").text();
