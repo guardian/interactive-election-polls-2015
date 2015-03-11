@@ -29,7 +29,7 @@
         <!-- header title -->
         <div class="col-title">
           <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
-          <h2 class="h2 c-3" id="title_snp-transfers-embed"></h2>
+          <h2 class="h2 c-3" id="title_snp-transfers-embed_not">SNP projection: <span class="projection-number"></span> seats</h2>
         </div>
       </div>
       
@@ -153,14 +153,12 @@
             renderFlows();
             buildSparklines();
 
-            var seats_diff= +d3.select(".seats-diff-n").text().split(" ")[0],
+            var seats= +d3.select("text.label").text();
+                seats_diff= +d3.select(".seats-diff-n").text().split(" ")[0],
                 seats_diff_day=d3.select(".seats-diff-day").text();
-            /*
-            d3.select(".box-seat #txtSeats").text(function(){
-              return (seats_diff<0?"down ":"up ")+Math.abs(seats_diff)+" seat"+(Math.abs(seats_diff)===1?"":"s")
-            })
-            d3.select(".box-seat #txtDate").text(" "+seats_diff_day);
-            */
+
+            d3.select(".projection-number").text(seats);
+
             var sentence="They are <b>"+(seats_diff<0?"down ":"up ")+Math.abs(seats_diff)+" seat"+(Math.abs(seats_diff)===1?"":"s")+"</b> "+seats_diff_day;
             if(seats_diff===0) {
               sentence="Their overall seat total is unchanged "+seats_diff_day;
