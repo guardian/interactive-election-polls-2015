@@ -90,7 +90,7 @@
 // responsive: 
 
 // responsvie: widget's header
-@media (min-width: 460px) {
+@media (min-width: 440px) {
   .widget-header {
     .img__projection {
       display: block;
@@ -108,15 +108,22 @@
   }}
 }
 
-// responsive: widget's body
+
+// responsive: widget's legend (override)
+@media (max-width: 515px) {
+  .widget { 
+    .ul__party li {
+      width: calc(100% / 4);
+      padding-right: 0;
+}}}
 @media (max-width: 620px) { 
-  //override
   .widget { 
     .ul__party {
-    float: left;
+      float: left;
   }
 }}
 
+// responsive: widget's body
 @media (min-width: 780px) { 
   .col-side { 
     float: left; 
@@ -139,6 +146,7 @@
 //@media (max-width:  479px) { .widget { padding: 0 10px; }}
 // sizes of media object
 @media (max-width:  320px) { .widget { width: 320px; }}
+@media (min-width:  480px) { .widget { width: 460px; }}
 @media (min-width:  660px) { .widget { width: 620px; }}
 @media (min-width:  740px) { .widget { width: 700px; }}
 @media (min-width:  980px) { .widget { width: 620px; }}
