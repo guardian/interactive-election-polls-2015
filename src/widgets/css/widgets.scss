@@ -3,7 +3,24 @@
 @import 'modules/daybyday';
 
 /* widget */
-// override
+// override: live-blog
+.live-blog {
+  .widget {
+    border: 0;
+  }
+  .widget-header .col-title {
+    margin-left: 0;
+  }
+  .widget-footer {
+    background-color: #fff;
+    padding-left: 0;
+  }
+  .widget-header .img__projection,
+  .widget-legend .col-left,
+  .widget-footer .btns-share {
+    display: none;
+  }
+}
 
 
 // style
