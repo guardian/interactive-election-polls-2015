@@ -16,7 +16,7 @@
       <a class="anchor" name="all-uk-wide-polls" data-status="Full list of opinion polls from the Guardian poll projection"></a>
       <!-- widget header --> 
       <div class="row pos-r widget-header">
-        <!-- header image -->	
+        <!-- header image --> 
         <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
         <!-- header title -->
         <div class="col-title">
@@ -95,8 +95,9 @@
             //console.log(data);
 
             buildWidget(data);
-            
             shareInteractive();
+
+            iframeMessenger.resize();
 
           });
           function buildWidget(data) {
@@ -144,6 +145,8 @@
             }
             
             buildSparklines(data);
+
+            //iframeMessenger.resize();
           }
           function renderDayByDay(el,data) {
               var dayByDay=new DayByDay(data.sheets["vi-continuous-series"],{
