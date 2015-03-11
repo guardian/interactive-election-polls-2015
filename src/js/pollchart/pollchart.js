@@ -319,7 +319,7 @@ define([
       .attr("x", function(d){ return x(d.value.date) + 8; })
       .attr("y", function(d){ return y(d.value.vi) + 6 + posYShiftText[d.party] / 3; })
       .text(function(d) { 
-        var num = Math.round(d.value.vi * 10) / 10; 
+        var num = d.value.vi;//Math.round(d.value.vi * 10) / 10; 
         return d.party === "lab" ? num + "%" : num; 
       });
     }
