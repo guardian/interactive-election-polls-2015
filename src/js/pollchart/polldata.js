@@ -85,8 +85,8 @@ define([
             function findViListByGroup(group, p) {
               return datum.filter(function(d) {
                 switch (group) {
-                  case 1: return (d.pollster === p) && (d.date <= date) && (d.date > (date - dayConst*dayAvg)); break;
-                  case 2: return (d.pollster === p) && (d.date <= date); break;
+                  case 1: return (d.pollster === p) && (d.date <= date) && (d.date > (date - dayConst*dayAvg));
+                  case 2: return (d.pollster === p) && (d.date <= date); 
                   default: console.err("wrong group!");
                 }
               }).map(function(d) {
@@ -115,8 +115,7 @@ define([
                 if (len !== 0) {
                   viAvgList.push(li[len-1]);
               }});
-              //console.log("[" + date.getDate() + "." + date.getMonth() + "]", viAvgList.join(", "));                     
-              ////if (date === testDate) { console.log("avg =>", averageArray(viAvgList)); }
+              
               // 1. avg vi from calculation 
               viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
             

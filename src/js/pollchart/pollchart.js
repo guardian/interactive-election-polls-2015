@@ -13,7 +13,7 @@ define([
   var dayUnit,
       dayConst = 86400000,
       termDic = { con: "Con", lab: "Lab", ukip: "UKIP", ldem: "LD", grn: "Green", 
-                  YouGov: "YouGov", Populus: "Populus",/* Ashcroft: "Ashcroft",*/ "Lord Ashcroft": "Ashcroft", 
+                  YouGov: "YouGov", Populus: "Populus", "Lord Ashcroft": "Ashcroft", 
                   Opinium: "Opinium", ComResP: "ComRes", ComResO: "ComRes Online", 
                   TNS: "TNS BMRB", ICM: "ICM", Ipsos: "Ipsos-MORI", Survation: "Survation" };
   
@@ -180,11 +180,12 @@ define([
       gr.on("mouseover", function(d) {
         nl = document.querySelectorAll(".t" + d + ".op-0");
         for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", false); }
-        var n = document.createTextNode(' '); document.body.appendChild(n); document.body.removeChild(n);
+        //var n = document.createTextNode(' '); 
+        //document.body.appendChild(n); 
+        //document.body.removeChild(n);
       })
-      .on("mouseout", function(d) {
+      .on("mouseout", function() {
         for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
-        var n = document.createTextNode(' '); document.body.appendChild(n); document.body.removeChild(n);
       });
 
       // pan evnt using hammerjs
@@ -219,7 +220,7 @@ define([
         preCN = curCN;
       });
       
-      hr.on("panend", function(e) {
+      hr.on("panend", function() {
         // remove last highlight 
         for (var i=0; i<nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
       });
@@ -311,7 +312,9 @@ define([
     function addTextAvg(svgObj, className, key) {
       gtAvg = svgObj.append("text")
       //TODO: make sure data order
-      .datum(function(d) { return {key: d[key], value: d.values[d.values.length - 1], party: d.party}; })
+      .datum(function(d) { 
+        return {key: d[key], value: d.values[d.values.length - 1], party: d.party}; 
+      })
       .attr("class", className);
     } 
     function drawTextAvg() {
@@ -439,15 +442,13 @@ define([
   /* ******/
   function setChartSize() {
     // Dimensions of the chart
-    var w = window,
-        d = document,
+    var d = document,
         h = d.documentElement, //html
         p = d.querySelector("#pollchart"),
         s = d.querySelector("#pollchart svg"),
-        w = p.clientWidth || h.clientWidth || w.innerWidth,
-        h = h.clientHeight || w.innerHeight,
-        h = (h > 480) ? 480 : (h - 80),
-        str;
+        w = p.clientWidth || h.clientWidth || window.innerWidth,
+        h = h.clientHeight || window.innerHeight,
+        h = (h > 480) ? 480 : (h - 80);
 
     width = w - margin.left - margin.right;
     height = h - margin.top - margin.bottom;
@@ -494,19 +495,6 @@ define([
       .attr("height", height + margin.top + margin.bottom);
   } 
   /* ************/
-
-
-  function isIE()
-  // Returns the version of Internet Explorer or a -1
-  // (indicating the use of another browser).
-  {
-    var flag = false;    
-    if (navigator.appName == 'Microsoft Internet Explorer') { 
-      flag = true; 
-    }
-    return flag;
-  }
-
 
   return {
     render: render
