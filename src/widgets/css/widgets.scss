@@ -1,0 +1,155 @@
+@import 'modules/seat';
+@import 'modules/flows';
+@import 'modules/daybyday';
+
+/* widget */
+// override
+
+
+// style
+.widget {
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+ 
+  .col-side {
+    margin-bottom: 20px;
+  }
+}
+
+.widget-header {
+  border-bottom: 1px solid #dcdcdc;
+  
+  .img__projection {
+    display: none;
+    width: 90px;
+    height: 100%;
+  }
+  
+  .col-title {
+    width: 100%;
+    margin: 8px 0 5px 0;
+  }
+  
+  .h2 {
+    font-family:'Guardian Egyptian Web', Georgia, serif;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .btns-share {
+    display: inline; //TODO: remove this, if possible
+  }
+  .btn-next path {
+    fill: #005689;
+  }
+  .txt-next {
+    font-family:'Guardian Egyptian Headline', Georgia, serif;
+    color: #00588a; 
+    
+    display: inline-block;
+    margin-top: 5px;
+    vertical-align: top;  
+  }
+}
+
+.widget-footer {
+  border-top:1px solid #ddd;
+  background-color:#eee;
+  padding-top:5px;
+  padding-left:5px;
+
+  .btns-share {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 1px solid #ddd;
+    padding-right: 10px;
+    margin-right: 5px;
+    margin-top:0;
+    margin-bottom: 0;
+  }
+  .btn-next path {
+    fill: #005689;
+  }
+  .txt-next {
+    font-family:'Guardian Egyptian Headline', Georgia, serif;
+    color: #00588a; 
+    
+    display: inline-block;
+    margin-top: 5px;
+    vertical-align: top;  
+  }
+  
+  // override
+  a { 
+    cursor: pointer; 
+    text-decoration: none;
+  }
+}
+
+
+// responsive: 
+
+// responsvie: widget's header
+@media (min-width: 440px) {
+  .widget-header {
+    .img__projection {
+      display: block;
+    }
+    .h2 {
+      display: inline-block;
+      margin-left: 6px;
+    }
+    .col-title {
+      width: calc(100% - 90px);
+      margin-left: 90px;
+    }
+    .col-btns {
+      margin-left: 100px;
+  }}
+}
+
+
+// responsive: widget's legend (override)
+@media (max-width: 515px) {
+  .widget { 
+    .ul__party li {
+      width: calc(100% / 4);
+      padding-right: 0;
+}}}
+@media (max-width: 620px) { 
+  .widget { 
+    .ul__party {
+      float: left;
+  }
+}}
+
+// responsive: widget's body
+@media (min-width: 780px) { 
+  .col-side { 
+    float: left; 
+    width: 140px; 
+    padding-right: 20px;
+  }
+  .cal-main {
+    width: 620px;
+  }
+}
+@media (min-width: 860px) { 
+  .col-side { 
+    width: 220px; 
+  }
+}
+
+// responsive: iframe breakpoints
+/*/ padding due to media object
+//@media (max-width:  619px) { .widget { padding: 0 20px; }}
+//@media (max-width:  479px) { .widget { padding: 0 10px; }}
+// sizes of media object
+@media (max-width:  320px) { .widget { width: 320px; }}
+@media (min-width:  480px) { .widget { width: 460px; }}
+@media (min-width:  660px) { .widget { width: 620px; }}
+@media (min-width:  740px) { .widget { width: 700px; }}
+@media (min-width:  980px) { .widget { width: 620px; }}
+@media (min-width: 1140px) { .widget { width: 780px; }}
+@media (min-width: 1300px) { .widget { width: 860px; }}
+*/

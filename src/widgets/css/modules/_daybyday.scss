@@ -1,0 +1,35 @@
+/* daybyday chart */
+
+.all-polls {
+
+  // override
+  #daybyday .poll.selected {
+		background-color: #fffae3;
+		border-bottom:1px solid #ddd;
+		margin-bottom:10px;
+	}
+	#daybyday .poll.bt {
+		border-top:1px dotted #999;
+	}
+	.polls-trends .seats-chart {
+		width: 50%;
+	}
+	
+  // responsive
+	@media (min-width: 480px) {
+		.polls-trends .seats-chart {
+			width: 20%;
+		}
+	  .widget-section {
+	    .coalition {
+	      width: 33.33%;
+	    }
+	  }
+	}
+	@media (min-width: 740px) {
+		.polls-trends .seats-chart {
+			width: 20%;
+		}
+	}
+
+}

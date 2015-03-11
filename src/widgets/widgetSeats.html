@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Libs -->
+    <link rel='stylesheet' href='http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css'/>
+    <link rel="stylesheet" href="@@assetPath@@/css/main.css">
+    <link rel="stylesheet" href="@@assetPath@@/css/widgets.css">
+    <script src="//interactive.guim.co.uk/libs/iframe-messenger/iframeMessenger.js"></script>
+    <script src="@@assetPath@@/js/curl.js"></script>
+  </head>
+  <body>
+    <div id="wrapper" class="widget guInteractive">
+      <a class="anchor" name="default" data-status="The Guardian poll projection"></a>
+      <!-- widget header --> 
+      <div class="row pos-r widget-header">
+        <!-- header image --> 
+        <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
+        <!-- header title -->
+        <div class="col-title">
+          <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
+          <h2 class="h2 c-3" id="title_mainprojection-embed"></h2>
+        </div>
+      </div>
+
+      <!-- widget's legend --> 
+      <div class="row" id="stickyRow">
+        <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
+        <ul class="col-right mb-60 ul__party t-ul__party">
+          <li><span class="rect bgc-lab"></span>Labour</li>
+          <li><span class="rect bgc-snp"></span>SNP</li>
+          <li><span class="rect bgc-grn"></span>Green</li>
+          <li><span class="rect bgc-others"></span>Others</li>
+          <li><span class="rect bgc-ukip"></span>Ukip</li>
+          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+          <li><span class="rect bgc-con"></span></li>
+        </ul>
+      </div>
+
+      <!-- widget's body: sections of seat chart -->    
+      <div class="row widget-section-seat ff-ss fz-14 mt-20">  
+        <div class="col-side mt-35">
+          <p id="par_mainprojection"></p>       
+        </div>
+        <div class="col-main">
+          <div id="commonsChart" class="poll-chart"></div>
+        </div>
+      </div>
+
+      <div class="row widget-section-seat ff-ss fz-14">
+        <div class="col-side mt-5">
+          <p id="par_coalitions"></p>
+        </div>
+        <div class="col-main">
+          <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
+        </div>
+      </div>
+
+      <!-- wiget's footer -->
+      <div class="row pos-r widget-footer">
+        <div class="col-btns pos-btns">
+          <div class="btns-share">
+            <button class="btn-tt" data-source="twitter"></button>
+            <button class="btn-fb" data-source="facebook"></button>
+          </div>
+          <a href="http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection" title="See full projection" target="_parent">
+            <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
+            <span class="txt-next">See full projection</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      require=curl;
+      iframeMessenger.enableAutoResize();
+
+      require(['@@assetPath@@/js/main.js'], function(req) {
+        // Main app returns a almond instance of require to avoid
+        // R2 / NGW inconsistencies.
+        req([
+          'd3',
+          'page/page',
+          'seatscharts/PollsOfPolls',
+          'social/social'
+        ], function(
+          d3,
+          pageView,
+          PollsOfPolls,
+          shareInteractive
+        ) {
+
+          loadData(function(data){
+            console.log(data);
+
+            buildWidget('#commonsChart',data)
+            shareInteractive();
+
+          });
+
+          function buildWidget(el,data) {
+            var names={
+              "con":"Conservative",
+              "libdem":"Liberal Democrats",
+              "ukip":"UKIP",
+              "others":"Others",
+              "pc":"PC",
+              "green":"Green Party",
+              "snp":"Scottish National",
+              "lab":"Labour Party"
+            };
+            var ORDER=(["con","libdem","ukip","dup","others","pc","green","snp","lab"]).reverse();
+
+            var today = new Date(),
+            electionDay = new Date(2015,4,7),
+            diff = d3.time.format("%j")(electionDay) - d3.time.format("%j")(today);
+
+            d3.select("#dayToGo").text(function(){
+              return diff+" day"+(diff>1?"s":"")
+            })
+
+            pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
+
+            var projections=new PollsOfPolls(data.sheets["RESULT"],{
+              container:el,
+              order:ORDER,
+              height:140,
+              top:0,
+              margins:{
+                left:0,
+                top:40,
+                right:0,
+                bottom:0
+              },
+              additionalTriangle:null,
+              triangle:1,
+              ix:true,
+              names:names,
+              notitle:true,
+              showValues:true,
+              majorityText:true
+            });
+            projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"],3);
+          }
+
+        });
+      }, function(err) { console.error('Error loading boot.', err); });
+
+
+
+      function loadData(callback) {
+        var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
+
+
+        d3.json(jsonSrc, function(err, data) {
+
+          //data=testData;
+
+          data.sheets["RESULT"].forEach(function(d){
+
+            d.unfiltered_projection=d.projection.toLowerCase();
+            d.unfiltered_winner2010=d.winner2010.toLowerCase();
+
+            if(d.projection=="PC") {
+              d.projection="others";
+            }
+            if(d.winner2010=="PC") {
+              d.winner2010="others";
+            }
+            if(d.projection=="DUP") {
+              d.projection="others";
+            }
+            if(d.winner2010=="DUP") {
+              d.winner2010="others";
+            }
+          })
+          //console.log(data)
+          callback(data);
+        });
+      }
+
+
+    </script>
+  </body>
+</html>
