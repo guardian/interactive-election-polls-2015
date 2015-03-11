@@ -117,6 +117,10 @@
           loadData(function(data){
             //console.log(data);
 
+            iframeMessenger.getLocation(function(location){
+              d3.select("#wrapper").classed("live-blog",(location.href.indexOf("/live/")>-1))
+            });
+
             buildWidget('#commonsChart',data);
             shareInteractive();
 
