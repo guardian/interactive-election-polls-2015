@@ -226,7 +226,7 @@ define([
         //projection
         var polls=new SeatsChart(values,{
             party_field:"from",
-            title:options.notitle?null:["...could change hands in the ","2015 Guardian projection"],
+            title:options.notitle?null:["... could change hands in the ","2015 Guardian projection"],
             top:options.top,
             flowHeight:options.top,
             bar:{
@@ -514,7 +514,7 @@ define([
             
             current=new SeatsChart(values,{
                 party_field:"to",
-                title:options.notitle?null:["Which seats in the ","current parliament..."],
+                title:options.notitle?null:["Which seats in the ","current parliament ..."],
                 top:0,
                 flowHeight:options.top,
                 bar:{
