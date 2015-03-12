@@ -39,12 +39,15 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      options: {
+        options: {
             style: (isDev) ? 'expanded' : 'compressed',
             sourcemap: (isDev) ? 'inline' : 'none'
-       },
+        },
         build: {
-            files: { 'build/assets/css/main.css': 'src/css/main.scss' }
+            files: { 
+              'build/assets/css/main.css': 'src/css/main.scss',
+              'build/assets/css/widgets.css': 'src/widgets/css/widgets.scss',
+            }
         }
     },
 
@@ -75,6 +78,7 @@ module.exports = function(grunt) {
           baseUrl: './src/js/',
           mainConfigFile: './src/js/require.js',
           optimize: (isDev) ? 'none' : 'uglify2',
+          //optimize: (isDev) ? 'none' : 'none',
           inlineText: true,
           name: 'almond',
           out: 'build/assets/js/main.js',
@@ -114,7 +118,7 @@ module.exports = function(grunt) {
         },
       },
       css: {
-        files: ['src/css/**/*.*'],
+        files: ['src/css/**/*.*','src/widgets/css/**/*.*'],
         tasks: ['sass', 'autoprefixer', 'replace:local'],
         options: {
           spawn: false,
@@ -142,6 +146,12 @@ module.exports = function(grunt) {
               cwd: 'src/',
               src: 'imgs/**',
               dest: 'build/assets/',
+              expand: true
+          },
+          {
+              cwd: 'src/widgets/',
+              src: '*.*',
+              dest: 'build/embed/',
               expand: true
           }
         ]
@@ -198,6 +208,11 @@ module.exports = function(grunt) {
                 cwd: 'build',
                 src: '*.*',
                 dest: pkg.config.s3_folder
+            },
+            {
+                cwd: 'build/embed',
+                src: '*.*',
+                dest: pkg.config.s3_folder+"embed/"
             }]
         },
         assets: {
