@@ -12,7 +12,7 @@
     <script src="@@assetPath@@/js/curl.js"></script>
   </head>
   <body>
-    <div id="wrapper" class="widget guInteractive">
+    <div id="wrapper" class="guInteractive front">
       <a class="anchor" name="default" data-status="The Guardian poll projection"></a>
       
       <!-- widget header --> 
@@ -20,30 +20,30 @@
         <!-- header image --> 
         <img class="pos-a img__projection" src="//i.guim.co.uk/static/w-220/h--/q-95/sys-images/Guardian/Pix/pictures/2015/2/27/1425023426157/712572fd-b6fd-4c7f-955a-dfd9ef4252af-620x372.jpeg" alt="">
         <!-- header title -->
-        <div class="col-title">
-          <h2 class="h2 c-b3"><span id="dayToGo">&nbsp;&nbsp; days</span> to go</h2> 
-          <h2 class="h2 c-3" id="title_mainprojection-embed"></h2>
-        </div>
+        <h2 class="col-title h2">
+          <span class="c-b3 hide-320">&nbsp;<span id="dayToGo"></span> to go&nbsp;</span> 
+          <span class="c-3" id="title_mainprojection-embed"></span>
+        </h2>
       </div>
 
       <!-- widget's legend --> 
       <div class="widget-legend row" id="stickyRow">
-        <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
-        <ul class="col-right mb-60 ul__party t-ul__party">
-          <li><span class="rect bgc-lab"></span>Labour</li>
+        <!--p class="col-left t-time" id="lastUpdate">Last update <time></time></p-->
+        <ul class="mb-60 ul__party t-ul__party">
+          <li><span class="rect bgc-lab"></span></li>
           <li><span class="rect bgc-snp"></span>SNP</li>
           <li><span class="rect bgc-grn"></span>Green</li>
           <li><span class="rect bgc-others"></span>Others</li>
           <li><span class="rect bgc-ukip"></span>Ukip</li>
-          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+          <li><span class="rect bgc-ldem"></span>LD</li>
           <li><span class="rect bgc-con"></span></li>
         </ul>
       </div>
 
       <!-- widget's body: sections of seat chart -->    
-      <div class="widget-section-seat row ff-ss fz-14 mt-20">  
+      <div class="widget-section-seat row ff-ss fz-14">  
         <div class="col-side mt-35">
-          <p id="par_mainprojection"></p>       
+          <p id="par_mainprojection"></p>
         </div>
         <div class="col-main">
           <div id="commonsChart" class="poll-chart"></div>
@@ -51,7 +51,7 @@
       </div>
 
       <div class="widget-section-seat row ff-ss fz-14">
-        <div class="col-side mt-5">
+        <div class="col-side">
           <p id="par_coalitions-embed"></p>
         </div>
         <div class="col-main">
@@ -60,17 +60,11 @@
       </div>
 
       <!-- wiget's footer -->
-      <div class="widget-footer row pos-r">
-        <div class="col-btns pos-btns">
-          <div class="btns-share">
-            <button class="btn-tt" data-source="twitter"></button>
-            <button class="btn-fb" data-source="facebook"></button>
-          </div>
-          <a href="http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection" title="See full projection" target="_parent">
-            <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
-            <span class="txt-next">See full projection</span>
-          </a>
-        </div>
+      <div class="widget-footer pos-next hide-320">
+        <a href="http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection" title="See full projection" target="_parent">
+          <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
+          <span class="txt-next">See full projection</span>
+        </a>
       </div>
     </div>
     
