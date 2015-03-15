@@ -320,10 +320,22 @@ define([
     function drawTextAvg() {
       gtAvg.attr("text-anchor", "left")
       .attr("x", function(d){ return x(d.value.date) + 8; })
-      .attr("y", function(d){ return y(d.value.vi) + 6 + posYShiftText[d.party] / 3; })
+      .attr("y", function(d){ 
+        if (d.party === "con" || d.party === "lab") {
+          if (dataAvgEnd[0].con > dataAvgEnd[0].lab) {
+            posYShiftText.con = -10;
+            posYShiftText.lab = 20;
+        }}
+        return y(d.value.vi) + 6 + posYShiftText[d.party] / 3; 
+      })
       .text(function(d) { 
-        var num = d.value.vi;//Math.round(d.value.vi * 10) / 10; 
-        return d.party === "lab" ? num + "%" : num; 
+        var flag = "lab",
+            num = d.value.vi;//Math.round(d.value.vi * 10) / 10; 
+        if (d.party === "con" || d.party === "lab") {
+          if (dataAvgEnd[0].con > dataAvgEnd[0].lab) {
+            flag = "con";
+        }}
+        return d.party === flag ? num + "%" : num; 
       });
     }
     
@@ -335,7 +347,9 @@ define([
     }
     function drawTextVi() {
       gtVi.attr("x", function(d){ return x(d.date) - 3; })
-      .attr("y", function(d){ return y(d.vi) + posYShiftText[d.party]; })
+      .attr("y", function(d){ 
+        return y(d.vi) + posYShiftText[d.party]; 
+      })
       .text(function(d) { return d.vi; });
     }
 

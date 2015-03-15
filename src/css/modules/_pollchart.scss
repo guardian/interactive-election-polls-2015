@@ -43,10 +43,12 @@
     opacity: 0;
   }
   .op-1-path path, 
-  .op-1-polls .pollster, 
   .op-1-pathpolls .path-polls {
     opacity: 1;
   }
+  .op-1-polls .pollster {
+    fill-opacity: 1;
+  } 
 
   /* SVG size */
   svg {
