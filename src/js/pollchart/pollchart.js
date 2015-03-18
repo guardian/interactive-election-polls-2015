@@ -308,7 +308,6 @@ define([
       });
     }
 
-    var posYShiftText = {con:20, grn:20, lab:-10, ukip:-10, ldem:-10};
     function addTextAvg(svgObj, className, key) {
       gtAvg = svgObj.append("text")
       //TODO: make sure data order
@@ -318,20 +317,24 @@ define([
       .attr("class", className);
     } 
     function drawTextAvg() {
+      // data last index, y shift
+      var dl = dataAvgEnd[0],
+          ys = {con:20, grn:20, lab:-15, ldem:-15, ukip:-5};
       gtAvg.attr("text-anchor", "left")
       .attr("x", function(d){ return x(d.value.date) + 8; })
-      .attr("y", function(d){ 
-        if (d.party === "con" || d.party === "lab") {
-          if (dataAvgEnd[0].con > dataAvgEnd[0].lab) {
-            posYShiftText.con = -10;
-            posYShiftText.lab = 20;
-        }}
-        return y(d.value.vi) + 6 + posYShiftText[d.party] / 3; 
+      .attr("y", function(d){
+        switch (d.party) {
+          case "con":  ys.con  = dl.con > dl.lab  ? -15 : 20; break;
+          case "lab":  ys.lab  = dl.con > dl.lab  ? 20 : -15; break;
+          case "grn":  ys.grn  = dl.grn > dl.ldem ? -15 : 20; break;
+          case "ldem": ys.ldem = dl.grn > dl.ldem ? 20 : -15; break;
+        }
+        return y(d.value.vi) + 6 + ys[d.party] / 3; 
       })
       .text(function(d) { 
         var flag = "lab",
             num = d.value.vi;//Math.round(d.value.vi * 10) / 10; 
-        if (d.party === "con" || d.party === "lab") {
+        if (d.party === "con") {
           if (dataAvgEnd[0].con > dataAvgEnd[0].lab) {
             flag = "con";
         }}
@@ -346,20 +349,20 @@ define([
       .attr("class", function(d) { return "t" + d.date + " ff-ss fz-12 " + className; });
     }
     function drawTextVi() {
+      // y shift
+      var dd = dataset.date,
+          ys = {con:20, grn:20, lab:-10, ukip:-10, ldem:-10};
+      
       gtVi.attr("x", function(d){ return x(d.date) - 3; })
       .attr("y", function(d, i){ 
-         
-        if (d.party === "con" || d.party === "lab") {
-          if (dataset.date[0].values[i].vi > dataset.date[1].values[i].vi) {
-            posYShiftText.con = -10;
-            posYShiftText.lab = 20;
-          } else {
-            posYShiftText.con = 20;
-            posYShiftText.lab = -10;
-          }
+        // index ref: partyList = ["con", "lab", "ldem", "ukip", "grn"],  
+        switch(d.party) {
+          case "con": ys.con = dd[0].values[i].vi > dd[1].values[i].vi ? -10 : 20; break; 
+          case "lab": ys.lab = dd[0].values[i].vi > dd[1].values[i].vi ? 20 : -10; break; 
+          case "grn": ys.grn = dd[4].values[i].vi > dd[2].values[i].vi ? -10 : 20; break; 
+          case "ldem":ys.ldem= dd[4].values[i].vi > dd[2].values[i].vi ? 20 : -10; break;
         }
-       
-        return y(d.vi) + posYShiftText[d.party]; 
+        return y(d.vi) + ys[d.party]; 
       })
       .text(function(d) { return d.vi; });
     }
