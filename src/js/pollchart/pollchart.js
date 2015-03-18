@@ -91,7 +91,7 @@ define([
     dataset = polldata.composeDataByParty(data, dataAvg, dateList);
     //console.log(dateList); 
     //console.log(dataAvg);
-    //console.log(dataset.pollster); 
+    //console.log(dataset.date); 
     
     /* Window */
     setChartSize();
@@ -347,7 +347,18 @@ define([
     }
     function drawTextVi() {
       gtVi.attr("x", function(d){ return x(d.date) - 3; })
-      .attr("y", function(d){ 
+      .attr("y", function(d, i){ 
+         
+        if (d.party === "con" || d.party === "lab") {
+          if (dataset.date[0].values[i].vi > dataset.date[1].values[i].vi) {
+            posYShiftText.con = -10;
+            posYShiftText.lab = 20;
+          } else {
+            posYShiftText.con = 20;
+            posYShiftText.lab = -10;
+          }
+        }
+       
         return y(d.vi) + posYShiftText[d.party]; 
       })
       .text(function(d) { return d.vi; });
