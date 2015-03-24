@@ -1,6 +1,7 @@
 @import 'modules/seat';
 @import 'modules/flows';
 @import 'modules/daybyday';
+@import 'modules/frontpage';
 
 /* widget */
 // override: live-blog
@@ -19,40 +20,6 @@
   .widget-legend .col-left,
   .widget-footer .btns-share {
     display: none;
-  }
-}
-// override: front
-.front {
-  .widget-header .h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-
-  .ul__party {
-    float: left;
-    width: 100%;
-  }
-  .ul__party li {
-    padding-right: 0;
-    width: calc(100% / 4);
-  }
-  .ul__party li:first-child::after { content: "Lab"; }
-  .ul__party li:last-child::after  { content: "Con"; }
-  
-  .col-side {
-    display: none;
-  } 
-  .widget-header,
-  .widget-legend,
-  .widget-section-seat {
-    padding: 0 5px;
-  }  
-  .widget-footer {
-    width: 100%;
-    background-color: #f1f1f1;
-    padding-top: 1px;
-    position: absolute;
-    bottom: -6px;
   }
 }
 
@@ -84,21 +51,6 @@
     font-family:'Guardian Egyptian Web', Georgia, serif;
     font-size: 22px;
     line-height: 1.2;
-  }
-
-  .btns-share {
-    display: inline; //TODO: remove this, if possible
-  }
-  .btn-next path {
-    fill: #005689;
-  }
-  .txt-next {
-    font-family:'Guardian Egyptian Headline', Georgia, serif;
-    color: #00588a; 
-    
-    display: inline-block;
-    margin-top: 5px;
-    vertical-align: top;  
   }
 }
 
@@ -193,77 +145,6 @@
     }
 }}
 
-// responsive: widget for front page (override)
-@media (max-width: 320px) { 
-  .front {
-    .hide-320 {
-      display: none;
-    }
-    #commonsChart { margin-bottom: 20px; }
-}}
-@media (min-width: 320px) {
-  .front {
-    #commonsChart { margin-top: -6px; } 
-  }
-}
-@media (min-width: 340px) {
-  .front { 
-    #commonsChart { margin-top: 0; }
-    #coalitionsChart {
-      margin-top: 0;
-      .coalition {
-        width: 50%;
-    }}
-}}
-
-@media (min-width: 341px) and (max-width: 385px) {
-  .front {
-    #coalitionsChart {
-      display: none;
-    } 
-}}
-@media (min-width: 385px) { 
-  .front {
-    #coalitionsChart {
-      display: block;
-      .coalition {
-        width: 33.33%;
-    }}
-}}
-
-@media (min-width: 440px) { 
-  .front {
-    .col-title {
-      width: calc(100% - 90px);
-      margin-left: 90px;
-    }
-    .img__projection {
-      display: block;
-    }
-    .widget-header {
-      padding-left: 0;
-    }
-  }
-}
-@media (min-width: 620px) { 
-  .front {
-    .widget-header .h2 {
-      font-size: 1.5em;
-    }
-    .col-side {
-      display: block;
-      float: left; 
-      width: calc(-15px + 100% / 4); 
-      padding-right: 20px;
-    }
-    .ul__party {
-      width: calc(-5px + 100% * 3 / 4);
-      float: right;
-    }
-    .ul__party li {
-      width: calc(100% / 7);
-    }
-}}
 
 // responsive: iframe breakpoints
 /*/ padding due to media object
