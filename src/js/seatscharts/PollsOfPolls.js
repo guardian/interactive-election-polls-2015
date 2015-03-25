@@ -230,7 +230,7 @@ define([
             top:options.top,
             flowHeight:options.top,
             bar:{
-                height:80
+                height:(options.bar && options.bar.height)?options.bar.height:80
             },
             textOrientation:1,
             filter:options.filter,
@@ -914,6 +914,7 @@ define([
 
             var bar=options.bar;
             
+            
             var bg=svg.append("g")
                         .attr("id","bg_"+options.party_field)
                         .attr("class","bg")
@@ -1033,6 +1034,7 @@ define([
                     new_bars.on("mouseout",options.mouseOutCallback);
                 }
                                     
+                
                 new_bars.append("rect")
                                 .attr("x",0)
                                 .attr("y",0)
