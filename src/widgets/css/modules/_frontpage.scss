@@ -1,4 +1,4 @@
-// override
+// style and override
 
 .front-header,
 .front-body {
@@ -6,7 +6,6 @@
 }
 
 .front-header { 
-  overflow: hidden;
   border-bottom: 1px solid #dcdcdc;
 
   // title
@@ -26,50 +25,38 @@
 
   .col-legend {
     float: left;
-    width: 100%;
     .rect { margin-right: 2px; }
     li { padding-right: 6px; }
   }
 } 
 
 .front-body {
+  margin-top: 5px;
+  margin-bottom: -15px;
+  // to reduce extra spaces in sparklines
+  
   // sparklines
-  #seatsCharts {
+  .seats-chart:nth-child(2),
+  .seats-chart:nth-child(3),
+  .seats-chart:nth-child(4) {
     display: none;
-  }
+  }  
+  
   // coalitions
-  #coalitionsChart {
-    p {
-      display: none;
-    }
-    .coalition {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    .coalition-balance {
-      margin-bottom: 10px;
-    }
-  }
-  #par_coalitions-embed {
-    padding-bottom: 6px;
+  .col-coalitions {
+    display: none;
   }
 }
 
 .front .widget-footer {
-  width: 100%;
-  background-color: #f1f1f1;
-  padding-top: 1px;
-  position: absolute;
-  bottom: -6px;
-}
-
-.show-460 {
-  display: none;
+  background-color: transparent;
+  padding-top: 3px;
+  margin-bottom: -4px; 
 }
 
 
-// responsive: widget for front page (override)
+
+// responsive:
 
 @media (min-width: 340px) {
   .front-header {
@@ -86,92 +73,97 @@
   .front-body { 
     #commonsChart {
       margin-top: 0; 
-    }
-    #coalitionsChart {
-      margin-top: 0;
-      .coalition {
-        width: 50%;
-    }}
-}}
+  }}
+}
 
 @media (min-width: 460px) {
-  // display text
-  .show-460 {
-    display: block;
-  }
   .front-header {
     .ul__party li:nth-child(1)::after { content: "Labour"; }
     .ul__party li:nth-child(7)::after { content: "Conservatives"; }
     .col-legend {
       .rect { margin-right: 4px; }
-      li { padding-right: 12px; }
+      li { padding-right: 11px; }
     }
-  }
+}}
+
+@media (min-width: 480px) {
   .front-body {
-    #coalitionsChart {
-      .coalition {
-        width: 33.33%;
-        span { margin-right: 6px; }
-    }}
-  }
-}
+    .seats-chart:nth-child(2),
+    .seats-chart:nth-child(4) {
+      display: block;
+    }    
+    .seats-chart {
+      width: 25%;   
+    }
+}}
 
 @media (min-width: 620px) {
   .front-header {
     .ul__party li:nth-child(6)::after { content: "Lib Dem"; }
   }
-  // display sparklines
   .front-body {
-    #seatsCharts {
+    .seats-chart:nth-child(3) {
       display: block;
-      .seats-chart {
-        width: 20%;   
-    }}
+    }    
+    .seats-chart {
+      width: 20%;   
+    }
 }}
 
 @media (min-width: 700px) {
   .front-body {
+    margin-top: 10px;
+    margin-bottom: -10px;
     .col-seats {
       float: left;
-      width: calc(75%);
+      width: 75%;
     }
+    
+    // display coalitions
     .col-coalitions {
+      display: block;
       float: right;
       width: calc(25% - 18px); //10+1+?
       padding-left: 10px;
       border-left: 1px dotted lightgrey;
     }
+    #seatsCharts {
+      margin-left: 10px;
+    }
+    #par_coalitions-embed {
+      padding-bottom: 6px;
+    }
     #coalitionsChart {
       .coalition {
         width: 100%;
+        margin: 0;
+        padding: 0;
       }
-      .n5 {
-        display: none;
+      .coalition-balance {
+        margin-bottom: 10px;
+        span { margin-right: 6px; }
       }
+      // never display individual descriptions in the front page
+      p { display: none; }
     }
-  }
-}
+}}
 
 @media (min-width: 940px) {
   .front-header {
+    margin-top: 4px;
     .col-title {
       float: left;
     }
     .col-legend {
       float: right;
-      width: auto;
       .rect { margin-right: 6px; }
       li { padding-right: 18px; }
     }
   }
   .front-body {
-    margin-top: 20px;
+    margin-top: 10px;
     #par_coalitions-embed {
       padding-bottom: 25px;
     }
-    #coalitionsChart {
-      .n5 {
-        display: block;
-    }}
   }
 }

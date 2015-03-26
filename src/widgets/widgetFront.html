@@ -16,7 +16,7 @@
       <a class="anchor" name="default" data-status="The Guardian poll projection"></a>
 
       <!-- front header --> 
-      <div class="front-header">
+      <div class="front-header row">
 
         <!-- title -->
         <h2 class="col-title h2">
@@ -38,30 +38,22 @@
 
       <!-- front's body -->    
       <div class="front-body row ff-ss fz-14">  
-        <!-- seat charts -->
+        <!-- seat charts: bar and lines -->
         <div class="col-seats">
-          <div class="show-460">
-            <p id="par_mainprojection"></p>
-          </div>
-          <div class="">
-            <div id="commonsChart" class="poll-chart"></div>
-          </div>
-        <!-- coalitions -->
+          <p id="par_mainprojection"></p>
+          <div id="commonsChart" class="poll-chart"></div>
         </div>
+        <!-- coalitions -->
         <div class="col-coalitions">
-          <div class="show-460">
-            <p id="par_coalitions-embed"></p>
-          </div>
-          <div class="">
-            <div id="coalitionsChart" class="poll-chart"></div>
-          </div>
+          <p id="par_coalitions-embed"></p>
+          <div id="coalitionsChart" class="poll-chart"></div>
         </div>
       </div>
 
       <!-- front's footer: from widget -->
-      <div class="widget-footer pos-next">
+      <div class="widget-footer">
         <a href="http://www.theguardian.com/politics/ng-interactive/2015/feb/27/guardian-poll-projection" title="See full projection" target="_parent">
-          <svg class="btn-next" width="34" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
+          <svg class="btn-next" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="flyer__arrow-icon" d="m12 0c-6.627 0-12 5.373-12 12 0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12m.21 19l-.637-.668 4.888-6.326h-11.465v-1.01h11.465l-4.888-6.333.637-.668 6.79 7.158v.685l-6.79 7.157"></path></g></svg>
           <span class="txt-next">See full projection</span>
         </a>
       </div>
@@ -89,7 +81,7 @@
         ) {
 
           loadData(function(data){
-            console.log(data);
+            //console.log(data);
 
             iframeMessenger.getLocation(function(location){
               d3.select("#wrapper").classed("live-blog",(location.href.indexOf("/live/")>-1))
@@ -123,35 +115,42 @@
 
             pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
 
-            var projections=new PollsOfPolls(data.sheets["RESULT"],{
-              container:el,
-              order:ORDER,
-              height:120,
-              flowHeight:0,
-              bar:{
-                  height:60,
-              },
-              top:0,
-              margins:{
-                left:0,
-                top:40,
-                right:0,
-                bottom:0
-              },
-              additionalTriangle:null,
-              triangle:1,
-              ix:true,
-              names:names,
-              notitle:true,
-              showValues:true,
-              majorityText:true
-            });
-            projections.addHistoricTrends("seatsCharts");
-            projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"]);
+            var heightBar = 60;
 
-            buildSparklines();
+            renderProjection();
+            renderSparklines();
+
+            // PROJECTION AND COALITIONS
+            function renderProjection() {
+              var projections=new PollsOfPolls(data.sheets["RESULT"],{
+                container:el,
+                order:ORDER,
+                height: 60 + heightBar,
+                flowHeight:0,
+                bar:{
+                  height: heightBar,
+                },
+                top:0,
+                margins:{
+                  left:0,
+                  top:40,
+                  right:0,
+                  bottom:0
+                },
+                additionalTriangle:null,
+                triangle:1,
+                ix:true,
+                names:names,
+                notitle:true,
+                showValues:true,
+                majorityText:true
+              });
+              projections.addHistoricTrends("seatsCharts");
+              projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"]);
+            }
+
             // SPARKLINES
-            function buildSparklines() {
+            function renderSparklines() {
               var format=d3.time.format("%d/%m/%Y")
               data.sheets["Log Seats"]=data.sheets["Log Seats"].filter(function(d){
                 return typeof d.logdate == "string"
@@ -210,11 +209,11 @@
 
                 d3.range(diff-1).forEach(function(d){
 
-                  console.log("add day",d,sparklinesData[sparklinesData.length-1])
+                  //console.log("add day",d,sparklinesData[sparklinesData.length-1])
                   var new_day=cloneObj(sparklinesData[sparklinesData.length-1]);
                   new_day.date=new Date(new_day.date);
                   new_day.date.setDate(new_day.date.getDate()+1)
-                  console.log(new_day.date)
+                  //console.log(new_day.date)
                   sparklinesData.push(new_day);
 
                 })
@@ -255,12 +254,12 @@
                         return d.new_extent;
                       })[0],
                       weeks:4,
-                      mouseOverCallback:function(d){
+                      mouseOverCallback: function(d){
                         sparklines.forEach(function(c){
                           c.highlight(d);
                         })
                       },
-                      mouseOutCallback:function(){
+                      mouseOutCallback: function(){
                         sparklines.forEach(function(c){
                           c.highlight();
                         })
