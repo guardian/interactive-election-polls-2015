@@ -17,7 +17,7 @@ define([
 
         var lastupdate_date=datetime_format.parse(latest.currentdate+" "+latest.currenttime);            
         d3.select("#lastUpdate time")
-            .text(d3.time.format("%b %d %Y %H:%m")(lastupdate_date)+" "+(!lastupdate_date.getTimezoneOffset()?"GMT":"BST"))
+            .text(d3.time.format("%b %d %Y %H:%M")(lastupdate_date)+" "+(!lastupdate_date.getTimezoneOffset()?"GMT":"BST"))
 
 
         data.forEach(function(d){
