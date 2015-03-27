@@ -146,7 +146,8 @@
                 majorityText:true
               });
               projections.addHistoricTrends("seatsCharts");
-              projections.addCoalitions("#coalitionsChart",data.sheets["coalitions"]);
+              projections.addCoalitions("#coalitionsChart", data.sheets["coalitions"], null, null, true); 
+              // true: is frontpage
             }
 
             // SPARKLINES

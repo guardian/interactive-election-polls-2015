@@ -416,12 +416,10 @@ define([
                             .attr("id",id)
                                 .attr("class","polls-trends")
         }
-        this.addCoalitions=function(id,coalitions_glosses,max,filter) {
+        this.addCoalitions=function(id,coalitions_glosses,max,filter, isFrontpage) {
                     
                     //////console.log("CIAOOOOOOOO")
                     //////console.log(data)
-
-                    
 
                     var glosses=coalitions_glosses.filter(function(d){
                         //console.log(d.parties);
@@ -436,10 +434,12 @@ define([
                     }).sort(function(a,b){
                         return a.order - b.order;
                     }).map(function(d){
-                        var parties=d.parties.toLowerCase().split(",");
+                        var parties=d.parties.toLowerCase().split(","),
+                            description = isFrontpage ? d.descriptionshort : d.description;
+                    
                         return {
                             parties:parties,
-                            text:d.description,
+                            text: description,
                             total:d3.sum(parties,function(p){
                                 //console.log(p,data)
                                 return data[p]["unfiltered_all"]
