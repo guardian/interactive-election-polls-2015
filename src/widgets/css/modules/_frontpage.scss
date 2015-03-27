@@ -26,10 +26,10 @@
     width: 5px;
     height: 10px;
     margin-right: 3px;
+    margin-bottom: 2px;
     border-radius: 2px;
     display: inline-block;
     vertical-align: middle;
-    margin-bottom: 2px;
   }
   .col-legend {
     float: left;
@@ -131,7 +131,7 @@
     #seatsCharts {
       margin-left: 10px;
     }
-    #par_coalitions-embed {
+    .txt-coalitions {
       padding-bottom: 6px;
     }
     #coalitionsChart {
@@ -174,7 +174,7 @@
   .front-body {
     margin-top: 10px;
     margin-bottom: -5px;
-    #par_coalitions-embed {
+    .txt-coalitions {
       padding-bottom: 25px;
     }
   }
