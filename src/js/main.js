@@ -17,7 +17,7 @@ define([
 ) {
   'use strict';
 
-  d3.selectAll(".js-loggable")
+  /*d3.selectAll(".js-loggable")
       .remove();
   d3.selectAll('[data-reload=global]')
       .remove();
@@ -32,7 +32,11 @@ define([
   d3.selectAll('.content-footer')
       .remove();
   d3.selectAll('.l-footer.u-cf')
-      .remove();
+      .remove();*/
+  d3.select(".l-footer")
+      .style("display","block");
+  d3.select(".l-footer__primary")
+      .style("display","none");
       
   function jumpTo(h) {
     var url = location.href;               
