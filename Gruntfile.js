@@ -40,13 +40,13 @@ module.exports = function(grunt) {
 
     sass: {
         options: {
-            style: (isDev) ? 'expanded' : 'compressed',
-            sourcemap: (isDev) ? 'inline' : 'none'
+            style: 'compressed',
+            sourcemap: 'none'
         },
         build: {
             files: { 
               'build/assets/css/main.css': 'src/css/main.scss',
-              'build/assets/css/widgets.css': 'src/widgets/css/widgets.scss',
+              //'build/assets/css/widgets.css': 'src/widgets/css/widgets.scss',
             }
         }
     },
