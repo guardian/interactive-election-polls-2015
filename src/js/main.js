@@ -97,7 +97,6 @@ define([
   /* load json date */
   function loadData(callback) {
     var jsonSrc = "http://interactive.guim.co.uk/spreadsheetdata/1YilVzArect3kcE1rzJvYivXkfs1oL0MLCrvC9GjPF6E.json";
-    
 
     d3.json(jsonSrc, function(err, data) {
 
@@ -114,12 +113,43 @@ define([
           if(d.winner2010=="PC") {
               d.winner2010="others";
           }
+          
           if(d.projection=="DUP") {
               d.projection="others";
           }
           if(d.winner2010=="DUP") {
               d.winner2010="others";
           }
+          
+          if(d.projection=="Alliance") {
+              d.projection="others";
+          }
+          if(d.winner2010=="Alliance") {
+              d.winner2010="others";
+          }
+          
+          if(d.projection=="SDLP") {
+              d.projection="others";
+          }
+          if(d.winner2010=="SDLP") {
+              d.winner2010="others";
+          }
+          
+          if(d.projection=="SF") {
+              d.projection="others";
+          }
+          if(d.winner2010=="SF") {
+              d.winner2010="others";
+          }
+
+          if(d.projection=="Ind") {
+              d.projection="others";
+          }
+          if(d.winner2010=="Ind") {
+              d.winner2010="others";
+          }
+
+          
       })
       //console.log(data)
       callback(data);
