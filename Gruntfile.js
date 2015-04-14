@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 
     sass: {
         options: {
-            style:  style: (isDev) ? 'expanded' : 'compressed',
+            style: (isDev) ? 'expanded' : 'compressed',
             sourcemap: (isDev) ? 'inline' : 'none'
         },
         build: {
