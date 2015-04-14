@@ -514,7 +514,7 @@ define([
             
             current=new SeatsChart(values,{
                 party_field:"to",
-                title:options.notitle?null:["Which seats in the ","current parliament ..."],
+                title:options.notitle?null:["Which seats in the ","2010 parliament ..."],
                 top:0,
                 flowHeight:options.top,
                 bar:{
