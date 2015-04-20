@@ -18,6 +18,7 @@
   "dependencies": {
     "almond": "0.3.0",
     "curl": "0.8.12",
+    "pasteup-buttons": "~0.5.0",
     "iframe-messenger": "guardian/iframe-messenger#master",
     "pasteup-buttons": "~0.4.12",
     "ractive": "0.6.1",

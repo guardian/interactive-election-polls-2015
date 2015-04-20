@@ -1,318 +1,332 @@
+h1 {
+    color: black;
+    font-size: 32px;
+    line-height: 38px;
+}
+
 .guInteractive {
 
-  /** text styles of the page: (t-) */
-  // in <main> <header>: (-h)
-  .t-h1-h {
-    color: #666;
-    line-height: 1;
-    font-family: $ff-s;
-    font-size: 36px;
-    font-weight: normal;
-  }
-  .t-bd-h {
-    color: #b4b4b4;
-    line-height: 1.3;
-    font-family: $ff-s;
-    font-size: 20px;
-    padding: 10px 50% 0 0; //
-  }
-
-  // in <main> <div> as a (sub)section: (-s)
-  .t-h2-s,
-  .t-h3-s {
-    line-height: 1.2;
-    font-family: $ff-s;
-    font-size: 22px;
-    font-weight: bold;
-    padding-top: 5px; //
-  }
-  .t-h2-s { 
-    color: #333; 
-    padding-bottom: 20px; //
-  }
-  .t-h3-s { 
-    color: #808080; 
-    padding-bottom: 10px;
-  }
-  
-  .t-h4-s { 
-    color: #808080; 
-    font-size: 18px;
-    line-height: 1.2;
-    padding-bottom: 5px;
-  }
-
-  .t-bd-s,
-  .t-time,
-  .t-ul__party {
-    line-height: 1.5;
-    color: #767676;
-    font-family: $ff-ss;
-    font-size: 14px;
-  }
-  .t-ul__party {
-    color: #333;
-  }
-
-  // in <main> <footer>: (-ft-)
-  .t-ft {
-    color: #DCDCDC;
-  }
-  .t-ft-misc {
-    font-size: 14px; 
-  }
-  .t-ft-copyright {
-    font-family: $ff-ss;
-    font-size: 12px;
-    padding-bottom: 18px; //
-    padding-top: 6px; //
-  }
-  
-  
-  // link, links: (link-, links-)
-  .link-home {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  .link-method {
-    color: #b4b4b4;
-  }
-  .links-footer a {
-    color: #dcdcdc;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 22px;
-    text-decoration: none;
-  }
-  .links-footer a:hover {
-    text-decoration: underline;
-  }
-
-
-  /** layout of the page: (l-) */
-  .l-header {
-    height: 48px;
-  }
-  .l-nav {
-    height: 100%;
-  }
-  
-  .l-nav,
-  .l-main,
-  .l-footer,
-  .l-stick {
-    // width - 20*2 padding
-    width: calc(100% - 120px - 40px);     
-    min-width: 700px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .l-stick {
-    z-index: 999999;
-  } 
-
-  .l-logo__home {
-    width: 15px;
-    height: 18px;
-    margin-top: 14px;
-    margin-right: 7px;
-  }
-  .l-logo__guardian {
-    width: 170px;
-    margin-top: 10px;
-    float: right;
-  }
-
-  .l-title {
-    padding-top: 30px;
-    padding-bottom: 20px;
-  }
-  
-  .l-stick {
-    position: fixed;
-    top: 0;
-    margin-left: -20px; //
-    box-shadow: 1px 2px 10px #efefef;
-  }
- 
-  a.anchor{display: block; position: relative; top: -50px; visibility: hidden;}
-  
-  // media object: (row-, col-)
-  .row {
-    overflow: auto;
-  }
-  .col-left {
-    width: 240px; 
-    float: left;
-    margin-right: 10px;
-    padding-right: 20px;
-  }
-  .col-right {
-    overflow: hidden;
-    zoom: 1; //for IE!?  
-  }
-
-
-  // button, buttons: (btns-, btn-) 
-  // share buttons of twitter (-tt) and facebook (-fb)
-  .btns-share {
-    margin-top:10px;
-    margin-bottom: 30px;
-    
-    button {    
-      color: #fff;
-      width: 32px;
-      height: 32px;
-      border: none;
-      border-radius: 9000px;
-      display: inline-block;
-      vertical-align: top;
-      cursor: pointer;
-      outline: none;
+    /** text styles of the page: (t-) */
+    // in <main> <header>: (-h)
+    .t-bd-h {
+        color: #767676;
+        //line-height: 1.3;
+        font-family: $f-serif-text;
+        font-size: 18px;
+        padding: 10px 50% 0 0; //
     }
-    .btn-tt { background: #bdbdbd url(../imgs/twitterIcon.svg)  no-repeat center center; }
-    .btn-fb { background: #bdbdbd url(../imgs/facebookIcon.svg) no-repeat center center; }
-    .btn-tt:hover { background-color: #03b3ee }
-    .btn-fb:hover { background-color: #3067a3 }
-  }
+
+    // in <main> <div> as a (sub)section: (-s)
+    .t-h2-s,
+    .t-h3-s {
+        line-height: 1.2;
+        font-family: $ff-s;
+        font-size: 22px;
+        font-weight: bold;
+        padding-top: 5px; //
+    }
+    .t-h2-s { 
+        color: #333; 
+        padding-bottom: 20px; //
+    }
+    .t-h3-s { 
+        color: #808080; 
+        padding-bottom: 10px;
+    }
+
+    .t-h4-s { 
+        color: #808080; 
+        font-size: 18px;
+        line-height: 1.2;
+        padding-bottom: 5px;
+    }
+
+    .t-bd-s,
+    .t-time,
+    .t-ul__party {
+        line-height: 1.5;
+        color: #767676;
+        font-family: $ff-ss;
+        font-size: 14px;
+    }
+    .t-ul__party {
+        color: #333;
+    }
+
+    // in <main> <footer>: (-ft-)
+    .t-ft {
+        color: #DCDCDC;
+    }
+    .t-ft-misc {
+        font-size: 14px; 
+    }
+    .t-ft-copyright {
+        font-family: $ff-ss;
+        font-size: 12px;
+        padding-bottom: 18px; //
+        padding-top: 6px; //
+    }
 
 
-  // list: (ul-, li)
-  .ul-footer {
-    list-style: none;
-    margin-top: 0;   //override ul default
-    padding-left: 0; //override ul default
-    padding-top: 20px;
-    overflow: auto;
-    //column-count: 3;
-  }
-  .ul-footer li {
-    width: calc(100% / 3);
-    float: left;
-    padding: 0 0 12px 0;
-  }
-  
-  .ul__party {
-    list-style: none;
-    margin: 0; 
-    padding-left: 0;
-    float: right;
-  }
-  .ul__party li {
-    padding-right: 15px;
-    float: left;
-  }
-  .ul__party li:first-child .rect {
-    margin-left: 0;
-  }
-  .ul__party li:last-child {
-    padding-right: 0;
-  }
+    // link, links: (link-, links-)
+    .link-home {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .link-method {
+        color: #005689;
+        text-decoration: none;
+        &:hover {
+        text-decoration: underline;
+        }
+    }
+    .links-footer a {
+        color: #dcdcdc;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px;
+        text-decoration: none;
+    }
+    .links-footer a:hover {
+        text-decoration: underline;
+    }
 
-  .ul__party li:first-child::after {
-    content: "Labour";
-  }
-  .ul__party li:last-child::after {
-    content: "Conservatives";
-  }
-  
 
-  // shapes
-  .rect {
-    width: 10px;
-    height: 18px;
-    margin-right: 5px;
-    border-radius: 2px;
-    display: inline-block;
-    vertical-align: top;
-  }
+    /** layout of the page: (l-) */
+    .l-header {
+        height: 48px;
+    }
+    .l-nav {
+        height: 100%;
+    }
+
+    .l-nav,
+    .l-main,
+    .l-footer,
+    .l-stick {
+        // width - 20*2 padding
+        width: calc(100% - 120px - 40px);     
+        min-width: 700px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    .l-stick {
+        z-index: 999999;
+    } 
+
+    .l-logo__home {
+        width: 15px;
+        height: 18px;
+        margin-top: 14px;
+        margin-right: 7px;
+    }
+    .l-logo__guardian {
+        width: 170px;
+        margin-top: 10px;
+        float: right;
+    }
+
+    .l-title {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    .l-stick {
+        position: fixed;
+        top: 0;
+        margin-left: -20px; //
+        box-shadow: 1px 2px 10px #efefef;
+    }
+
+    a.anchor{display: block; position: relative; top: -50px; visibility: hidden;}
+
+    // media object: (row-, col-)
+    .row {
+        overflow: auto;
+    }
+    .col-left {
+        width: 240px; 
+        float: left;
+        margin-right: 10px;
+        padding-right: 20px;
+    }
+    .col-right {
+        overflow: hidden;
+        zoom: 1; //for IE!?  
+    }
+
+
+    // button, buttons: (btns-, btn-) 
+    // share buttons of twitter (-tt) and facebook (-fb)
+    .btns-share {
+        margin-top:10px;
+        margin-bottom: 30px;
+
+        button {    
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 9000px;
+            display: inline-block;
+            vertical-align: top;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-tt { background: #bdbdbd url(../imgs/twitterIcon.svg)  no-repeat center center; }
+        .btn-fb { background: #bdbdbd url(../imgs/facebookIcon.svg) no-repeat center center; }
+        .btn-tt:hover { background-color: #03b3ee }
+        .btn-fb:hover { background-color: #3067a3 }
+    }
+
+
+    // list: (ul-, li)
+    .ul-footer {
+        list-style: none;
+        margin-top: 0;   //override ul default
+        padding-left: 0; //override ul default
+        padding-top: 20px;
+        overflow: auto;
+        //column-count: 3;
+    }
+    .ul-footer li {
+        width: calc(100% / 3);
+        float: left;
+        padding: 0 0 12px 0;
+    }
+
+    .ul__party {
+        list-style: none;
+        margin: 0; 
+        padding-left: 0;
+        float: right;
+    }
+    .ul__party li {
+        padding-right: 15px;
+        float: left;
+    }
+    .ul__party li:first-child .rect {
+        margin-left: 0;
+    }
+    .ul__party li:last-child {
+        padding-right: 0;
+    }
+
+    .ul__party li:first-child::after {
+        content: "Labour";
+    }
+    .ul__party li:last-child::after {
+        content: "Conservatives";
+    }
+
+
+    // shapes
+    .rect {
+        width: 10px;
+        height: 18px;
+        margin-right: 5px;
+        border-radius: 2px;
+        display: inline-block;
+        vertical-align: top;
+    }
 }
 
 
 // hotfix area
 //TODO: remove if possible
 #stickyRow {
-  > * {
-  margin: 5px 0;
-  z-index: 10;
-  }
+    > * {
+        margin: 5px 0;
+        z-index: 10;
+    }
 }
 
 
-// breakpoints: 1300, 1140, 980(desktop)
+// breakpoints of font
+@media (min-width: 660px) {
+    h1 {
+        padding-top: 30px;        
+}}
+@media (min-width: 980px) {
+    h1 {
+        font-size: 48px;
+        line-height: 54px;
+}}
+
+// breakpoints of layout: 1300, 1140, 980(desktop)
 @media (min-width: 1300px) {
-  .guInteractive { 
-    .l-nav,
-    .l-main,
-    .l-footer,
-    .l-stick {
-      max-width: 1300px;
-    }
-    /*.ul-footer {
-      column-count: 4;
-    }*/
+    .guInteractive { 
+        .l-nav,
+        .l-main,
+        .l-footer,
+        .l-stick {
+            max-width: 1300px;
+        }
+        /*.ul-footer {
+            column-count: 4;
+        }*/
     .ul-footer li {
-      width: calc(100% / 4);
+        width: calc(100% / 4);
     }
 }}
 @media (max-width: 980px) {
-  .guPollProjection { 
-    .row [class*="col-"] {
-      width: 100%;
-      float: none;
-    }
-    .col-left{
-      margin-right: 0;
-      padding-right: 0;
-    }
-    .mt-section {
-      margin-top: 0;
-    } 
+    .guPollProjection { 
+        .row [class*="col-"] {
+            width: 100%;
+            float: none;
+        }
+        .col-left{
+            margin-right: 0;
+            padding-right: 0;
+        }
+        .mt-section {
+            margin-top: 0;
+        } 
 }}
 // breakpoints: 740(tablet), 660, 480(mobile-l)
 @media (max-width: 740px) {
-  .guInteractive { 
-    .l-nav,
-    .l-main,
-    .l-footer,
-    .l-stick {
-      min-width: calc(100% - 40px);     
-    }
-    /*.ul-footer {
-      column-count: 2;
-    }*/ 
+    .guInteractive { 
+        .l-nav,
+        .l-main,
+        .l-footer,
+        .l-stick {
+            min-width: calc(100% - 40px);     
+        }
+        /*.ul-footer {
+            column-count: 2;
+        }*/ 
     .ul-footer li {
-      width: calc(100% / 2);
+        width: calc(100% / 2);
     }
     .t-bd-h {
-      padding: 10px 0 0;
+        padding: 10px 0 0;
     }
 }}
 
 // ul, li styles just for looking nicer
 @media (max-width: 615px) {
-  // only for the page
-  .guPollProjection { 
-    .ul__party li {
-      width: calc(100% / 4);
-      padding-right: 0;
+    // only for the page
+    .guPollProjection { 
+        .ul__party li {
+            width: calc(100% / 4);
+            padding-right: 0;
 }}}
 @media (max-width: 450px) {
-  .guInteractive { 
-    .ul__party  li:last-child {
-      width: calc(100% / 2);
+    .guInteractive { 
+        .ul__party  li:last-child {
+            width: calc(100% / 2);
+        }
     }
-  }
 }
 
 // breakpoints: 320(mobile-p)
 @media (max-width: 320px) {
-  .guInteractive { 
-    .l-nav,
-    .l-main,
-    .l-footer,
-    .l-stick {
-      min-width: 280px;     
-    }
+    .guInteractive { 
+        .l-nav,
+        .l-main,
+        .l-footer,
+        .l-stick {
+            min-width: 280px;     
+        }
 }} 
