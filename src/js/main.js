@@ -2,6 +2,7 @@ define([
     'd3',
     'underscore',
     'page/page',
+    'page/stickElement',
     'seatscharts/commons',
     'pollchart/pollchart',
     'social/social',
@@ -10,6 +11,7 @@ define([
     d3,
     underscore,
     pageView,
+    stickElement,
     commonsChart,
     pollChart,
     shareInteractive,
@@ -33,9 +35,8 @@ define([
     function init(el, context, config, mediator) {
         // DEBUG: What we get given on boot
         //console.log(el, context, config, mediator);
-
         el.innerHTML = templateHTML;
-        stickElementOnScroll();
+
 
         var title = document.querySelector('title');
         title.innerHTML = d3.select(".l-title h1").text();
@@ -50,6 +51,9 @@ define([
             commonsChart.renderDayByDay("#daybyday",data);
             pollChart.render(el.querySelector('#pollchart') ,data);
 
+            /* Add sticky legend */
+            stickElement();
+            
             /* Add tabs */
             var head = document.querySelector('head'),
                 script = document.createElement('script');
@@ -67,7 +71,7 @@ define([
     }
 
 
-    /* stick element (time and party labels) to top on scroll */
+    /* stick element (time and party labels) to top on scroll /
     function stickElementOnScroll() {
         var el = document.querySelector("#stickyRow"),
             offset = el.offsetTop;
@@ -81,7 +85,7 @@ define([
                 d3.select(el).classed("l-stick", false);
             }
         }
-    }
+    }*/
 
 
     /* load json date */
