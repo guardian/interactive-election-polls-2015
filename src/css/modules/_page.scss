@@ -1,6 +1,8 @@
 h1 {
-    color: black;
+    font-family: $f-serif-headline;
     font-size: 32px;
+    font-weight: normal;
+    color: black;
     line-height: 38px;
 }
 
@@ -78,7 +80,7 @@ h1 {
         color: #005689;
         text-decoration: none;
         &:hover {
-        text-decoration: underline;
+            text-decoration: underline;
         }
     }
     .links-footer a {

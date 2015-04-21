@@ -57,7 +57,7 @@ define([
             /* Add tabs */
             var head = document.querySelector('head'),
                 script = document.createElement('script');
-            script.setAttribute('src','http://interactive.guim.co.uk/2015/04/election-nav-v2/electionNav.js');
+            script.setAttribute('src','http://interactive.guim.co.uk/2015/04/election-nav/electionNav.js');
             script.setAttribute('type','text/javascript');
             head.appendChild(script);
 

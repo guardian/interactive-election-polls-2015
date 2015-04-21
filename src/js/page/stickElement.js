@@ -21,13 +21,13 @@ define([
             top  = a.offsetTop;
 
         if (h !== null) { top += f.offsetTop/*179*/; } //remove magic number: ad + nav g! 
-        
+        /*
         console.log(el.offsetTop, "[legend]");
         console.log(a.offsetTop);
         console.log(a.parentNode.offsetTop);
         console.log(f.offsetTop);
         console.log(top);
-        
+        */
         return top;
     }
 
