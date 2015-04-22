@@ -1,175 +1,184 @@
 <div class="guInteractive guPollProjection bgc-grey-light">
 
-  <a class="anchor" name="default" data-status="The Guardian poll projection"></a>
-  <div class="l-main bgc-white">
-    <header class="l-title">
-      <h1 class="t-h1-h">Election 2015: The Guardian poll projection</h1>
-      <p class="t-bd-h">Our model takes in all published constituency-level polls, UK-wide polls and polling conducted in the nations, and projects the result in each of the 650 Westminster constituencies using an adjusted average. <a class="link-method" href="http://www.theguardian.com/politics/2015/feb/27/uk-election-2015-the-guardian-poll-projection-methodology">Methodology &raquo</a></p>
-      
-      <div id ="jsStickyAnchor"></div> 
-      <div class="row bgc-white" id="jsSticky">
-        <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
-        <ul class="col-right mb-60 ul__party t-ul__party" style="list-style-type: none">
-          <li style="list-style: none"><span class="rect bgc-lab"></span></li>
-          <li><span class="rect bgc-snp"></span>SNP</li>
-          <li><span class="rect bgc-grn"></span>Green</li>
-          <li><span class="rect bgc-others"></span>Others</li>
-          <li><span class="rect bgc-ukip"></span>Ukip</li>
-          <li><span class="rect bgc-ldem"></span>Lib Dem</li>
-          <li><span class="rect bgc-con"></span></li>
-        </ul>
-      </div>
+    <a class="anchor" name="default" data-status="The Guardian poll projection"></a>
+    <div class="l-main bgc-white">
+        <header class="l-title">
+            <h1 class="t-h1-h">Election 2015: The Guardian poll projection</h1>
+            <p class="t-bd-h">Our model takes in all published constituency-level polls, UK-wide polls and polling conducted in the nations, and projects the result in each of the 650 Westminster constituencies using an adjusted average. <a class="link-method" href="http://www.theguardian.com/politics/2015/feb/27/uk-election-2015-the-guardian-poll-projection-methodology">Methodology &raquo</a></p>
 
-      <div id="election-nav-head"></div>
-    </header>
+            <div id ="jsStickyAnchor"></div> 
+            <div class="row bgc-white" id="jsSticky">
+                <p class="col-left t-time" id="lastUpdate">Last update <time></time></p>
+                <ul class="col-right mb-60 ul__party t-ul__party" style="list-style-type: none">
+                    <li style="list-style: none"><span class="rect bgc-lab"></span></li>
+                    <li><span class="rect bgc-snp"></span>SNP</li>
+                    <li><span class="rect bgc-grn"></span>Green</li>
+                    <li><span class="rect bgc-others"></span>Others</li>
+                    <li><span class="rect bgc-ukip"></span>Ukip</li>
+                    <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+                    <li><span class="rect bgc-con"></span></li>
+                </ul>
+            </div>
 
-    <!-- section 1 -->
-    <div class="row bdt-section">
-      <div class="col-left">
-        <h2 class="t-h2-s" id="title_mainprojection"></h2>
-        <p class="t-bd-s" id="par_mainprojection"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter"></button>
-          <button class="btn-fb" data-source="facebook"> </button>
-        </div>
-      </div>
-      <div class="col-right mt-section">
-        <div id="commonsChart" class="poll-chart"></div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-left">
-        <h4 class="t-h4-s" id="title_coalitions"></h4>
-        <p class="t-bd-s" id="par_coalitions"></p>
-      </div>
+            <div id="election-nav-head"></div>
+        </header>
 
-      <div class="col-right mb-60 t-bd-s">
-        <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
-      </div>
-      
-    </div>
-    
-    <!-- section 2 -->
-    <div class="row bdt-section ">
-      <a class="anchor" name="voting-intention-over-time" data-status="How the polls are evolving, from the Guardian poll projection"></a>
-      <div class="col-left">
-        <h2 class="t-h2-s" id="title_vi-time-series"></h2>
-        <p class="t-bd-s" id="par_vi-time-series"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="voting-intention-over-time"></button>
-          <button class="btn-fb" data-source="facebook" data-view="voting-intention-over-time"></button>
+        <!-- section 1 -->
+        <div class="row bdt-section">
+            <div class="col-left">
+                <h2 class="t-h2-s" id="title_mainprojection"></h2>
+                <p class="t-bd-s" id="par_mainprojection"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter"></button>
+                    <button class="btn-fb" data-source="facebook"> </button>
+                </div>
+            </div>
+            <div class="col-right mt-section">
+                <div id="commonsChart" class="poll-chart"></div>
+            </div>
         </div>
-      </div>
-      <div class="col-right mt-section mb-60 pos-r">
-        <!-- pollchart --> 
-        <div id="pollchart"></div>
-        <div id="pollchartTooltip" class="tp-text pos-a d-n ff-ss fz-14">
-          <div class="fw-b pt-10"></div>
-          <div></div>
-          <div class="fw-b pb-7"></div>           
-        </div>  
-        <!-- end of pollchart -->
-      </div>
-    </div>
 
-    <!-- section 3 -->
-    
-    <div class="row bdt-section ">
-      <a class="anchor" name="which-seats-are-changing-hands" data-status="The Guardian poll projection shows how the seats would change hands"></a>
-      <div class="col-left">
-        <h3 class="t-h2-s" id="title_flowofseats"></h3>
-        <p class="t-bd-s" id="par_flowofseats"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="which-seats-are-changing-hands"></button>
-          <button class="btn-fb" data-source="facebook" data-view="which-seats-are-changing-hands"> </button>
-        </div>
-      </div>
-      <div class="col-right mt-section mb-60">
-        <div id="flowsChart" class="poll-chart"></div>
-      </div>
-    </div>
-    <a class="anchor" name="conservative-gains-and-losses" data-status="The Guardian poll projection shows how many seats the Tories would gain and lose"></a>
-    <div class="row">
-      <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s" id="title_con-transfers"></h3>
-        <p class="t-bd-s" id="par_con-transfers"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="conservative-gains-and-losses"></button>
-          <button class="btn-fb" data-source="facebook" data-view="conservative-gains-and-losses"> </button>
-        </div>
-      </div>
-      <div class="col-right mb-60">
-        <div id="conChart" class="poll-chart"></div>
-      </div>
-    </div>
-    <a class="anchor" name="labour-gains-and-losses" data-status="The Guardian poll projection shows how many seats Labour would gain and lose"></a>
-    <div class="row">
-      <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s" id="title_lab-transfers"></h3>
-        <p class="t-bd-s" id="par_lab-transfers"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="labour-gains-and-losses"></button>
-          <button class="btn-fb" data-source="facebook" data-view="labour-gains-and-losses"> </button>
-        </div>
-      </div>
-      <div class="col-right mb-60">
-        <div id="labChart" class="poll-chart"></div>
-      </div>
-    </div>
-    <a class="anchor" name="snp-gains-and-losses" data-status="The Guardian poll projection shows how many seats the SNP would gain and lose"></a>
-    <div class="row">
-      <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s" id="title_snp-transfers"></h3>
-        <p class="t-bd-s" id="par_snp-transfers"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="snp-gains-and-losses"></button>
-          <button class="btn-fb" data-source="facebook" data-view="snp-gains-and-losses"> </button>
-        </div>
-      </div>
-      <div class="col-right mb-60">
-        <div id="snpChart" class="poll-chart"></div>
-      </div>
-    </div>
-    <a class="anchor" name="ld-gains-and-losses" data-status="The Guardian poll projection shows how many seats the Lib Dems would gain and lose"></a>
-    <div class="row">
-      <div class="col-left bdt-subsection">
-        <h3 class="t-h3-s" id="title_ld-transfers"></h3>
-        <p class="t-bd-s" id="par_ld-transfers"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="ld-gains-and-losses"></button>
-          <button class="btn-fb" data-source="facebook" data-view="ld-gains-and-losses"> </button>
-        </div>
-      </div>
-      <div class="col-right mb-60">
-        <div id="libdemChart" class="poll-chart"></div>
-      </div>
-    </div>
-    
-    <!-- section 3 -->
-    <div class="row bdt-section ">
-      <a class="anchor" name="all-uk-wide-polls" data-status="Full list of opinion polls from the Guardian poll projection"></a>
-      <div class="col-left">
-        <h2 class="t-h2-s" id="title_all-polls"></h2>
-        <p class="t-bd-s" id="par_all-polls"></p>
-        <div class="btns-share">
-          <button class="btn-tt" data-source="twitter" data-view="all-uk-wide-polls"></button>
-          <button class="btn-fb" data-source="facebook" data-view="all-uk-wide-polls"> </button>
-        </div>
-      </div>
-      <div class="col-right mt-section mb-60">
-        <div id="daybyday">
-          <div id="pollsterFilterContainer">
-            <span class="filter-title">Filter by pollster:</span>
-            <ul id="pollstersFilter"></ul>
-          </div>
-          <div id="pollsTable" ></div>
-          <br/>
-          <a href="#" id="showMorePolls" class="more">Show more</a>
-        </div>
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-left">
+                <h4 class="t-h4-s" id="title_coalitions"></h4>
+                <p class="t-bd-s" id="par_coalitions"></p>
+            </div>
 
-    <div id="election-nav-footer"></div>
-  </div>
+            <div class="col-right mb-60 t-bd-s">
+                <div id="coalitionsChart" class="poll-chart mt-coalitions"></div>
+            </div>
+
+        </div>
+
+        <!-- section 2 -->
+        <div class="row bdt-section ">
+            <a class="anchor" name="voting-intention-over-time" data-status="How the polls are evolving, from the Guardian poll projection"></a>
+            <div class="col-left">
+                <h2 class="t-h2-s" id="title_vi-time-series"></h2>
+                <p class="t-bd-s" id="par_vi-time-series"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="voting-intention-over-time"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="voting-intention-over-time"></button>
+                </div>
+            </div>
+            <div class="col-right mt-section mb-60 pos-r">
+                <!-- pollchart --> 
+                <div id="pollchart"></div>
+                <div id="pollchartTooltip" class="tp-text pos-a d-n ff-ss fz-14">
+                    <div class="fw-b pt-10"></div>
+                    <div></div>
+                    <div class="fw-b pb-7"></div>           
+                </div>  
+                <!-- end of pollchart -->
+            </div>
+        </div>
+
+        <!-- section 3 -->
+
+        <div class="row bdt-section ">
+            <a class="anchor" name="which-seats-are-changing-hands" data-status="The Guardian poll projection shows how the seats would change hands"></a>
+            <div class="col-left">
+                <h3 class="t-h2-s" id="title_flowofseats"></h3>
+                <p class="t-bd-s" id="par_flowofseats"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="which-seats-are-changing-hands"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="which-seats-are-changing-hands"> </button>
+                </div>
+            </div>
+            <div class="col-right mt-section mb-60">
+                <div id="flowsChart" class="poll-chart"></div>
+            </div>
+        </div>
+        <a class="anchor" name="conservative-gains-and-losses" data-status="The Guardian poll projection shows how many seats the Tories would gain and lose"></a>
+        <div class="row">
+            <div class="col-left bdt-subsection">
+                <h3 class="t-h3-s" id="title_con-transfers"></h3>
+                <p class="t-bd-s" id="par_con-transfers"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="conservative-gains-and-losses"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="conservative-gains-and-losses"> </button>
+                </div>
+            </div>
+            <div class="col-right mb-60">
+                <div id="conChart" class="poll-chart"></div>
+            </div>
+        </div>
+        <a class="anchor" name="labour-gains-and-losses" data-status="The Guardian poll projection shows how many seats Labour would gain and lose"></a>
+        <div class="row">
+            <div class="col-left bdt-subsection">
+                <h3 class="t-h3-s" id="title_lab-transfers"></h3>
+                <p class="t-bd-s" id="par_lab-transfers"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="labour-gains-and-losses"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="labour-gains-and-losses"> </button>
+                </div>
+            </div>
+            <div class="col-right mb-60">
+                <div id="labChart" class="poll-chart"></div>
+            </div>
+        </div>
+        <a class="anchor" name="snp-gains-and-losses" data-status="The Guardian poll projection shows how many seats the SNP would gain and lose"></a>
+        <div class="row">
+            <div class="col-left bdt-subsection">
+                <h3 class="t-h3-s" id="title_snp-transfers"></h3>
+                <p class="t-bd-s" id="par_snp-transfers"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="snp-gains-and-losses"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="snp-gains-and-losses"> </button>
+                </div>
+            </div>
+            <div class="col-right mb-60">
+                <div id="snpChart" class="poll-chart"></div>
+            </div>
+        </div>
+        <a class="anchor" name="ld-gains-and-losses" data-status="The Guardian poll projection shows how many seats the Lib Dems would gain and lose"></a>
+        <div class="row">
+            <div class="col-left bdt-subsection">
+                <h3 class="t-h3-s" id="title_ld-transfers"></h3>
+                <p class="t-bd-s" id="par_ld-transfers"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="ld-gains-and-losses"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="ld-gains-and-losses"> </button>
+                </div>
+            </div>
+            <div class="col-right mb-60">
+                <div id="libdemChart" class="poll-chart"></div>
+            </div>
+        </div>
+
+        <!-- section 3 -->
+        <div class="row bdt-section ">
+            <a class="anchor" name="all-uk-wide-polls" data-status="Full list of opinion polls from the Guardian poll projection"></a>
+            <div class="col-left">
+                <h2 class="t-h2-s" id="title_all-polls"></h2>
+                <p class="t-bd-s" id="par_all-polls"></p>
+                <div class="btns-share">
+                    <button class="btn-tt" data-source="twitter" data-view="all-uk-wide-polls"></button>
+                    <button class="btn-fb" data-source="facebook" data-view="all-uk-wide-polls"> </button>
+                </div>
+            </div>
+            <div class="col-right mt-section mb-60">
+                <div id="daybyday">
+                    <div id="pollsterFilterContainer">
+                        <span class="filter-title">Filter by pollster:</span>
+                        <ul id="pollstersFilter"></ul>
+                    </div>
+                    <div id="pollsTable" ></div>
+                    <br/>
+                    <a href="#" id="showMorePolls" class="more">Show more</a>
+                </div>
+            </div>
+        </div>
+        <p class="t-credit mb-15">
+            Credits: 
+            <a href="http://www.theguardian.com/profile/caelainn-barr">Caelainn Barr</a>, 
+            <a href="http://www.theguardian.com/profile/helena-bengtsson">Helena Bengtssoni</a>, 
+            <a href="http://www.theguardian.com/profile/chia-jung-apple-c-fardel">Chia-Jung (Apple) C.Fardel</a>,
+            <a href="http://www.theguardian.com/profile/seanclarke">Seán Clarke</a>, 
+            Cath Levett, 
+            <a href="http://www.theguardian.com/profile/alberto-nardelli">Alberto Nardelli</a>, 
+            <a href="http://www.theguardian.com/profile/carlo-zapponi">Carlo Zapponi</a>
+        </p>
+        <div id="election-nav-footer"></div>
+    </div>
 </div>

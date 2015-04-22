@@ -55,7 +55,15 @@ h1 {
         color: #333;
     }
 
-    // in <main> <footer>: (-ft-)
+    .t-credit {
+        font-family: $f-serif-text;
+        font-size: 15px;
+        font-weight: bold;
+        color: #767676;
+        margin-top: 15px;
+    }
+
+    // in <main>: (-ft-)
     .t-ft {
         color: #DCDCDC;
     }
@@ -79,19 +87,10 @@ h1 {
     .link-method {
         color: #005689;
         text-decoration: none;
+        white-space: nowrap;
         &:hover {
             text-decoration: underline;
         }
-    }
-    .links-footer a {
-        color: #dcdcdc;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 22px;
-        text-decoration: none;
-    }
-    .links-footer a:hover {
-        text-decoration: underline;
     }
 
 
@@ -105,7 +104,6 @@ h1 {
 
     .l-nav,
     .l-main,
-    .l-footer,
     .l-stick {
         // width - 20*2 padding
         width: calc(100% - 120px - 40px);     
@@ -184,20 +182,6 @@ h1 {
 
 
     // list: (ul-, li)
-    .ul-footer {
-        list-style: none;
-        margin-top: 0;   //override ul default
-        padding-left: 0; //override ul default
-        padding-top: 20px;
-        overflow: auto;
-        //column-count: 3;
-    }
-    .ul-footer li {
-        width: calc(100% / 3);
-        float: left;
-        padding: 0 0 12px 0;
-    }
-
     .ul__party {
         list-style: none;
         margin: 0; 
@@ -261,16 +245,9 @@ h1 {
     .guInteractive { 
         .l-nav,
         .l-main,
-        .l-footer,
         .l-stick {
             max-width: 1300px;
         }
-        /*.ul-footer {
-            column-count: 4;
-        }*/
-    .ul-footer li {
-        width: calc(100% / 4);
-    }
 }}
 @media (max-width: 980px) {
     .guPollProjection { 
@@ -291,16 +268,9 @@ h1 {
     .guInteractive { 
         .l-nav,
         .l-main,
-        .l-footer,
         .l-stick {
             min-width: calc(100% - 40px);     
         }
-        /*.ul-footer {
-            column-count: 2;
-        }*/ 
-    .ul-footer li {
-        width: calc(100% / 2);
-    }
     .t-bd-h {
         padding: 10px 0 0;
     }
@@ -327,7 +297,6 @@ h1 {
     .guInteractive { 
         .l-nav,
         .l-main,
-        .l-footer,
         .l-stick {
             min-width: 280px;     
         }

@@ -3,7 +3,7 @@
  * File:    Main SCSS
  */
 
-/** Variables */
+//** Variables */
 $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 
 $ff-s:  "Guardian Egyptian Web", Georgia, serif;
@@ -52,6 +52,10 @@ body {
   display: none;
 }
 
+.is-immersive .l-footer {
+    display: block;
+}
+
 
 /** Style: reset */
 body {
@@ -67,9 +71,19 @@ h1, h2, h3, h4, p {
   margin: 0;
 }
 
+a {
+  color: #005689;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+  text-decoration: underline;
+  }
+}
+
 img {
   border: none;
 }
+
 
 // for app version
 .article__header {

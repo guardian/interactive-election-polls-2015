@@ -19,11 +19,6 @@ define([
 ) {
     'use strict';
 
-    d3.select(".l-footer")
-    .style("display","block");
-    d3.select(".l-footer__primary")
-    .style("display","none");
-
     function jumpTo(h) {
         var url = location.href;               
         var newhref=location.href.split("#")[0]+"#"+h;
