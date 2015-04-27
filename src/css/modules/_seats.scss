@@ -98,6 +98,13 @@
         stop-color:$pc;
         stroke:$pc;
     }
+    .pc,
+    .pc line {
+        color:$sdlp;
+        fill:$sdlp;
+        stop-color:$sdlp;
+        stroke:$sdlp;
+    }
     .gray {
         stop-color:#999;
     }
@@ -404,6 +411,9 @@
     }
     .bg-pc {
         background-color:$pc;
+    }
+    .bg-sdlp {
+        background-color:$sdlp;
     }
 
     #coalitions {
