@@ -58,6 +58,12 @@
   path {
     fill: none;
   }
+  
+  .line-theday {
+    stroke: lightgrey;
+    stroke-width: 1px;
+    stroke-dasharray: 3, 4;
+}
 
   .pollster {
     stroke-width: 1;

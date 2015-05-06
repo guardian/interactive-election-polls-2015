@@ -41,7 +41,7 @@ define([
   function render(el, rawData) {
     /* SVG */
     // x, y axes; circle, path, area (polygon as range), text
-    var gx, gy ,gp, ga, gr,
+    var gx, gl, gy ,gp, ga, gr,
         gtAvg, gtVi, gcPoll, gcDate;
     
     // Add the svg
@@ -119,6 +119,19 @@ define([
       .attr("x", 0)
       .attr("dy", -3);
     }
+    
+    function addLine(svgObj) {
+        gl = svgObj.append("line")
+        .attr("class", "line-theday");
+     }
+    function drawLine() {
+        var px = x(+parseDate("07/05/2015"));
+        gl
+        .attr("x1", px)
+        .attr("y1", y(coord.x))
+        .attr("x2", px)
+        .attr("y2", y(coord.y));  
+    }
 
     // avg path
     function addPathWithLines(svgObj, className){
@@ -164,7 +177,7 @@ define([
         d3.select(this.parentNode).classed("op-1-path", false); 
       });
     }
-
+    
     function addRects(svgObj) {
       gr = svgObj.append("rect")
       .attr("class", function(d) { return "t" + d; });
@@ -398,6 +411,8 @@ define([
         .attr("class", function(d, index) { return "pollster p" + index;} );
       
       // 2. Draw over time view
+      //addLine(svg);
+      //drawLine();
       addRects(svgRects);
       drawRects();
       onRects();
@@ -428,6 +443,7 @@ define([
 
     function drawSVG() {
       drawCoordinate();  
+      //drawLine();
       drawRects();
       drawCircles(gcDate, 3.5);
       drawTextVi();
@@ -503,7 +519,7 @@ define([
       xAxisTextFormat = formatMon;
     } else {
       dateStrX = (+parseDate("20/11/2014"));  
-      dateEndX = (+parseDate("12/05/2015")); //election date is 07/05/2015
+      dateEndX = (+parseDate("18/05/2015")); //election date is 07/05/2015
       xAxisTextFormat = formatMonth;
     }
 
