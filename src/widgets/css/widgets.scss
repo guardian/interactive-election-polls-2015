@@ -32,7 +32,9 @@
     margin-bottom: 20px;
   }
 }
-
+.widget-header .h2.hidden {
+  display: none;
+}
 .widget-header {
   border-bottom: 1px solid #dcdcdc;
   
