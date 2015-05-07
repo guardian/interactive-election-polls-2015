@@ -15,7 +15,7 @@ define([
 
     function openShareWindow(e){
       var shareWindow = "";
-      var twitterBaseUrl = "https://twitter.com/home?status=";
+      var twitterBaseUrl = "https://twitter.com/intent/tweet?text=";
       var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
       var network = e.currentTarget.getAttribute('data-source'); 
       
