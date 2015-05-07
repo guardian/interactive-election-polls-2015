@@ -63,7 +63,7 @@ define([
         default_status
             .attr("data-status",function(){
                 var days=diff+" days to #GE2015"
-                return default_status.attr("data-status")+(" http://gu.com/p/464t6")+"\n"+poll_str+"\n"+days;
+                return default_status.attr("data-status")+(" http://gu.com/p/464t6")+"\n"+poll_str;//+"\n"+days;
             })
 
     }
