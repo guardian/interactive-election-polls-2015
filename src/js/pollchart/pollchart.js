@@ -77,9 +77,9 @@ define([
     // dataAvgEnd[0].currentdate is the date in reality
     dataAvgEnd[0].date = dataAvgEnd[0].currentdate;
     // Append the last avg to dataAvg if it's not yet there
-    if (dataAvg[dataAvg.length-1].date !== dataAvgEnd.date) { 
+    /*if (dataAvg[dataAvg.length-1].date !== dataAvgEnd.date) { 
       dataAvg = dataAvg.concat(dataAvgEnd); 
-    }
+    }*/
     dataAvg = dataAvg.map(function(d) {
       d.timestamp = +parseDate(d.date);
       return d;
