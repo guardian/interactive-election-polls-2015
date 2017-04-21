@@ -33,21 +33,24 @@ define([
         el.innerHTML = templateHTML;
 
 
-        var title = document.querySelector('title');
-        title.innerHTML = d3.select(".l-title h1").text();
+        //var title = document.querySelector('title');
+        //title.innerHTML = d3.select(".l-title h1").text();
 
         loadData(function(data){
             //console.log(data)
             /* Add page and charts */
-            pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
-            commonsChart.render('#commonsChart' ,data);
-            commonsChart.renderMainFlow('#flowsChart' ,data);
-            commonsChart.renderFlows(data);
-            commonsChart.renderDayByDay("#daybyday",data);
+            
+            //pageView.render(data["sheets"]["glosses"],data["sheets"]["RESULT"][0],data.updated);
+            
+            //commonsChart.render('#commonsChart' ,data);
+            //commonsChart.renderMainFlow('#flowsChart' ,data);
+            //commonsChart.renderFlows(data);
             pollChart.render(el.querySelector('#pollchart') ,data);
+            commonsChart.renderDayByDay("#daybyday",data);
+            
 
             /* Add sticky legend */
-            stickElement();
+            //stickElement();
             
             /* Add tabs */
             var head = document.querySelector('head'),
@@ -56,12 +59,12 @@ define([
             script.setAttribute('type','text/javascript');
             head.appendChild(script);
 
-            shareInteractive();
+            //shareInteractive();
 
-            if(window.location.hash) {
-                //jumpTo("voting-intention-over-time")
-                jumpTo(window.location.hash.split('#')[1]);
-            }
+            // if(window.location.hash) {
+            //     //jumpTo("voting-intention-over-time")
+            //     jumpTo(window.location.hash.split('#')[1]);
+            // }
         })
     }
 
